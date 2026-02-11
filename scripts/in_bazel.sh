@@ -16,7 +16,8 @@ out=$(
                 -not -path './bazel-*/*' \
                 -not -path './.git/*' \
                 -not -path './.venv/*' \
-                -not -path './doc/*' |
+                -not -path './doc/*' \
+                -not -path './.claude/*' |
                 sed 's|^\./||' |
                 sort
         ) \

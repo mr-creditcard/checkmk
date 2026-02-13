@@ -58,3 +58,10 @@ bazel build --config=mypy //packages/cmk-messaging:all
 # Clippy (Rust)
 bazel build --config=clippy //packages/cmk-agent-ctl:all
 ```
+
+## bazel mod
+
+```bash
+# Update the lockfile, e.g. after adding a new bazel_dep to MODULE.bazel
+bazel mod deps --lockfile_mode=update
+```

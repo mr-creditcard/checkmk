@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 from collections.abc import Mapping
 
@@ -64,7 +63,7 @@ agent_section_sap_hana_status = AgentSection(
 )
 
 
-def _check_sap_hana_status_data(data):
+def _check_sap_hana_status_data(data: dict[str, str]) -> tuple[State, str]:
     state_name = data["state_name"]
     if state_name.lower() in ("ok", "connected"):
         cur_state = State.OK

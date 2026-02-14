@@ -16,17 +16,16 @@ Sample agent output:
 """
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 from collections.abc import Mapping, Sequence
 from itertools import groupby
 
 from cmk.agent_based.v2 import AgentSection, InventoryPlugin, InventoryResult, StringTable, TableRow
 
-Section = Sequence[Mapping[str, str]]
+Section = Sequence[Mapping[str, str | int]]
 
 
-def _translate(name, value):
+def _translate(name: str, value: str) -> tuple[str, str | int] | None:
     """Translate dev-tree names and values to inventory item names and values
     Still unclear:
         "vendor": "Manufacturer" on Windows, but can also be "QEMU", "ATA"
@@ -57,7 +56,7 @@ def _translate(name, value):
     return None
 
 
-def _pairify(line):
+def _pairify(line: Sequence[str]) -> tuple[str, str | int] | None:
     """Return a (key, value) tuple from a validly formatted @line `|key|value|`. If parsing or
     reformatting fails return None"""
     try:

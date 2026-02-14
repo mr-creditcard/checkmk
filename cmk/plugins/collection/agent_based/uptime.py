@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 # Example output from agent:
 # <<<uptime>>>
@@ -113,9 +112,9 @@ def parse_uptime(string_table: StringTable) -> uptime.Section | None:
     if not string_table:
         return None
 
-    def extract_solaris_subsection(info):
+    def extract_solaris_subsection(info: StringTable) -> StringTable:
         is_solaris = False
-        solaris_info = []
+        solaris_info: StringTable = []
         for line in info:
             if line[-1] == "[uptime_solaris_start]":
                 is_solaris = True

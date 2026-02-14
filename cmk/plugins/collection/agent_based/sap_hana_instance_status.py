@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 from datetime import datetime, timedelta
 from typing import Final, NamedTuple
@@ -27,7 +26,7 @@ class InstanceProcess(NamedTuple):
     name: str
     state: str
     description: str
-    elapsed_time: float
+    elapsed_time: float | None
     pid: str
 
 
@@ -45,7 +44,7 @@ INSTANCE_STATUSES: Final = {
 }
 
 
-def _parse_elapsed_time(time_string):
+def _parse_elapsed_time(time_string: str) -> float | None:
     try:
         time = datetime.strptime(time_string, "%H:%M:%S")
     except ValueError:

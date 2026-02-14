@@ -4,14 +4,19 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
+
+from __future__ import annotations
 
 import time
+from collections.abc import Mapping, MutableMapping
+from typing import Any
 
 from cmk.agent_based.v1 import check_levels as check_levels_v1
 from cmk.agent_based.v2 import (
     AgentSection,
     CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
     get_value_store,
     IgnoreResults,
     render,
@@ -34,13 +39,19 @@ from cmk.plugins.postgres import lib as postgres
 # postgres;pg_catalog;pg_attribute;-1;-1
 
 
-def discover_postgres_stats(section):
+def discover_postgres_stats(section: postgres.Section) -> DiscoveryResult:
     for item in section:
         yield Service(item=f"VACUUM {item}")
         yield Service(item=f"ANALYZE {item}")
 
 
-def _check_never_checked(text, never_checked, params, value_store, now):
+def _check_never_checked(
+    text: str,
+    never_checked: list[str],
+    params: Mapping[str, Any],
+    value_store: MutableMapping[str, Any],
+    now: float,
+) -> CheckResult:
     state_key = "last-time-all-checked"
 
     if not never_checked:
@@ -69,7 +80,9 @@ def _check_never_checked(text, never_checked, params, value_store, now):
     )
 
 
-def check_postgres_stats(item, params, section):
+def check_postgres_stats(
+    item: str, params: Mapping[str, Any], section: postgres.Section
+) -> CheckResult:
     yield from _check_postgres_stats(
         item=item,
         params=params,
@@ -79,7 +92,14 @@ def check_postgres_stats(item, params, section):
     )
 
 
-def _check_postgres_stats(*, item, params, section, value_store, now):
+def _check_postgres_stats(
+    *,
+    item: str,
+    params: Mapping[str, Any],
+    section: postgres.Section,
+    value_store: MutableMapping[str, Any],
+    now: float,
+) -> CheckResult:
     item_type, database = item.split(" ", 1)
     data = section.get(database)
 

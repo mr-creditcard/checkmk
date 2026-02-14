@@ -4,8 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 """Alertmanager Check"""
 
-# mypy: disable-error-code="no-untyped-def"
-
 import json
 from enum import StrEnum
 from typing import NamedTuple, TypedDict
@@ -40,7 +38,7 @@ class Severity(StrEnum):
     NA = "not_applicable"
 
     @classmethod
-    def _missing_(cls, value):
+    def _missing_(cls, value: object) -> "Severity":
         return Severity.NA
 
 

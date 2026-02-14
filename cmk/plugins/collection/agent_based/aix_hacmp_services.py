@@ -3,8 +3,6 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-# mypy: disable-error-code="no-untyped-def"
-
 # hacmp-aix
 # <<<aix_hacmp_services>>>
 # Status of the RSCT subsystems used by PowerHA SystemMirror:
@@ -69,8 +67,6 @@
 
 # mypy: disable-error-code="var-annotated"
 
-from typing import Any
-
 from cmk.agent_based.v2 import (
     AgentSection,
     CheckPlugin,
@@ -79,12 +75,15 @@ from cmk.agent_based.v2 import (
     Result,
     Service,
     State,
+    StringTable,
 )
 
+type Section = dict[str, list[tuple[str, str]]]
 
-def parse_aix_hacmp_services(string_table):
-    parsed = {}
-    inst = None
+
+def parse_aix_hacmp_services(string_table: StringTable) -> Section:
+    parsed: Section = {}
+    inst: list[tuple[str, str]] | None = None
     for line in string_table:
         if line[0] == "Details":
             inst = None
@@ -108,7 +107,7 @@ def parse_aix_hacmp_services(string_table):
     return parsed
 
 
-def check_aix_hacmp_services(item: str, section: Any) -> CheckResult:
+def check_aix_hacmp_services(item: str, section: Section) -> CheckResult:
     if not (data := section.get(item)):
         return
 
@@ -121,7 +120,7 @@ def check_aix_hacmp_services(item: str, section: Any) -> CheckResult:
     )
 
 
-def discover_aix_hacmp_services(section: Any) -> DiscoveryResult:
+def discover_aix_hacmp_services(section: Section) -> DiscoveryResult:
     yield from (Service(item=item) for item in section)
 
 

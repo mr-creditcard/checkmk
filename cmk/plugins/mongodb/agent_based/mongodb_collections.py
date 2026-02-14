@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 # <<<mongodb_collections:sep(9)>>>
 # json
@@ -100,7 +99,7 @@ def check_mongodb_collections(
     yield Result(state=State.OK, notice=_mongodb_collections_long_output(collection_stats))
 
 
-def _mongodb_collections_split_namespace(namespace):
+def _mongodb_collections_split_namespace(namespace: str) -> tuple[str, str]:
     """
     split namespace into database name and collection name
     :param namespace:
@@ -119,7 +118,7 @@ def _mongodb_collections_split_namespace(namespace):
     raise ValueError("error parsing namespace %s" % namespace)
 
 
-def _mongodb_collections_get_perfdata_key(key):
+def _mongodb_collections_get_perfdata_key(key: str) -> str | None:
     if key == "size":
         return "mongodb_collection_size"
     if key == "storageSize":
@@ -129,7 +128,7 @@ def _mongodb_collections_get_perfdata_key(key):
     return None
 
 
-def _mongodb_collections_long_output(data):
+def _mongodb_collections_long_output(data: Mapping[str, Any]) -> str:
     is_sharded = data.get("sharded", None)
     # output per collection
     long_output = ["Collection"]
@@ -178,7 +177,9 @@ def _mongodb_collections_long_output(data):
     return "\n".join(long_output)
 
 
-def _mongodb_collections_get_indexes_as_list(data):
+def _mongodb_collections_get_indexes_as_list(
+    data: Mapping[str, Any],
+) -> list[tuple[str, int, float]]:
     """
     get all indexes as a list of (name, access timestamp) and sort them
     :param data:
@@ -187,8 +188,8 @@ def _mongodb_collections_get_indexes_as_list(data):
     if "indexStats" not in data:
         return []
 
-    index_list = []
-    for index_stat in data.get("indexStats"):
+    index_list: list[tuple[str, int, float]] = []
+    for index_stat in data["indexStats"]:
         index_name = index_stat.get("name", "n/a")
         last_access = parse_date(index_stat.get("accesses", {}).get("since", {}).get("$date", 0))
         number_of_operations = index_stat.get("accesses", {}).get("ops", 0)
@@ -198,27 +199,33 @@ def _mongodb_collections_get_indexes_as_list(data):
     return index_list
 
 
-def _mongodb_collections_sort_second(tup):
+def _mongodb_collections_sort_second(tup: tuple[str, int, float]) -> int:
     return tup[1]
 
 
-def _mongodb_collections_bytes_human_readable(data, key):
+def _mongodb_collections_bytes_human_readable(data: Mapping[str, Any], key: str) -> str:
     try:
-        return render.bytes(int(data.get(key)))
+        value = data.get(key)
+        if value is None:
+            return "n/a"
+        return render.bytes(int(value))
     except (TypeError, ValueError):
         return "n/a"
 
 
-def _mongodb_collections_timestamp_human_readable(value):
+def _mongodb_collections_timestamp_human_readable(value: float) -> str:
     try:
         return render.datetime(int(value))
     except (TypeError, ValueError):
         return "n/a"
 
 
-def _mongodb_collections_get_as_int(data, key):
+def _mongodb_collections_get_as_int(data: Mapping[str, Any], key: str) -> int | str:
     try:
-        return int(data.get(key))
+        value = data.get(key)
+        if value is None:
+            return "n/a"
+        return int(value)
     except (TypeError, ValueError):
         return "n/a"
 

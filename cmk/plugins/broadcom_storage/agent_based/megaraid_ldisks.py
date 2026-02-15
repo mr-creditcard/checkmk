@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 
 from collections.abc import Mapping
 
@@ -30,7 +29,7 @@ from cmk.plugins.broadcom_storage.lib import megaraid
 # Adapter 1: No Virtual Drive Configured.
 
 
-def megaraid_ldisks_is_new_drive(l):
+def megaraid_ldisks_is_new_drive(l: str) -> bool:
     return (
         l.startswith("Virtual Disk:")
         or l.startswith("Virtual Drive:")

@@ -10,7 +10,7 @@ from collections.abc import Mapping
 from typing import Literal
 
 from cmk.ccc.version import Edition, edition
-from cmk.gui.mkeventd import syslog_facilities
+from cmk.ec.syslog import SyslogFacility
 from cmk.plugins.emailchecks.forwarding_option import ECForwarding
 from cmk.rulesets.v1 import Help, Title
 from cmk.rulesets.v1.form_specs import (
@@ -173,7 +173,9 @@ def _migrate_facility(value: object) -> tuple[str, int]:
         case tuple((str(s), int(i))):
             return (s, i)
         case int(i):
-            return next((name, facility) for facility, name in syslog_facilities if facility == i)
+            return next(
+                (name, facility) for facility, name in SyslogFacility.NAMES.items() if facility == i
+            )
     raise ValueError(f"Invalid facility value: {value!r}")
 
 
@@ -228,7 +230,7 @@ def _forward_to_ec_form() -> Dictionary:
                             ),
                             parameter_form=FixedValue(value=value),
                         )
-                        for value, name in syslog_facilities
+                        for value, name in SyslogFacility.NAMES.items()
                     ],
                     # our tests will fail if this is no longer found in syslog_facilities
                     prefill=DefaultValue("mail"),

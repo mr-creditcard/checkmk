@@ -12,6 +12,25 @@ exports_files([
 ])
 
 py_library(
+    name = "event",
+    srcs = ["cmk/ec/event.py"],
+    imports = ["."],
+    visibility = ["//cmk:__pkg__"],
+    deps = [
+        "//packages/cmk-ccc:hostaddress",
+        "//packages/cmk-ccc:site",
+        requirement("python-dateutil"),
+    ],
+)
+
+py_library(
+    name = "syslog",
+    srcs = ["cmk/ec/syslog.py"],
+    imports = ["."],
+    visibility = ["//cmk:__pkg__"],
+)
+
+py_library(
     name = "cmk-ec",
     srcs = [
         "cmk/ec/__init__.py",
@@ -19,7 +38,6 @@ py_library(
         "cmk/ec/config.py",
         "cmk/ec/core_queries.py",
         "cmk/ec/defaults.py",
-        "cmk/ec/event.py",
         "cmk/ec/export.py",
         "cmk/ec/helpers.py",
         "cmk/ec/history.py",
@@ -36,7 +54,6 @@ py_library(
         "cmk/ec/rule_packs.py",
         "cmk/ec/settings.py",
         "cmk/ec/snmp.py",
-        "cmk/ec/syslog.py",
         "cmk/ec/timeperiod.py",
     ],
     data = [":py_typed"],
@@ -47,6 +64,8 @@ py_library(
         "//packages:__subpackages__",
     ],
     deps = [
+        ":event",
+        ":syslog",
         "//packages/cmk-ccc:crash-reporting",
         "//packages/cmk-ccc:daemon",
         "//packages/cmk-ccc:exceptions",
@@ -64,7 +83,6 @@ py_library(
         requirement("pymongo"),
         requirement("pysnmp"),
         requirement("pysmi"),
-        requirement("python-dateutil"),
         requirement("setproctitle"),
     ],
 )
@@ -104,7 +122,9 @@ py_wheel(
     version = "1.0.0",
     deps = [
         ":cmk-ec",
+        ":event",
         ":py_typed",
+        ":syslog",
     ],
 )
 

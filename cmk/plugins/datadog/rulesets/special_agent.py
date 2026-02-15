@@ -10,11 +10,8 @@
 from collections.abc import Callable, Mapping
 
 from cmk.ccc.version import Edition, edition
-from cmk.gui.mkeventd import (
-    service_levels,
-    syslog_facilities,
-    syslog_priorities,
-)
+from cmk.ec.syslog import SyslogFacility, SyslogPriority
+from cmk.gui.mkeventd import service_levels
 from cmk.rulesets.internal.form_specs import ListExtended
 from cmk.rulesets.v1 import Help, Label, Title
 from cmk.rulesets.v1.form_specs import (
@@ -222,7 +219,7 @@ def _fetch_events_and_logs_elements() -> Mapping[str, DictElement]:
                                     title=Title(name),  # astrein: disable=localization-checker
                                     parameter_form=FixedValue(value=value, label=Label("")),
                                 )
-                                for value, name in syslog_facilities
+                                for value, name in SyslogFacility.NAMES.items()
                             ],
                             prefill=DefaultValue("user"),
                             migrate=_migrate_facility,
@@ -241,7 +238,7 @@ def _fetch_events_and_logs_elements() -> Mapping[str, DictElement]:
                                     title=Title(name),  # astrein: disable=localization-checker
                                     parameter_form=FixedValue(value=value, label=Label("")),
                                 )
-                                for value, name in syslog_priorities
+                                for value, name in SyslogPriority.NAMES.items()
                             ],
                             prefill=DefaultValue("alert"),
                             migrate=_migrate_priority,
@@ -361,7 +358,7 @@ def _fetch_events_and_logs_elements() -> Mapping[str, DictElement]:
                                     title=Title(name),  # astrein: disable=localization-checker
                                     parameter_form=FixedValue(value=value, label=Label("")),
                                 )
-                                for value, name in syslog_facilities
+                                for value, name in SyslogFacility.NAMES.items()
                             ],
                             prefill=DefaultValue("user"),
                             migrate=_migrate_facility,
@@ -448,7 +445,9 @@ def _migrate_facility(value: object) -> tuple[str, int]:
         case tuple((str(s), int(i))):
             return (s, i)
         case int(i):
-            return next((name, facility) for facility, name in syslog_facilities if facility == i)
+            return next(
+                (name, facility) for facility, name in SyslogFacility.NAMES.items() if facility == i
+            )
     raise ValueError(f"Invalid facility value: {value!r}")
 
 
@@ -457,7 +456,9 @@ def _migrate_priority(value: object) -> tuple[str, int]:
         case tuple((str(s), int(i))):
             return (s, i)
         case int(i):
-            return next((name, priority) for priority, name in syslog_priorities if priority == i)
+            return next(
+                (name, priority) for priority, name in SyslogPriority.NAMES.items() if priority == i
+            )
     raise ValueError(f"Invalid priority value: {value!r}")
 
 

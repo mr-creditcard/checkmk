@@ -26,7 +26,6 @@ from typing import Any, Literal, Protocol
 from urllib.parse import quote as url_quote
 
 import cmk.ccc.debug
-import cmk.ec.export as ec
 import cmk.utils.paths
 from cmk.agent_based.v2 import (
     CheckPlugin,
@@ -39,9 +38,8 @@ from cmk.agent_based.v2 import (
     State,
 )
 from cmk.ccc.hostaddress import HostName
-from cmk.ec.event import (
-    create_event_from_syslog_message,
-)
+from cmk.ec.event import create_event_from_syslog_message
+from cmk.ec.syslog import forward_to_unix_socket, SyslogMessage
 
 from . import commons as logwatch
 
@@ -246,7 +244,7 @@ class MessageForwarderProto(Protocol):
     def __call__(
         self,
         method: str | tuple,
-        messages: Sequence[ec.SyslogMessage],
+        messages: Sequence[SyslogMessage],
         timestamp: float,
     ) -> LogwatchForwardedResult: ...
 
@@ -372,7 +370,7 @@ def check_logwatch_ec_common(
                         continue
 
             syslog_messages.append(
-                ec.SyslogMessage(
+                SyslogMessage(
                     facility=facility,
                     severity=logwatch_to_prio(rclfd_level or line[0]),
                     timestamp=int(timestamp),
@@ -473,7 +471,7 @@ class MessageForwarder:
     def __call__(
         self,
         method: str | tuple,
-        messages: Sequence[ec.SyslogMessage],
+        messages: Sequence[SyslogMessage],
         timestamp: float,
     ) -> LogwatchForwardedResult:
         if not method:
@@ -504,12 +502,11 @@ class MessageForwarder:
     @staticmethod
     def _forward_unix_socket(
         path: Path,
-        events: Sequence[ec.SyslogMessage],
+        events: Sequence[SyslogMessage],
     ) -> LogwatchForwardedResult:
         try:
-            ec.forward_to_unix_socket(
+            forward_to_unix_socket(
                 events,
-                omd_root=cmk.utils.paths.omd_root,
                 path=path,
                 timeout=_EC_CONNECTION_TIMEOUT,
             )
@@ -523,7 +520,7 @@ class MessageForwarder:
     def _forward_spool_directory(
         self,
         method: str,
-        syslog_messages: Sequence[ec.SyslogMessage],
+        syslog_messages: Sequence[SyslogMessage],
         timestamp: float,
     ) -> LogwatchForwardedResult:
         if not syslog_messages:
@@ -578,7 +575,7 @@ class MessageForwarder:
     def _forward_tcp(
         self,
         method: tuple,
-        syslog_messages: Sequence[ec.SyslogMessage],
+        syslog_messages: Sequence[SyslogMessage],
         timestamp: float,
     ) -> LogwatchForwardedResult:
         # Transform old format: (proto, address, port)

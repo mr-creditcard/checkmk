@@ -10,8 +10,6 @@ from datetime import datetime, UTC
 from pathlib import Path
 from typing import Literal
 
-from .settings import create_paths
-
 
 class SyslogPriority:
     NAMES: Mapping[int, str] = {
@@ -363,15 +361,12 @@ class SyslogMessage:
 def forward_to_unix_socket(
     syslog_messages: Iterable[SyslogMessage],
     *,
-    omd_root: Path,
-    path: Path | None = None,
+    path: Path,
     timeout: float | None = None,
 ) -> None:
     payload = b"".join(bytes(msg) + b"\n" for msg in syslog_messages)
     if not payload:
         return  # optimization: no need for any I/O
-    if path is None:
-        path = create_paths(omd_root).event_socket.value
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
         sock.settimeout(timeout)
         sock.connect(str(path))

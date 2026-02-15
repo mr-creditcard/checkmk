@@ -188,7 +188,7 @@ _PLUGIN_FAMILIES_WITH_KNOWN_API_VIOLATIONS = {
     "datadog": (
         "cmk.ccc.store",
         "cmk.ccc.version",  # edition detection
-        "cmk.ec.export",
+        "cmk.ec.syslog",
         "cmk.gui.mkeventd",
         "cmk.utils.http_proxy_config",
         "cmk.utils.paths",  # edition detection
@@ -197,7 +197,7 @@ _PLUGIN_FAMILIES_WITH_KNOWN_API_VIOLATIONS = {
         "cmk.ccc.version",  # edition detection
         "cmk.utils.paths",  # edition detection
         "cmk.utils.render",  # FIXME
-        "cmk.gui.mkeventd",
+        "cmk.ec.syslog",
     ),
     "gcp": (
         "cmk.agent_based.v1",  # FIXME
@@ -212,8 +212,7 @@ _PLUGIN_FAMILIES_WITH_KNOWN_API_VIOLATIONS = {
         "cmk.ccc.debug",
         "cmk.checkengine.plugins",
         "cmk.ec.event",
-        "cmk.ec.export",
-        "cmk.gui.mkeventd",
+        "cmk.ec.syslog",
         "cmk.utils.paths",
     ),
     "metric_backend_omd": ("cmk.metric_backend",),

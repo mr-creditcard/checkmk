@@ -4,7 +4,6 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="no-untyped-call"
-# mypy: disable-error-code="no-untyped-def"
 # mypy: disable-error-code="possibly-undefined"
 
 # This agent uses UPNP API calls to the FRITZ!Box to gather information
@@ -38,7 +37,7 @@ import logging
 import pprint
 import re
 import sys
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterator, Mapping, Sequence
 from typing import Final
 
 import requests
@@ -83,7 +82,7 @@ _SOAP_TEMPLATE = """
 """
 
 
-def parse_arguments(argv):
+def parse_arguments(argv: Sequence[str] | None) -> argparse.Namespace:
     prog, description = __doc__.split("\n\n", maxsplit=1)
     parser = argparse.ArgumentParser(prog=prog, description=description)
 
@@ -204,7 +203,7 @@ def _get_query_responses(connection: FritzConnection, debug: bool) -> Iterator[U
             continue
 
 
-def main(sys_argv=None):
+def main(sys_argv: Sequence[str] | None = None) -> None:
     if sys_argv is None:
         sys_argv = sys.argv[1:]
 

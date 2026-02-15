@@ -3,13 +3,10 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-# mypy: disable-error-code="no-untyped-def"
-
-
 from cmk.rulesets.v1 import form_specs, Help, rule_specs, Title
 
 
-def _formspec_fritzbox():
+def _formspec_fritzbox() -> form_specs.Dictionary:
     return form_specs.Dictionary(
         help_text=Help(
             "This rule selects the Fritz!Box agent, which uses UPNP to gather information "

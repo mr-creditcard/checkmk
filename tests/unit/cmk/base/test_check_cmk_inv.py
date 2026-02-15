@@ -8,7 +8,7 @@ from collections.abc import Sequence
 
 import pytest
 
-from cmk.plugins.checkmk.libinventory.check_cmk_inv import parse_arguments
+from cmk.base.check_cmk_inv import parse_arguments
 
 
 @pytest.mark.parametrize(

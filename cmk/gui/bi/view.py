@@ -752,6 +752,21 @@ class PainterOptionAggrExpand(PainterOption):
         )
 
 
+class PainterOptionAggrOnlyDifferences(PainterOption):
+    def __init__(self) -> None:
+        super().__init__(
+            ident="aggr_onlydiff",
+            valuespec=DropdownChoice(
+                title=_("Show only aggregation differences"),
+                default_value="0",
+                choices=[
+                    ("0", _("off")),
+                    ("1", _("on")),
+                ],
+            ),
+        )
+
+
 class PainterOptionAggrOnlyProblems(PainterOption):
     def __init__(self) -> None:
         super().__init__(
@@ -809,6 +824,7 @@ def paint_aggregated_tree_state(
 ) -> CellSpec:
     treetype = painter_options.get("aggr_treetype")
     expansion_level = int(painter_options.get("aggr_expand"))
+    only_diff = painter_options.get("aggr_onlydiff") == "1"
     only_problems = painter_options.get("aggr_onlyproblems") == "1"
     wrap_texts = painter_options.get("aggr_wrap")
 
@@ -834,6 +850,7 @@ def paint_aggregated_tree_state(
         row,
         omit_root=(treetype == "boxes-omit-root"),
         expansion_level=expansion_level,
+        only_diff=only_diff,
         only_problems=only_problems,
         lazy=True,
         wrap_texts=wrap_texts,
@@ -891,7 +908,7 @@ class PainterAggrTreestateFrozenDiff(Painter):
 
     @property
     def painter_options(self) -> list[str]:
-        return ["aggr_expand", "aggr_onlyproblems", "aggr_treetype", "aggr_wrap"]
+        return ["aggr_expand", "aggr_onlydiff", "aggr_onlyproblems", "aggr_treetype", "aggr_wrap"]
 
     def render(self, row: Row, cell: Cell, user: LoggedInUser) -> CellSpec:
         frozen_info = row["aggr_compiled_aggregation"].frozen_info

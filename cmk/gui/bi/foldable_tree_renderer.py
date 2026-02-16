@@ -47,6 +47,7 @@ class ABCFoldableTreeRenderer(abc.ABC):
         row: Row,
         omit_root: bool,
         expansion_level: int,
+        only_diff: bool,
         only_problems: bool,
         lazy: bool,
         wrap_texts: Literal["wrap", "nowrap"] = "nowrap",
@@ -56,6 +57,7 @@ class ABCFoldableTreeRenderer(abc.ABC):
         self._show_frozen_difference = show_frozen_difference
         self._omit_root = omit_root
         self._expansion_level = expansion_level
+        self._only_diff = only_diff
         self._only_problems = only_problems
         self._lazy = lazy
         self._wrap_texts = wrap_texts
@@ -91,6 +93,7 @@ class ABCFoldableTreeRenderer(abc.ABC):
                 ("title", title),
                 ("omit_root", "yes" if self._omit_root else ""),
                 ("renderer", self.__class__.__name__),
+                ("only_diff", "yes" if self._only_diff else ""),
                 ("only_problems", "yes" if self._only_problems else ""),
                 ("reqhosts", ",".join("%s#%s" % sitehost for sitehost in affected_hosts)),
             ]
@@ -116,9 +119,23 @@ class ABCFoldableTreeRenderer(abc.ABC):
 
     def _get_tree(self) -> BIAggrTreeState:
         tree = self._row["aggr_treestate"]
+        if self._show_frozen_difference and self._only_diff:
+            tree = self._filter_tree_only_diff(tree)
         if self._only_problems:
             tree = self._filter_tree_only_problems(tree)
         return tree
+
+    def _filter_tree_only_diff(self, tree: BIAggrTreeState) -> BIAggrTreeState:
+        state, assumed_state, node, subtrees = tree
+        new_subtrees: list[BIAggrTreeState | BILeafTreeState] = []
+        for subtree in subtrees:
+            if subtree[2]["frozen_marker"]:
+                if is_leaf(subtree):
+                    new_subtrees.append(subtree)
+                elif is_aggr(subtree):
+                    new_subtrees.append(self._filter_tree_only_diff(subtree))
+
+        return state, assumed_state, node, new_subtrees
 
     # Convert tree to tree contain only node in non-OK state
     def _filter_tree_only_problems(self, tree: BIAggrTreeState) -> BIAggrTreeState:

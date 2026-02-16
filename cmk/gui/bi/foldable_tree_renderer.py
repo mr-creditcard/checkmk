@@ -389,6 +389,10 @@ class FoldableTreeRendererTree(ABCFoldableTreeRenderer):
             icon_name = StaticIcon(IconNames.outof_serviceperiod)
             icon_title = _("This element is currently not in its service period.")
 
+        if (frozen_marker := tree[2].get("frozen_marker")) and frozen_marker.status == "parent":
+            icon_name = StaticIcon(IconNames.warning)
+            icon_title = _("This node has nested aggregation differences.")
+
         if icon_name and icon_title:
             html.static_icon(icon_name, title=icon_title, css_classes=["icon", "bi"])
         try:

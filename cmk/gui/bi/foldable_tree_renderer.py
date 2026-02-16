@@ -302,6 +302,7 @@ class FoldableTreeRendererTree(ABCFoldableTreeRenderer):
             new_path = tuple([*path, node[2]["title"]])
             frozen_marker = node[2].get("frozen_marker")
             frozen_aggregation_css = ""
+            frozen_symbol = ""
             tooltip_text = ""
             if not frozen_marker_set and frozen_marker and self._show_frozen_difference:
                 if frozen_marker.status == "new":
@@ -309,17 +310,19 @@ class FoldableTreeRendererTree(ABCFoldableTreeRenderer):
                         tooltip_text = _("This node is not in the frozen aggregation")
                     else:
                         tooltip_text = _("These nodes are not in the frozen aggregation")
+                    frozen_symbol = "+"
                     frozen_aggregation_css = "frozen_aggregation missing_in_frozen_aggregation"
-                else:
+                elif frozen_marker.status == "missing":
                     if is_leaf(new_path):
                         tooltip_text = _("This node is only in the frozen aggregation")
                     else:
                         tooltip_text = _("These nodes are only in the frozen aggregation")
+                    frozen_symbol = "-"
                     frozen_aggregation_css = "frozen_aggregation only_in_frozen_aggregation"
             html.open_li(class_=frozen_aggregation_css)
-            if frozen_aggregation_css and frozen_marker:
+            if frozen_aggregation_css and frozen_marker and frozen_symbol:
                 html.span(
-                    "+" if frozen_marker.status == "new" else "-",
+                    frozen_symbol,
                     class_=["frozen_marker", frozen_marker.status],
                     title=tooltip_text,
                 )

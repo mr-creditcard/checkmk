@@ -258,6 +258,8 @@ py_library(
     deps = [
         "//cmk/fields:cmk_fields",
         "//cmk/inventory:cmk_inventory",
+        "//cmk/piggyback:backend",
+        "//cmk/piggyback:hub",
         "//cmk/utils:cmk_utils",
         "@rrdtool_native//:rrdtool_python_lib",
     ] + CMK_PACKAGES + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
@@ -458,6 +460,8 @@ py_wheel(
         ":miscellaneous",
         "//cmk/fields:cmk_fields",
         "//cmk/inventory:cmk_inventory",
+        "//cmk/piggyback:backend",
+        "//cmk/piggyback:hub",
         "//cmk/utils:cmk_utils",
     ],
 )

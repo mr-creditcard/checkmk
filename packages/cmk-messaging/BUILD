@@ -23,7 +23,7 @@ py_library(
     ],
     data = ["cmk/messaging/py.typed"],
     imports = ["."],
-    visibility = ["//cmk:__pkg__"],
+    visibility = ["//cmk:__subpackages__"],
     deps = [
         requirement("pika"),
         requirement("pydantic"),

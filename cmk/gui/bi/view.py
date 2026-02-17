@@ -775,8 +775,8 @@ class PainterOptionAggrOnlyProblems(PainterOption):
                 title=_("Show only problems"),
                 default_value="0",
                 choices=[
-                    ("0", _("show all")),
-                    ("1", _("show only problems")),
+                    ("0", _("off")),
+                    ("1", _("on")),
                 ],
             ),
         )

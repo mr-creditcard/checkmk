@@ -6,8 +6,8 @@ conditions defined in the file COPYING, which is part of this source code packag
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import iconUrl from '~cmk-frontend/themes/facelift/images/checkmk_logo.svg'
 
+import iconUrl from '../assets/images/checkmk_logo.svg'
 import DemoGlobalStyles from './DemoGlobalStyles.vue'
 
 const selectedTheme = ref<'facelift' | 'modern-dark'>('facelift')

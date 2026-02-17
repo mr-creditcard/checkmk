@@ -257,6 +257,7 @@ py_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//cmk/automations:cmk_automations",
+        "//cmk/bi:cmk_bi",
         "//cmk/checkengine:cmk_checkengine",
         "//cmk/fields:cmk_fields",
         "//cmk/inventory:cmk_inventory",
@@ -461,6 +462,7 @@ py_wheel(
         ":cmk_cmk",
         ":miscellaneous",
         "//cmk/automations:cmk_automations",
+        "//cmk/bi:cmk_bi",
         "//cmk/checkengine:cmk_checkengine",
         "//cmk/fields:cmk_fields",
         "//cmk/inventory:cmk_inventory",

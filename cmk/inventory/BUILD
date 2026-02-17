@@ -1,0 +1,21 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "cmk_inventory",
+    srcs = [
+        "__init__.py",
+        "config.py",
+        "paths.py",
+        "structured_data.py",
+        "transformation.py",
+    ],
+    imports = ["../.."],
+    visibility = ["//cmk:__subpackages__"],
+    deps = [
+        "//packages/cmk-ccc:exceptions",
+        "//packages/cmk-ccc:hostaddress",
+        "//packages/cmk-ccc:regex",
+        "//packages/cmk-ccc:resulttype",
+        "//packages/cmk-ccc:store",
+    ],
+)

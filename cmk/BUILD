@@ -256,6 +256,8 @@ py_library(
     imports = [".."],
     visibility = ["//:__subpackages__"],
     deps = [
+        "//cmk/fields:cmk_fields",
+        "//cmk/inventory:cmk_inventory",
         "//cmk/utils:cmk_utils",
         "@rrdtool_native//:rrdtool_python_lib",
     ] + CMK_PACKAGES + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
@@ -454,6 +456,8 @@ py_wheel(
         ":checkman_free",
         ":cmk_cmk",
         ":miscellaneous",
+        "//cmk/fields:cmk_fields",
+        "//cmk/inventory:cmk_inventory",
         "//cmk/utils:cmk_utils",
     ],
 )

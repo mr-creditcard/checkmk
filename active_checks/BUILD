@@ -40,5 +40,6 @@ sh_library(
     name = "active_checks_sh",
     srcs = [
         ".f12",
+        "check_always_crit",
     ],
 )

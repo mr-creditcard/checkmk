@@ -31,10 +31,10 @@ const handleButtonClick = () => {
 </script>
 
 <template>
-  <div class="demo-cta-banner" :style="{ backgroundImage: `url(${ctaBackgroundImage})` }">
-    <div class="demo-cta-banner__content">
-      <h2 class="demo-cta-banner__title">{{ title }}</h2>
-      <p class="demo-cta-banner__subtitle">{{ subtitle }}</p>
+  <div class="demo-footer" :style="{ backgroundImage: `url(${ctaBackgroundImage})` }">
+    <div class="demo-footer__content">
+      <h2 class="demo-footer__title">{{ title }}</h2>
+      <p class="demo-footer__subtitle">{{ subtitle }}</p>
       <CmkButton variant="primary" @click="handleButtonClick">
         {{ buttonText }}
       </CmkButton>
@@ -43,7 +43,7 @@ const handleButtonClick = () => {
 </template>
 
 <style scoped>
-.demo-cta-banner {
+.demo-footer {
   background-size: contain;
   background-position: left center;
   background-repeat: no-repeat;
@@ -55,24 +55,18 @@ const handleButtonClick = () => {
   min-height: 200px;
 }
 
-.demo-cta-banner__content {
+.demo-footer__content {
   position: relative;
   max-width: 700px;
 }
 
-.demo-cta-banner__title {
-  color: var(--demo-cta-banner-title-color);
+.demo-footer__title {
   font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
   line-height: normal;
   margin: 0 0 12px;
 }
 
-.demo-cta-banner__subtitle {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
+.demo-footer__subtitle {
   line-height: 20px;
   margin: 0 0 24px;
 }

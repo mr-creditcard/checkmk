@@ -5,7 +5,6 @@ conditions defined in the file COPYING, which is part of this source code packag
 -->
 <script setup lang="ts">
 import demoLayoutImage from '../assets/images/demo-layout.png'
-import CtaBanner from '../components/DemoCtaBanner.vue'
 import DemoHeroBanner from '../components/DemoHeroBanner.vue'
 import HomeLayout from '../components/DemoHomeLayout.vue'
 import DemoInfoCard from '../components/DemoInfoCard.vue'
@@ -106,15 +105,6 @@ defineProps<{ screenshotMode: boolean }>()
           'Identify inconsistencies between implemented features and component definitions',
           'Use it to support regression testing and exploratory testing scenarios'
         ]"
-      />
-    </template>
-
-    <template #cta>
-      <CtaBanner
-        title="Design System documentation"
-        subtitle="Explore detailed guidelines, usage principles, and processes in our Design System documentation. This space provides additional context to help you design, build, and maintain consistent components."
-        button-text="View documentation"
-        button-url="https://www.checkmk.com"
       />
     </template>
   </HomeLayout>

@@ -35,10 +35,6 @@ conditions defined in the file COPYING, which is part of this source code packag
           <slot name="audience-cards"></slot>
         </div>
       </section>
-
-      <section class="demo-home-layout__section demo-home-layout__section--last">
-        <slot name="cta"></slot>
-      </section>
     </main>
   </div>
 </template>

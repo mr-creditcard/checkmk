@@ -9,6 +9,7 @@ import { ref, watch } from 'vue'
 import { RouterView } from 'vue-router'
 import { useRoute } from 'vue-router'
 
+import DemoFooter from './components/DemoFooter.vue'
 import DemoHeader from './components/DemoHeader.vue'
 import DemoNavigation from './components/DemoNavigation.vue'
 
@@ -38,6 +39,15 @@ watch(
         <div class="demo-app__area">
           <RouterView />
         </div>
+
+        <footer class="demo-app__footer">
+          <DemoFooter
+            title="Design System documentation"
+            subtitle="Explore detailed guidelines, usage principles, and processes in our Design System documentation. This space provides additional context to help you design, build, and maintain consistent components."
+            button-text="View documentation"
+            button-url="https://www.checkmk.com"
+          />
+        </footer>
       </main>
     </div>
   </div>
@@ -119,5 +129,10 @@ watch(
 .demo-app__area {
   flex: 1;
   padding: 16px;
+}
+
+.demo-app__footer {
+  margin-top: auto;
+  padding: 0 16px 32px;
 }
 </style>

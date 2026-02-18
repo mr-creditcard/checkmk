@@ -16,7 +16,10 @@ const selectedTheme = ref<'facelift' | 'modern-dark'>('facelift')
 <template>
   <div class="demo-header">
     <div class="demo-header__item">
-      <img :src="iconUrl" alt="Checkmk logo" width="117" />
+      <div class="demo-header__group">
+        <img :src="iconUrl" alt="Checkmk logo" width="117" />
+        <span class="demo-header__app-title">| Vue Demo App</span>
+      </div>
     </div>
     <div class="demo-header__item">
       <DemoGlobalStyles v-model:theme="selectedTheme" />
@@ -33,6 +36,20 @@ const selectedTheme = ref<'facelift' | 'modern-dark'>('facelift')
 }
 
 .demo-header__item {
+  display: flex;
+  align-items: center;
+}
+
+.demo-header__group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.demo-header__app-title {
+  color: var(--color-corporate-green-50);
+  font-size: 20px;
+  font-weight: 400;
   display: flex;
   align-items: center;
 }

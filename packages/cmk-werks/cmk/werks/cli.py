@@ -410,11 +410,11 @@ def change_werk_version(werk_path: Path, new_version: str, werk_version: WerkVer
     werk = load_werk(werk_path)
     werk.content.metadata["version"] = new_version
     save_werk(werk, werk_version)
-    git_add(werk)
+    _git_add(werk_path)
 
 
-def git_add(werk: Werk) -> None:
-    os.system(f"git add {werk.path}")  # nosec
+def _git_add(werk_path: Path) -> None:
+    os.system(f"git add {werk_path}")  # nosec
 
 
 def git_move(source: Path, destination: Path) -> None:
@@ -722,13 +722,14 @@ def main_new(args: argparse.Namespace) -> None:
     save_werk(werk, get_werk_file_version())
 
     if args.non_interactive:
-        sys.stdout.write("Skipping MeisterWerk in non-interactive mode.\n")
+        sys.stdout.write("Skipping Meisterwerk in non-interactive mode.\n")
         if get_config().create_commit:
             git_add(werk)
             git_commit(werk, args.custom_files)
     else:
-        werk = meisterwerk_for_new_werk(werk_path, args.custom_files, werk_id, metadata)
-        git_add(werk)
+        edit_werk(werk_path, args.custom_files)
+        if _meisterwerk_for_new_werk(werk_path, werk_id, metadata):
+            _git_add(werk_path)
 
     stash.free_id(werk_id)
     stash.dump_to_file()
@@ -736,10 +737,10 @@ def main_new(args: argparse.Namespace) -> None:
     sys.stdout.write(f"Werk {format_werk_id(werk_id)} saved.\n")
 
 
-def meisterwerk_for_new_werk(
-    werk_path: Path, custom_files: list[str], werk_id: WerkId, metadata: dict[str, str]
-) -> Werk:
-    edit_werk(werk_path, custom_files)
+def _meisterwerk_for_new_werk(werk_path: Path, werk_id: WerkId, metadata: dict[str, str]) -> bool:
+    """Evaluate and maybe rewrite the Werk with Meisterwerk.
+    Returns True if the Werk was changed on disk.
+    """
     werk = load_werk(werk_path)
     payload = build_meisterwerk_payload(werk)
     evaluation = evaluate_werk(payload)
@@ -747,29 +748,30 @@ def meisterwerk_for_new_werk(
     if evaluation.evaluation.aggregated_scores.average_score <= 2.5:
         rewritten_werk = rewrite_werk(payload, evaluation)
         display_rewritten_werk(rewritten_werk)
-        choice = propose_rewriting()
-        if choice == Choice.APPEND:
-            text_to_append = (
-                f"\n\n\n<<<<<--- Rewritten Werk --->>>>\n\n{rewritten_werk.rewritten_text}"
-            )
-            with werk_path.open("a", encoding="utf-8") as f:
-                f.write(text_to_append)
-            edit_werk(werk_path, None, commit=False)
-        elif choice == Choice.REPLACE:
-            werk = Werk(
-                id=werk_id,
-                path=werk_path,
-                content=WerkV3ParseResult(
-                    metadata=werkv1_metadata_to_markdown_werk_metadata(metadata),
-                    description=rewritten_werk.rewritten_text,
-                ),
-            )
-            save_werk(werk, get_werk_file_version())
-        elif choice == Choice.KEEP:
-            pass
-        else:
-            bail_out("Invalid choice, aborting.")
-    return werk
+        match propose_rewriting():
+            case Choice.APPEND:
+                text_to_append = (
+                    f"\n\n\n<<<<<--- Rewritten Werk --->>>>\n\n{rewritten_werk.rewritten_text}"
+                )
+                with werk_path.open("a", encoding="utf-8") as f:
+                    f.write(text_to_append)
+                edit_werk(werk_path, None, commit=False)
+                return True
+            case Choice.REPLACE:
+                werk = Werk(
+                    id=werk_id,
+                    path=werk_path,
+                    content=WerkV3ParseResult(
+                        metadata=werkv1_metadata_to_markdown_werk_metadata(metadata),
+                        description=rewritten_werk.rewritten_text,
+                    ),
+                )
+                save_werk(werk, get_werk_file_version())
+                return True
+            case Choice.KEEP:
+                pass
+
+    return False
 
 
 def main_evaluate(args: argparse.Namespace) -> None:
@@ -950,7 +952,7 @@ def edit_werk(werk_path: Path, custom_files: list[str] | None = None, commit: bo
     if werk is None:
         bail_out("This should not have happened, Werk is None during edit_werk.")
 
-    git_add(werk)
+    _git_add(werk_path)
     if commit and get_config().create_commit:
         git_commit(werk, custom_files)
 

@@ -728,7 +728,6 @@ def main_new(args: argparse.Namespace) -> None:
             git_commit(werk, args.custom_files)
     else:
         werk = meisterwerk_for_new_werk(werk_path, args.custom_files, werk_id, metadata)
-        save_werk(werk, get_werk_file_version())
         git_add(werk)
 
     stash.free_id(werk_id)

@@ -131,7 +131,6 @@ MONITORING_PLUGINS: Sequence[Plugin] = (
     MonitoringPlugin("check_nrpe", expected="Version: 3.2.1"),
     MonitoringPlugin("check_snmp"),
     CheckmkActiveCheck("check_always_crit", path="lib/nagios/plugins"),
-    CheckmkActiveCheck("check_bi_aggr"),
     CheckmkActiveCheck("check_cmk_inv"),
     CheckmkActiveCheck("check_disk_smb"),
     CheckmkActiveCheck("check_elasticsearch_query"),

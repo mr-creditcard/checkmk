@@ -11,7 +11,6 @@ import pytest
 
 from cmk.ccc import version as checkmk_version
 from cmk.discover_plugins import family_libexec_dir
-from cmk.plugins.checkmk.active_check import check_bi_aggr
 from cmk.plugins.elasticsearch.active_check import check_elasticsearch_query
 from cmk.plugins.form_submit.active_check import check_form_submit
 from cmk.plugins.sftp.active_check import check_sftp
@@ -20,7 +19,6 @@ from cmk.plugins.uniserv.active_check import check_uniserv
 from cmk.server_side_calls_backend import load_active_checks
 
 TESTED_AC_MODULES: Final[Mapping[str, ModuleType | None]] = {
-    "bi_aggr": check_bi_aggr,
     "by_ssh": None,  # TODO
     "cert": None,  # rust
     "cmk_inv": None,  # TODO

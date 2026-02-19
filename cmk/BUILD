@@ -530,7 +530,6 @@ sh_library(
         "plugins/azure_v2/libexec/agent_azure_v2",
         "plugins/bazel/libexec/agent_bazel_cache",
         "plugins/checkmk/libexec/agent_bi",
-        "plugins/checkmk/libexec/check_bi_aggr",
         "plugins/checkmk/libexec/check_cmk_inv",
         "plugins/cisco_meraki/libexec/agent_cisco_meraki",
         "plugins/couchbase/libexec/agent_couchbase",

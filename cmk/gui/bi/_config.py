@@ -550,20 +550,6 @@ class ModeBIPacks(ABCBIMode):
                                         )
                                     ),
                                 ),
-                                PageMenuEntry(
-                                    title=_("Check State of BI Aggregation"),
-                                    icon_name=StaticIcon(IconNames.rulesets),
-                                    item=make_simple_link(
-                                        makeuri_contextless(
-                                            request,
-                                            [
-                                                ("mode", "edit_ruleset"),
-                                                ("varname", RuleGroup.ActiveChecks("bi_aggr")),
-                                            ],
-                                        )
-                                    ),
-                                    is_show_more=True,
-                                ),
                             ],
                         ),
                     ],

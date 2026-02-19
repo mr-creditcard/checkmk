@@ -8,7 +8,7 @@ from collections.abc import Sequence
 import pytest
 
 from cmk.agent_based.v2 import Result, State, StringTable
-from cmk.plugins.collection.agent_based.graylog_events import (
+from cmk.plugins.graylog.agent_based.graylog_events import (
     check_graylog_events,
     parse_graylog_events,
 )

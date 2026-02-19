@@ -93,6 +93,38 @@ py_test(
 )
 
 py_library(
+    name = "graylog",
+    srcs = glob(["cmk/plugins/graylog/**/*.py"]),
+    imports = ["."],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//packages/cmk-plugin-apis:agent_based",
+        "//packages/cmk-plugin-apis:graphing",
+        "//packages/cmk-plugin-apis:password_store",
+        "//packages/cmk-plugin-apis:rulesets",
+        "//packages/cmk-plugin-apis:server_side_calls",
+        "//packages/cmk-plugin-apis:server_side_programs",
+        requirement("requests"),
+        requirement("urllib3"),
+    ],
+)
+
+py_test(
+    name = "graylog-test",
+    size = "small",
+    srcs = glob(["tests/cmk/plugins/graylog/**/*.py"]) + [":__test__.py"],
+    data = glob(["tests/cmk/plugins/graylog/**/*.yaml"]),
+    main = ":__test__.py",
+    deps = [
+        ":__test__",
+        ":graylog",
+        requirement("vcrpy"),
+        requirement("pytest"),
+        requirement("time-machine"),
+    ],
+)
+
+py_library(
     name = "ipmi",
     srcs = glob([
         "cmk/plugins/ipmi/**/*.py",

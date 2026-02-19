@@ -263,6 +263,7 @@ py_library(
         "//cmk/piggyback:backend",
         "//cmk/piggyback:hub",
         "//cmk/utils:cmk_utils",
+        "//packages/cmk-plugins:graylog",  # via legacy_checks.
         "@rrdtool_native//:rrdtool_python_lib",
     ] + CMK_PACKAGES + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
 )
@@ -556,7 +557,6 @@ sh_library(
         "plugins/gcp/libexec/agent_gcp",
         "plugins/gcp/libexec/agent_gcp_status",
         "plugins/gerrit/libexec/agent_gerrit",
-        "plugins/graylog/libexec/agent_graylog",
         "plugins/hivemanager/libexec/agent_hivemanager",
         "plugins/hivemanager_ng/libexec/agent_hivemanager_ng",
         "plugins/hp_msa/libexec/agent_hp_msa",

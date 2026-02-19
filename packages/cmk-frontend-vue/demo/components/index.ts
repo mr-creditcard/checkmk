@@ -5,6 +5,7 @@
  */
 import { Folder, Page } from '@demo/_demo/types/page'
 
+import { pages as formSpecPages } from '../form'
 import DemoCmkBadge from './basic-elements/DemoCmkBadge.vue'
 import DemoCmkButton from './basic-elements/DemoCmkButton.vue'
 import DemoCmkChip from './basic-elements/DemoCmkChip.vue'
@@ -21,7 +22,6 @@ import DemoCmkCollapsible from './content-organization/DemoCmkCollapsible.vue'
 import DemoCmkScrollContainer from './content-organization/DemoCmkScrollContainer.vue'
 import DemoCmkSlideIn from './content-organization/DemoCmkSlideIn.vue'
 import DemoTwoFactorAuth from './content-organization/DemoTwoFactorAuthentication.vue'
-import { pages as formElementPages } from './form-elements'
 import DemoCmkCheckbox from './form-elements/DemoCmkCheckbox.vue'
 import DemoCmkDropdown from './form-elements/DemoCmkDropdown.vue'
 import DemoCmkDualList from './form-elements/DemoCmkDualList.vue'
@@ -80,8 +80,7 @@ const formElementsPages = [
   new Page('CmkDualList', DemoCmkDualList),
   new Page('CmkInput', DemoCmkInput),
   new Page('CmkList', DemoCmkList),
-  new Page('CmkToggleButtonGroup', DemoCmkToggleButtonGroup),
-  ...formElementPages
+  new Page('CmkToggleButtonGroup', DemoCmkToggleButtonGroup)
 ]
 
 const foundationElementsPages = [
@@ -113,7 +112,6 @@ const systemFeedbackPages = [
   new Page('CmkSkeleton', DemoCmkSkeleton),
   new Page('CmkTooltip', DemoCmkTooltip)
 ]
-
 export const roots = [
   new Folder(
     'Components',
@@ -126,5 +124,6 @@ export const roots = [
       new Folder('System feedback', systemFeedbackPages)
     ],
     true
-  )
+  ),
+  new Folder('Developer Playground', [new Folder('Form Spec Elements', formSpecPages)])
 ]

@@ -445,15 +445,19 @@ def verify_password_policy(
     if result == PasswordPolicy.Result.TooShort:
         raise MKUserError(
             varname,
-            _("The given password is too short. It must have at least %d characters.")
+            _(
+                "The password does not comply with the configured password policy: "
+                "It must have at least %d characters."
+            )
             % password_policy.min_length,
         )
     if result == PasswordPolicy.Result.TooSimple:
         raise MKUserError(
             varname,
             _(
-                "The password does not use enough character groups. You need to "
-                "set a password which uses at least %d of them."
+                "The password does not comply with the configured password policy: "
+                "It must use at least %d different character groups, such as lowercase letters, "
+                "uppercase letters, digits or special characters."
             )
             % password_policy.min_groups,
         )

@@ -437,7 +437,7 @@ def fixture_password_policy(set_config: SetConfig) -> Iterator[None]:
     "password,reason",
     [
         # Fail due to policy (fixture expects 20 chars).
-        ("short", "too short"),
+        ("short", "configured password policy"),
         # Fail because the AUTH_PASSWORD schema requires minLength=1. (It also doesn't comply with
         # the policy but we never get to checking that.)
         ("", "These fields have problems: auth_option"),

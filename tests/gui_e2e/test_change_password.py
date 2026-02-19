@@ -19,6 +19,14 @@ from tests.testlib.site import ADMIN_USER, Site
 logger = logging.getLogger(__name__)
 
 
+def _insufficient_complexity_error_message(expected_groups_number: int) -> str:
+    return (
+        "The password does not comply with the configured password policy: "
+        f"It must use at least {expected_groups_number} different character groups, such as "
+        "lowercase letters, uppercase letters, digits or special characters."
+    )
+
+
 def navigate_to_edit_user_page(dashboard_page: MainDashboard, user_name: str) -> None:
     logger.info("Navigate to 'Edit user' page")
     dashboard_page.main_menu.setup_menu("Users").click()
@@ -179,8 +187,7 @@ def test_user_change_password_incompatible_with_policy(
     change_password_page = ChangePassword(dashboard_page.page)
     change_password_page.change_password("cmk", password, password)
     change_password_page.main_area.check_error(
-        "The password does not use enough character groups. You need to "
-        "set a password which uses at least %d of them." % expected_groups_number
+        _insufficient_complexity_error_message(expected_groups_number)
     )
 
 
@@ -238,6 +245,5 @@ def test_setting_password_incompatible_with_policy(
     dashboard_page.main_area.locator("#suggestions >> text=Save").click()
 
     dashboard_page.main_area.check_error(
-        "The password does not use enough character groups. You need to "
-        "set a password which uses at least %d of them." % expected_groups_number
+        _insufficient_complexity_error_message(expected_groups_number)
     )

@@ -7,6 +7,7 @@
 # mypy: disable-error-code="comparison-overlap"
 
 import argparse
+import datetime
 import errno
 import os
 import shlex
@@ -680,9 +681,8 @@ def main_new(args: argparse.Namespace) -> None:
 
     metadata: WerkMetadata = {}
 
-    # this is the metadata format of werkv1
     metadata["id"] = str(werk_id)
-    metadata["date"] = str(int(time.time()))
+    metadata["date"] = datetime.datetime.now(datetime.UTC).isoformat()
     metadata["version"] = get_config().current_version
     metadata["title"] = args.title or get_input("Title")
     if metadata["title"] == "":
@@ -694,11 +694,18 @@ def main_new(args: argparse.Namespace) -> None:
         "Component", get_edition_components(metadata["edition"]), args.component
     )
     metadata["level"] = ask_user_if_not_provided("Level", get_config().levels, args.level)
-    metadata["compatible"] = ask_user_if_not_provided(
-        "Compatible",
-        get_config().compatible,
-        args.compatible,
-    )
+    # For now, we want to display the legacy values "compat" and "incomp" in the choice, to not
+    # break existing workflows of users, but we keep the impact minimal by only translating them
+    # back and forth locally here.
+    yes = get_config().compatible[0][0]
+    no = get_config().compatible[1][0]
+    metadata["compatible"] = {"compat": yes, "incomp": no}[
+        ask_user_if_not_provided(
+            "Compatible",
+            ["compat", "incomp"],
+            {yes: "compat", no: "incomp"}.get(args.compatible),
+        )
+    ]
     if args.description_file:
         description = args.description_file.read_text(encoding="utf-8")
     else:
@@ -710,9 +717,7 @@ def main_new(args: argparse.Namespace) -> None:
     werk = Werk(
         id=werk_id,
         path=werk_path,
-        content=WerkV3ParseResult(
-            metadata=werkv1_metadata_to_markdown_werk_metadata(metadata), description=description
-        ),
+        content=WerkV3ParseResult(metadata=metadata, description=description),
     )
     save_werk(werk, get_werk_file_version())
 

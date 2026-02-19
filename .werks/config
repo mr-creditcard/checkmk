@@ -54,9 +54,12 @@ levels = [
   ( '3',              "Major change" ),
 ]
 
+# Note: Ordering matters here: The 'werk new' command still displays 'compat' and 'incompat'
+# as choices to the user, but acts on the real config. To be agnostic of the config and 'yes' and
+# 'no' as strings, the first element always maps to 'compat' and the second to 'incompat'.
 compatible = [
-    ("compat", "Compatible"),
-    ("incomp", "Incompatible"),
+    ("yes", "Compatible"),
+    ("no", "Incompatible"),
 ]
 
 online_url = "https://checkmk.com/werk/%d"

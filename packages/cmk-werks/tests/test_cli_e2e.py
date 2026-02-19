@@ -48,8 +48,8 @@ levels = [
     ("3", "Major change"),
 ]
 compatible = [
-    ("compat", "Compatible"),
-    ("incomp", "Incompatible"),
+    ("yes", "Compatible"),
+    ("no", "Incompatible"),
 ]
 online_url = "https://checkmk.com/werk/%d"
 project = "{project}"

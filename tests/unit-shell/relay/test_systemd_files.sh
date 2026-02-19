@@ -177,6 +177,7 @@ test_path_unit_no_binds_to() {
     local file_path="${SYSTEMD_USER_DIR}/checkmk_relay-update-manager.path"
     # BindsTo= would stop the path unit whenever the relay restarts (e.g. after
     # podman-auto-update), permanently killing the update watcher. Must not be present.
+    # shellcheck disable=SC2251
     ! grep -q "^BindsTo=" "$file_path"
     assertEquals "Path unit must not use BindsTo= (breaks across container restarts)" 0 $?
 }

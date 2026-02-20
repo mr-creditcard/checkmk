@@ -24,7 +24,6 @@ Werks are Markdown files in `.werks/` that document features, bug fixes, and sec
 
 1. Ensure `jq` is installed. It's needed to handle the Werk fields in a deterministic way. Check with `command -v jq`. If it's not, guide the dev to install it with `sudo apt install jq`
 2. Consider all non-absolute paths to be relative to the git workspace folder.
-3. Save this skill's directory in environment variable: `SKILL_HOME=".claude/skills/werk"`
 
 ## Inputs
 
@@ -40,16 +39,22 @@ Ask the dev for these three inputs one after another. Start with further process
 
 ### Step 1: Gather Information and context
 
-For each commit provided, use Bash to extract:
+Use the provided script to gather all commits for the given Jira keys in one shot:
 
 ```bash
-# Get commit details
-git show <sha> --stat --format="%H%n%an%n%ae%n%at%n%s%n%b"
+.claude/skills/werk/gather_commits.sh <jira_key1> [<jira_key2> ...] > /tmp/werk_commits.txt 2>&1
+wc -l /tmp/werk_commits.txt
+```
 
-# Get changed files with line counts
-git show <sha> --stat --oneline
+Then use the **Read tool** (not Bash) to read `/tmp/werk_commits.txt`. The Read tool handles large files naturally via its `offset`/`limit` parameters, avoiding the Bash output truncation limit.
 
-# Get the diff for context
+This prints, for each key, the commit stats and full diffs of all matching commits.
+Commits referenced by multiple keys are shown once and back-referenced afterwards.
+
+If the dev also provided explicit SHAs, extract those individually:
+
+```bash
+git show <sha> --stat --format="%H%n%an%n%s%n%b"
 git show <sha>
 ```
 
@@ -91,7 +96,7 @@ Extract all valid field values from `.werks/config`:
 ```bash
 # Extract all valid Werk fields from .werks/config as JSON
 # Output: WERK_FIELDS (JSON object with keys: editions, components, classes, levels, compatible, edition_components)
-WERK_FIELDS="$("${SKILL_HOME}"/get_werk_fields.py .werks/config)"
+WERK_FIELDS="$(.claude/skills/werk/get_werk_fields.py .werks/config)"
 echo "$WERK_FIELDS"
 ```
 
@@ -179,7 +184,7 @@ Pick a key from `echo "$WERK_FIELDS" | jq -r '.compatible'`.
 
 ### Step 3: Generate Werk Description
 
-Follow the style guide in `echo "${SKILL_HOME}/style-guide.md"`.
+Follow the style guide at `.claude/skills/werk/style-guide.md`.
 
 ### Step 4: Present to dev for Review
 
@@ -270,10 +275,16 @@ The werk tool will:
 - Git add and commit
 - Commit msg will replicate the Werk text
 
-Replace the Werk text with the relevant Jira issue keys in the commit msg as follows:
+Replace the Werk text with the relevant Jira issue keys in the commit msg using the provided script:
+
+```bash
+.claude/skills/werk/amend_werk_commit.sh <jira_key1> [<jira_key2> ...]
+```
+
+The script derives the Werk ID and title (including any FIX/SEC prefix) from the existing commit subject and reformats the message as:
 
 ```
-Add Werk #[ID]: [Title, including "FIX"/"SEC" if applicable]
+Add Werk #[ID]: [Title]
 
 [Jira issue keys, one per line]
 ```

@@ -3,6 +3,7 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 from collections.abc import Mapping, MutableMapping, Sequence
+from contextlib import suppress
 from typing import NamedTuple
 
 from cmk.agent_based.v2 import StringTable
@@ -60,6 +61,18 @@ def create_disk_read_write(
         read_operations=float(read_data[0]),
         write_operations=float(write_data[0]),
     )
+
+
+def convert_scaleio_space(unit: str, value: float) -> float | None:
+    """Convert the space from the storage pool to MB
+
+    >>> convert_scaleio_space("Not_known", 1.0)
+
+    """
+
+    with suppress(KeyError):
+        return convert_scaleio_space_into_mb(unit, value)
+    return None
 
 
 def convert_scaleio_space_into_mb(unit: str, value: float) -> float:

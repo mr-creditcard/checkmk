@@ -15613,7 +15613,8 @@ msgstr "消費されたホストメモリ"
 msgid "Consumed load balancer capacity units"
 msgstr "消費されたロードバランサー容量ユニット"
 
-msgid "Consumer Count is the size of connected consumers to a queue"
+#, fuzzy
+msgid "Consumer count is the size of connected consumers to a queue"
 msgstr ""
 "コンシューマーカウントは、キューに接続されているコンシューマーのサイズです"
 
@@ -20324,6 +20325,10 @@ msgstr "時間指定パラメータを無効にする"
 msgid "Disable undecided services"
 msgstr "未決定のサービスを無効とする"
 
+#, fuzzy
+msgid "Disable unique piggyback host names"
+msgstr "ピギーバックホスト名のプレフィックス"
+
 msgid "Disable vanished services"
 msgstr "消失したサービスを無効にする"
 
@@ -23139,10 +23144,6 @@ msgid "Enable row shading"
 msgstr "行のシェーディングを有効にする"
 
 #, fuzzy
-msgid "Enable safe host names"
-msgstr "ホスト名を翻訳する"
-
-#, fuzzy
 msgid "Enable service discovery"
 msgstr "サービスディスカバリ実行"
 
@@ -23231,6 +23232,10 @@ msgstr "時間固有のパラメータを有効にする"
 msgid "Enable trend computation"
 msgstr "トレンド計算を有効にする"
 
+#, fuzzy
+msgid "Enable unique piggyback host names"
+msgstr "ピギーバックホスト名のプレフィックス"
+
 msgid "Enable/Disable active checks"
 msgstr "アクティブチェックを有効/無効にする"
 
@@ -23305,7 +23310,7 @@ msgstr ""
 "くの（関連する）問題が発生した場合、通知の数を減らすことができます。"
 
 msgid ""
-"Enabling this option lets Checkmk create safe host names for piggyback "
+"Enabling this option lets Checkmk create unique host names for piggyback "
 "hosts. This avoids conflicts caused by entities having the same name in "
 "Azure, which could lead to monitoring data being overwritten or lost. The "
 "option works by appending a unique hash to the Checkmk piggyback host names "
@@ -24351,6 +24356,10 @@ msgstr "役割に応じたノードの除外"
 
 msgid "Exclude Pattern"
 msgstr "パターンを除外する"
+
+#, fuzzy
+msgid "Exclude VMs from unique piggyback host names"
+msgstr "ピギーバックホスト名のプレフィックス"
 
 msgid "Exclude destination vserver"
 msgstr "宛先vserverを除外する"
@@ -37633,9 +37642,6 @@ msgstr "時間範囲ごとのパーセント成長のレベル"
 msgid "Levels for the percentual shrinking per time range"
 msgstr "時間軸ごとのパーセント縮小率のレベル"
 
-msgid "Levels for the queue length"
-msgstr "キューの長さのレベル"
-
 msgid "Levels for time since last update"
 msgstr "最終更新からの時間のレベル"
 
@@ -39973,6 +39979,10 @@ msgid "Make own published %s override built-in %s for all users."
 msgstr ""
 "独自に公開された %s を、すべてのユーザーの組み込み %s にオーバーライドさせま"
 "す。"
+
+#, fuzzy
+msgid "Make piggyback host names globally unique"
+msgstr "ホスト名条件のピギーバック"
 
 msgid "Make stored reports available for other users"
 msgstr "保存されたレポートを他のユーザーが利用できるようにする"
@@ -52487,6 +52497,11 @@ msgstr "キュー情報"
 msgid "Queue length"
 msgstr "キューの長さ"
 
+msgid ""
+"Queue length refers to the total number of messages that have not been "
+"acknowledged by a consumer."
+msgstr ""
+
 msgid "Queue manager name"
 msgstr "キューマネージャー名"
 
@@ -58876,9 +58891,6 @@ msgstr ""
 msgid "Set the logging level for Windows agent"
 msgstr "Windowsエージェントのログレベルを設定します"
 
-msgid "Set the maximum and minimum length for the queue size"
-msgstr "キューサイズの最大長と最小長を設定します"
-
 msgid "Set the maximum number of concurrent pings sent to target IP addresses."
 msgstr "ターゲットIPアドレスに送信するPingの最大同時送信数を設定します。"
 
@@ -64923,7 +64935,7 @@ msgid ""
 "The Inotify (Inode notify) is a Linux kernel subsystem that acts to extend "
 "file systems to notice changes to the file system. The Inotify plug-in "
 "collects these changes and reports them back to the monitoring system. You "
-"also need to install the pynotify Python plug-in onto the target system."
+"also need to install the pyinotify Python plug-in onto the target system."
 msgstr ""
 "Inotify（Inode通知）はLinuxカーネルのサブシステムで、ファイルシステムを拡張し"
 "てファイルシステムの変更に気づくように動作します。Inotifyプラグインはこれらの"
@@ -79383,10 +79395,6 @@ msgstr "アップロードされたファイル"
 msgid "Upper"
 msgstr "アッパー"
 
-#, fuzzy
-msgid "Upper Levels for the consumer count"
-msgstr "コンシューマーカウントのレベル"
-
 msgid "Upper Temperature Levels"
 msgstr "上限温度レベル"
 
@@ -79845,6 +79853,10 @@ msgstr "バックアップ経過日数の上位レベル"
 msgid "Upper levels for the bucket size"
 msgstr "バケットサイズの上位レベル"
 
+#, fuzzy
+msgid "Upper levels for the consumer count"
+msgstr "コンシューマーカウントのレベル"
+
 msgid "Upper levels for the fan speed of a hardware device"
 msgstr "ハードウェアデバイスのファン速度の上位レベル"
 
@@ -79890,6 +79902,10 @@ msgstr "セッション数の上位レベル"
 
 msgid "Upper levels for the number of table extents"
 msgstr "テーブルエクステントの数の上位レベル"
+
+#, fuzzy
+msgid "Upper levels for the queue length"
+msgstr "キューの長さの上位レベル"
 
 msgid "Upper levels for the time the service is active"
 msgstr "サービス稼働期間の上位レベル"
@@ -83494,6 +83510,12 @@ msgid ""
 msgstr ""
 "有効にすると、このサイトは、Web GUI関連のオプションが変更されるたびに同期の"
 "マークが付けられ、ユーザーはこのサイトのWebGUIにログインでるようになります。"
+
+msgid ""
+"When enabled, virtual machines will keep their original name without the "
+"appended unique hash. All other resource types will still use unique "
+"piggyback host names."
+msgstr ""
 
 msgid ""
 "When forwarding mails from the mailbox to the event console, the body of the "
@@ -90051,9 +90073,6 @@ msgstr ""
 msgid "No filter category available"
 msgstr "利用可能な情報はありません"
 
-msgid "%{filterName} in %{filterGroup}"
-msgstr ""
-
 #, fuzzy
 msgid "No filters found matching: %{search}"
 msgstr "プロセス名照合"
@@ -92199,14 +92218,16 @@ msgid "Manage in global settings"
 msgstr "グローバル設定を編集する"
 
 #, fuzzy
-msgid "Already installed the Checkmk agent?"
-msgstr "すでにエージェントはインストール済？"
+msgid "Agent communication failed during service discovery"
+msgstr "サービス検出時に発見された状態"
 
 msgid ""
-"This problem might be caused by a missing agent or the firewall settings."
+"This can have different reasons. The Checkmk agent might not be installed, "
+"or communication may be blocked by firewall or network settings.\n"
+"If this host should be monitored via an agent, check the installation and "
+"connectivity.\n"
+"If not, you can ignore this message."
 msgstr ""
-"この問題は、エージェントが欠落しているか、ファイアウォールの設定が原因である"
-"可能性があります。"
 
 #, fuzzy
 msgid "Already registered the Checkmk agent?"
@@ -92218,8 +92239,13 @@ msgstr ""
 "この問題は、エージェントが欠落しているか、ファイアウォールの設定が原因である"
 "可能性があります。"
 
-msgid "Read Checkmk user guide"
-msgstr "Checkmk公式ユーザーガイドをお読みください"
+#, fuzzy
+msgid "Ignore for this host"
+msgstr "このホストのパラメーター"
+
+#, fuzzy
+msgid "Close for now"
+msgstr "Iノードのレベル"
 
 #, fuzzy
 msgid "Close & run service discovery"
@@ -93003,6 +93029,29 @@ msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Enable safe host names"
+#~ msgstr "ホスト名を翻訳する"
+
+#~ msgid "Levels for the queue length"
+#~ msgstr "キューの長さのレベル"
+
+#~ msgid "Set the maximum and minimum length for the queue size"
+#~ msgstr "キューサイズの最大長と最小長を設定します"
+
+#, fuzzy
+#~ msgid "Already installed the Checkmk agent?"
+#~ msgstr "すでにエージェントはインストール済？"
+
+#~ msgid ""
+#~ "This problem might be caused by a missing agent or the firewall settings."
+#~ msgstr ""
+#~ "この問題は、エージェントが欠落しているか、ファイアウォールの設定が原因であ"
+#~ "る可能性があります。"
+
+#~ msgid "Read Checkmk user guide"
+#~ msgstr "Checkmk公式ユーザーガイドをお読みください"
+
 #, python-format
 #~ msgid "Core files (config, state and history) from var/check_mk/core.%s"
 #~ msgstr "var/check_mk/core.%s にあるコア・ファイル（設定、状態、履歴）"
@@ -93049,18 +93098,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Oracle instance name"
 #~ msgstr "Oracleインスタンス"
-
-#, fuzzy
-#~ msgid "Agent communication failed during service discovery"
-#~ msgstr "サービス検出時に発見された状態"
-
-#, fuzzy
-#~ msgid "Ignore for this host"
-#~ msgstr "このホストのパラメーター"
-
-#, fuzzy
-#~ msgid "Close for now"
-#~ msgstr "Iノードのレベル"
 
 #, fuzzy
 #~ msgid "Select inventory path"

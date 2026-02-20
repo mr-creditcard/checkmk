@@ -16581,7 +16581,8 @@ msgstr "Memorie gazdă consumată"
 msgid "Consumed load balancer capacity units"
 msgstr "Unități de capacitate de echilibrare a încărcăturii consumate"
 
-msgid "Consumer Count is the size of connected consumers to a queue"
+#, fuzzy
+msgid "Consumer count is the size of connected consumers to a queue"
 msgstr ""
 "Numărul de consumatori este dimensiunea consumatorilor conectați la o coadă "
 "de așteptare"
@@ -21550,6 +21551,10 @@ msgstr "Dezactivarea parametrilor temporali specifici"
 msgid "Disable undecided services"
 msgstr "Dezactivați serviciile nehotărâte"
 
+#, fuzzy
+msgid "Disable unique piggyback host names"
+msgstr "Prefix pentru numele de gazdă piggyback"
+
 msgid "Disable vanished services"
 msgstr "Dezactivarea serviciilor dispărute"
 
@@ -24563,10 +24568,6 @@ msgid "Enable row shading"
 msgstr "Activați umbrirea rândurilor"
 
 #, fuzzy
-msgid "Enable safe host names"
-msgstr "Traducere nume de gazde"
-
-#, fuzzy
 msgid "Enable service discovery"
 msgstr "Rulați descoperirea serviciilor"
 
@@ -24664,6 +24665,10 @@ msgstr "Activați parametrii temporali specifici"
 msgid "Enable trend computation"
 msgstr "Activați calculul tendințelor"
 
+#, fuzzy
+msgid "Enable unique piggyback host names"
+msgstr "Prefix pentru numele de gazdă piggyback"
+
 msgid "Enable/Disable active checks"
 msgstr "Activarea/dezactivarea verificărilor active"
 
@@ -24740,7 +24745,7 @@ msgstr ""
 "între ele) într-un interval scurt de timp."
 
 msgid ""
-"Enabling this option lets Checkmk create safe host names for piggyback "
+"Enabling this option lets Checkmk create unique host names for piggyback "
 "hosts. This avoids conflicts caused by entities having the same name in "
 "Azure, which could lead to monitoring data being overwritten or lost. The "
 "option works by appending a unique hash to the Checkmk piggyback host names "
@@ -25827,6 +25832,10 @@ msgstr "Excludeți nodurile pe baza rolului lor"
 
 msgid "Exclude Pattern"
 msgstr "Excludeți modelul"
+
+#, fuzzy
+msgid "Exclude VMs from unique piggyback host names"
+msgstr "Prefix pentru numele de gazdă piggyback"
 
 msgid "Exclude destination vserver"
 msgstr "Excludeți serverul de destinație vserver"
@@ -40047,9 +40056,6 @@ msgstr "Niveluri pentru creșterea procentuală pe interval de timp"
 msgid "Levels for the percentual shrinking per time range"
 msgstr "Niveluri pentru contracția procentuală pe interval de timp"
 
-msgid "Levels for the queue length"
-msgstr "Niveluri pentru lungimea cozii de așteptare"
-
 msgid "Levels for time since last update"
 msgstr "Niveluri pentru timpul scurs de la ultima actualizare"
 
@@ -42492,6 +42498,10 @@ msgid "Make own published %s override built-in %s for all users."
 msgstr ""
 "Faceți ca %s publicat de dumneavoastră să înlocuiască %s încorporat pentru "
 "toți utilizatorii."
+
+#, fuzzy
+msgid "Make piggyback host names globally unique"
+msgstr "Expresii ale numelui de gazdă cu rol de porc"
 
 msgid "Make stored reports available for other users"
 msgstr "Puneți rapoartele stocate la dispoziția altor utilizatori"
@@ -55957,6 +55967,11 @@ msgstr "Informații despre coadă"
 msgid "Queue length"
 msgstr "Lungimea cozii de așteptare"
 
+msgid ""
+"Queue length refers to the total number of messages that have not been "
+"acknowledged by a consumer."
+msgstr ""
+
 #, fuzzy
 msgid "Queue manager name"
 msgstr "Numele managerului de coadă"
@@ -62738,10 +62753,6 @@ msgstr ""
 msgid "Set the logging level for Windows agent"
 msgstr "Setați nivelul de jurnalizare pentru Windows Agent"
 
-msgid "Set the maximum and minimum length for the queue size"
-msgstr ""
-"Stabiliți lungimea maximă și minimă pentru dimensiunea cozii de așteptare"
-
 msgid "Set the maximum number of concurrent pings sent to target IP addresses."
 msgstr ""
 "Setați numărul maxim de ping-uri simultane trimise către adresele IP țintă."
@@ -69165,7 +69176,7 @@ msgid ""
 "The Inotify (Inode notify) is a Linux kernel subsystem that acts to extend "
 "file systems to notice changes to the file system. The Inotify plug-in "
 "collects these changes and reports them back to the monitoring system. You "
-"also need to install the pynotify Python plug-in onto the target system."
+"also need to install the pyinotify Python plug-in onto the target system."
 msgstr ""
 "Inotify (Inode notify) este un subsistem al nucleului Linux care acționează "
 "pentru a extinde sistemele de fișiere pentru a observa modificările aduse "
@@ -84630,10 +84641,6 @@ msgstr "Încărcați fișierul MIB"
 msgid "Upper"
 msgstr "Partea superioară"
 
-#, fuzzy
-msgid "Upper Levels for the consumer count"
-msgstr "Niveluri pentru numărul de consumatori"
-
 msgid "Upper Temperature Levels"
 msgstr "Niveluri superioare de temperatură"
 
@@ -85120,6 +85127,10 @@ msgstr "Niveluri superioare pentru vârsta de rezervă"
 msgid "Upper levels for the bucket size"
 msgstr "Nivelurile superioare pentru dimensiunea găleții"
 
+#, fuzzy
+msgid "Upper levels for the consumer count"
+msgstr "Niveluri pentru numărul de consumatori"
+
 msgid "Upper levels for the fan speed of a hardware device"
 msgstr ""
 "Niveluri superioare pentru viteza ventilatorului unui dispozitiv hardware"
@@ -85168,6 +85179,10 @@ msgstr "Niveluri superioare pentru numărul de sesiuni"
 
 msgid "Upper levels for the number of table extents"
 msgstr "Niveluri superioare pentru numărul de extents de tabel"
+
+#, fuzzy
+msgid "Upper levels for the queue length"
+msgstr "Niveluri superioare pentru lungimile cozilor de așteptare"
 
 #, fuzzy
 msgid "Upper levels for the time the service is active"
@@ -89114,6 +89129,12 @@ msgstr ""
 "fiecare dată când se modifică o opțiune legată de interfața grafică web, iar "
 "utilizatorilor li se permite să se conecteze la interfața grafică web a "
 "acestui site.Totuși, accesul la Rest API nu este afectat de această opțiune."
+
+msgid ""
+"When enabled, virtual machines will keep their original name without the "
+"appended unique hash. All other resource types will still use unique "
+"piggyback host names."
+msgstr ""
 
 msgid ""
 "When forwarding mails from the mailbox to the event console, the body of the "
@@ -95979,9 +96000,6 @@ msgstr ""
 msgid "No filter category available"
 msgstr "Nu există informații disponibile"
 
-msgid "%{filterName} in %{filterGroup}"
-msgstr ""
-
 #, fuzzy
 msgid "No filters found matching: %{search}"
 msgstr "Potrivirea numelui procesului"
@@ -98214,15 +98232,16 @@ msgid "Manage in global settings"
 msgstr "Editarea setării globale"
 
 #, fuzzy
-msgid "Already installed the Checkmk agent?"
-msgstr "Instalați întotdeauna Python cu agentul"
+msgid "Agent communication failed during service discovery"
+msgstr "Descoperirea serviciilor în așteptare"
 
-#, fuzzy
 msgid ""
-"This problem might be caused by a missing agent or the firewall settings."
+"This can have different reasons. The Checkmk agent might not be installed, "
+"or communication may be blocked by firewall or network settings.\n"
+"If this host should be monitored via an agent, check the installation and "
+"connectivity.\n"
+"If not, you can ignore this message."
 msgstr ""
-"Problemele de mai sus pot fi cauzate de lipsa memoriei cache. Vă rugăm să "
-"declanșați o rescanare."
 
 #, fuzzy
 msgid "Already registered the Checkmk agent?"
@@ -98235,8 +98254,12 @@ msgstr ""
 "declanșați o rescanare."
 
 #, fuzzy
-msgid "Read Checkmk user guide"
-msgstr "Ghidul oficial al utilizatorului Checkmk"
+msgid "Ignore for this host"
+msgstr "Parametrii pentru această gazdă"
+
+#, fuzzy
+msgid "Close for now"
+msgstr "Niveluri pentru Inodes"
 
 #, fuzzy
 msgid "Close & run service discovery"
@@ -99040,6 +99063,32 @@ msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Enable safe host names"
+#~ msgstr "Traducere nume de gazde"
+
+#~ msgid "Levels for the queue length"
+#~ msgstr "Niveluri pentru lungimea cozii de așteptare"
+
+#~ msgid "Set the maximum and minimum length for the queue size"
+#~ msgstr ""
+#~ "Stabiliți lungimea maximă și minimă pentru dimensiunea cozii de așteptare"
+
+#, fuzzy
+#~ msgid "Already installed the Checkmk agent?"
+#~ msgstr "Instalați întotdeauna Python cu agentul"
+
+#, fuzzy
+#~ msgid ""
+#~ "This problem might be caused by a missing agent or the firewall settings."
+#~ msgstr ""
+#~ "Problemele de mai sus pot fi cauzate de lipsa memoriei cache. Vă rugăm să "
+#~ "declanșați o rescanare."
+
+#, fuzzy
+#~ msgid "Read Checkmk user guide"
+#~ msgstr "Ghidul oficial al utilizatorului Checkmk"
+
 #, python-format
 #~ msgid "Core files (config, state and history) from var/check_mk/core.%s"
 #~ msgstr "Fișiere de bază (config, state și history) din var/check_mk/core.%s"
@@ -99087,18 +99136,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Oracle instance name"
 #~ msgstr "Instanțe Oracle"
-
-#, fuzzy
-#~ msgid "Agent communication failed during service discovery"
-#~ msgstr "Descoperirea serviciilor în așteptare"
-
-#, fuzzy
-#~ msgid "Ignore for this host"
-#~ msgstr "Parametrii pentru această gazdă"
-
-#, fuzzy
-#~ msgid "Close for now"
-#~ msgstr "Niveluri pentru Inodes"
 
 #, fuzzy
 #~ msgid "Select inventory path"

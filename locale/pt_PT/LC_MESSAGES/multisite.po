@@ -4,9 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkmk user interface translation 0.1\n"
-"Report-Msgid-Bugs-To: feedback@checkmk.com\n"
+"Report-Msgid-Bugs-To: martin.hirschvogel@checkmk.com\n"
 "POT-Creation-Date: 2011-05-13 09:42+0200\n"
-"PO-Revision-Date: 2026-02-18 10:24+0000\n"
+"PO-Revision-Date: 2026-02-20 08:42+0000\n"
 "Language-Team: Portuguese (Portugal) <https://translate.checkmk.com/projects/"
 "checkmk/dev/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -16544,7 +16544,8 @@ msgstr "Memória do hospedeiro consumida"
 msgid "Consumed load balancer capacity units"
 msgstr "Unidades de Capacidade do Balanceador de Carga Consumida"
 
-msgid "Consumer Count is the size of connected consumers to a queue"
+#, fuzzy
+msgid "Consumer count is the size of connected consumers to a queue"
 msgstr ""
 "A Contagem de Consumidores é o tamanho de consumidores conectados a uma fila"
 
@@ -21498,6 +21499,10 @@ msgstr "Desabilitar parâmetros específicos de tempo"
 msgid "Disable undecided services"
 msgstr "Desactivar serviços indecisos"
 
+#, fuzzy
+msgid "Disable unique piggyback host names"
+msgstr "Prefixo para o nome da mangueira piggyback"
+
 msgid "Disable vanished services"
 msgstr "Desactivar serviços desaparecidos"
 
@@ -24487,10 +24492,6 @@ msgid "Enable row shading"
 msgstr "Habilitar sombreamento de linha"
 
 #, fuzzy
-msgid "Enable safe host names"
-msgstr "Traduzir Hostnames"
-
-#, fuzzy
 msgid "Enable service discovery"
 msgstr "Executar a descoberta de serviços"
 
@@ -24565,6 +24566,10 @@ msgstr "Habilitar parâmetros específicos de tempo"
 
 msgid "Enable trend computation"
 msgstr "Habilitar o cálculo de tendências"
+
+#, fuzzy
+msgid "Enable unique piggyback host names"
+msgstr "Prefixo para o nome da mangueira piggyback"
 
 msgid "Enable/Disable active checks"
 msgstr "Ativar/desativar verificações activas"
@@ -24642,7 +24647,7 @@ msgstr ""
 "curto espaço de tempo."
 
 msgid ""
-"Enabling this option lets Checkmk create safe host names for piggyback "
+"Enabling this option lets Checkmk create unique host names for piggyback "
 "hosts. This avoids conflicts caused by entities having the same name in "
 "Azure, which could lead to monitoring data being overwritten or lost. The "
 "option works by appending a unique hash to the Checkmk piggyback host names "
@@ -25726,6 +25731,10 @@ msgstr "Excluir nós com base na sua função"
 
 msgid "Exclude Pattern"
 msgstr "Excluir Padrão"
+
+#, fuzzy
+msgid "Exclude VMs from unique piggyback host names"
+msgstr "Prefixo para o nome da mangueira piggyback"
 
 msgid "Exclude destination vserver"
 msgstr "Excluir destino vs servidor"
@@ -39900,9 +39909,6 @@ msgstr "Níveis para o crescimento percentual por intervalo de tempo"
 msgid "Levels for the percentual shrinking per time range"
 msgstr "Níveis para a percentagem de contracção por intervalo de tempo"
 
-msgid "Levels for the queue length"
-msgstr "Níveis para o comprimento da fila"
-
 #, fuzzy
 msgid "Levels for time since last update"
 msgstr "Nível de aviso para o tempo desde a última actualização"
@@ -42359,6 +42365,10 @@ msgid "Make own published %s override built-in %s for all users."
 msgstr ""
 "Fazer com que o seu próprio %s publicado se sobreponha ao %s incorporado "
 "para todos os utilizadores."
+
+#, fuzzy
+msgid "Make piggyback host names globally unique"
+msgstr "Expressões do nome do anfitrião com suporte de porquinho"
 
 msgid "Make stored reports available for other users"
 msgstr "Disponibilizar relatórios armazenados para outros utilizadores"
@@ -55795,6 +55805,11 @@ msgstr "Informações da fila"
 msgid "Queue length"
 msgstr "Comprimento da fila"
 
+msgid ""
+"Queue length refers to the total number of messages that have not been "
+"acknowledged by a consumer."
+msgstr ""
+
 #, fuzzy
 msgid "Queue manager name"
 msgstr "Nome do Gerente de Fila"
@@ -62544,9 +62559,6 @@ msgstr ""
 msgid "Set the logging level for Windows agent"
 msgstr "Definir o nível de registro para Windows Agent"
 
-msgid "Set the maximum and minimum length for the queue size"
-msgstr "Defina o comprimento máximo e mínimo para o tamanho da fila"
-
 msgid "Set the maximum number of concurrent pings sent to target IP addresses."
 msgstr ""
 "Defina o número máximo de pings simultâneos enviados para os endereços IP de "
@@ -68932,7 +68944,7 @@ msgid ""
 "The Inotify (Inode notify) is a Linux kernel subsystem that acts to extend "
 "file systems to notice changes to the file system. The Inotify plug-in "
 "collects these changes and reports them back to the monitoring system. You "
-"also need to install the pynotify Python plug-in onto the target system."
+"also need to install the pyinotify Python plug-in onto the target system."
 msgstr ""
 "O Inotificar (Inode notify) é um subsistema do kernel Linux que atua para "
 "estender os sistemas de arquivos para notar alterações no sistema de "
@@ -84314,10 +84326,6 @@ msgstr "Carregar ficheiro MIB"
 msgid "Upper"
 msgstr "Alto"
 
-#, fuzzy
-msgid "Upper Levels for the consumer count"
-msgstr "Níveis para a contagem do consumidor"
-
 msgid "Upper Temperature Levels"
 msgstr "Níveis superiores de temperatura"
 
@@ -84802,6 +84810,10 @@ msgstr "Níveis superiores para a idade de backup"
 msgid "Upper levels for the bucket size"
 msgstr "Níveis superiores para o tamanho do balde"
 
+#, fuzzy
+msgid "Upper levels for the consumer count"
+msgstr "Níveis para a contagem do consumidor"
+
 msgid "Upper levels for the fan speed of a hardware device"
 msgstr ""
 "Níveis superiores para a velocidade do ventilador de um dispositivo de "
@@ -84853,6 +84865,10 @@ msgstr "Níveis superiores para o número de sessões"
 
 msgid "Upper levels for the number of table extents"
 msgstr "Níveis superiores para o número de extensões da tabela"
+
+#, fuzzy
+msgid "Upper levels for the queue length"
+msgstr "Níveis superiores para comprimentos de fila"
 
 #, fuzzy
 msgid "Upper levels for the time the service is active"
@@ -88773,6 +88789,12 @@ msgstr ""
 "Quando ativado, este site é marcado para sincronização toda vez que uma "
 "opção relacionada à GUI da Web é alterada e os usuários têm permissão para "
 "fazer login na GUI da Web deste site."
+
+msgid ""
+"When enabled, virtual machines will keep their original name without the "
+"appended unique hash. All other resource types will still use unique "
+"piggyback host names."
+msgstr ""
 
 msgid ""
 "When forwarding mails from the mailbox to the event console, the body of the "
@@ -93114,6 +93136,7 @@ msgstr "contando"
 msgid "cp437"
 msgstr "cp437"
 
+#, fuzzy
 msgid "crash report"
 msgid_plural "crash reports"
 msgstr[0] ""
@@ -93632,6 +93655,7 @@ msgstr "os anfitriões estão de pé e não têm problemas de serviço"
 msgid "hosts in total"
 msgstr "anfitriões no total"
 
+#, fuzzy
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] ""
@@ -95583,9 +95607,6 @@ msgstr ""
 #, fuzzy
 msgid "No filter category available"
 msgstr "Não há informação disponível"
-
-msgid "%{filterName} in %{filterGroup}"
-msgstr ""
 
 #, fuzzy
 msgid "No filters found matching: %{search}"
@@ -97810,15 +97831,16 @@ msgid "Manage in global settings"
 msgstr "Editar cenário global"
 
 #, fuzzy
-msgid "Already installed the Checkmk agent?"
-msgstr "Sempre instalar o Python com o agente"
+msgid "Agent communication failed during service discovery"
+msgstr "Pendente de descoberta de serviços"
 
-#, fuzzy
 msgid ""
-"This problem might be caused by a missing agent or the firewall settings."
+"This can have different reasons. The Checkmk agent might not be installed, "
+"or communication may be blocked by firewall or network settings.\n"
+"If this host should be monitored via an agent, check the installation and "
+"connectivity.\n"
+"If not, you can ignore this message."
 msgstr ""
-"Os problemas acima podem ser causados por caches em falta. Por favor, active "
-"uma nova verificação."
 
 #, fuzzy
 msgid "Already registered the Checkmk agent?"
@@ -97831,8 +97853,12 @@ msgstr ""
 "uma nova verificação."
 
 #, fuzzy
-msgid "Read Checkmk user guide"
-msgstr "O guia oficial do usuário Checkmk"
+msgid "Ignore for this host"
+msgstr "Parâmetros para este anfitrião"
+
+#, fuzzy
+msgid "Close for now"
+msgstr "Níveis para Inodes"
 
 #, fuzzy
 msgid "Close & run service discovery"
@@ -98631,6 +98657,31 @@ msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Enable safe host names"
+#~ msgstr "Traduzir Hostnames"
+
+#~ msgid "Levels for the queue length"
+#~ msgstr "Níveis para o comprimento da fila"
+
+#~ msgid "Set the maximum and minimum length for the queue size"
+#~ msgstr "Defina o comprimento máximo e mínimo para o tamanho da fila"
+
+#, fuzzy
+#~ msgid "Already installed the Checkmk agent?"
+#~ msgstr "Sempre instalar o Python com o agente"
+
+#, fuzzy
+#~ msgid ""
+#~ "This problem might be caused by a missing agent or the firewall settings."
+#~ msgstr ""
+#~ "Os problemas acima podem ser causados por caches em falta. Por favor, "
+#~ "active uma nova verificação."
+
+#, fuzzy
+#~ msgid "Read Checkmk user guide"
+#~ msgstr "O guia oficial do usuário Checkmk"
+
 #, python-format
 #~ msgid "Core files (config, state and history) from var/check_mk/core.%s"
 #~ msgstr ""
@@ -98680,18 +98731,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Oracle instance name"
 #~ msgstr "instâncias Oracle"
-
-#, fuzzy
-#~ msgid "Agent communication failed during service discovery"
-#~ msgstr "Pendente de descoberta de serviços"
-
-#, fuzzy
-#~ msgid "Ignore for this host"
-#~ msgstr "Parâmetros para este anfitrião"
-
-#, fuzzy
-#~ msgid "Close for now"
-#~ msgstr "Níveis para Inodes"
 
 #, fuzzy
 #~ msgid "Select inventory path"

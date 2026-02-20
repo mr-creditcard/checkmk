@@ -16535,7 +16535,8 @@ msgstr "Verbruikt hostgeheugen"
 msgid "Consumed load balancer capacity units"
 msgstr "Verbruikte Load Balancer-capaciteitseenheden"
 
-msgid "Consumer Count is the size of connected consumers to a queue"
+#, fuzzy
+msgid "Consumer count is the size of connected consumers to a queue"
 msgstr ""
 "Consumententelling is de grootte van het aantal aangesloten consumenten op "
 "een wachtrij"
@@ -21493,6 +21494,10 @@ msgstr "Tijdspecifieke parameters uitschakelen"
 msgid "Disable undecided services"
 msgstr "Schakel onbesliste diensten uit"
 
+#, fuzzy
+msgid "Disable unique piggyback host names"
+msgstr "Voorvoegsel voor piggyback hostname"
+
 msgid "Disable vanished services"
 msgstr "Schakel verdwenen diensten uit"
 
@@ -24484,10 +24489,6 @@ msgid "Enable row shading"
 msgstr "Rij arcering inschakelen"
 
 #, fuzzy
-msgid "Enable safe host names"
-msgstr "Hostnamen vertalen"
-
-#, fuzzy
 msgid "Enable service discovery"
 msgstr "Service discovery uitvoeren"
 
@@ -24562,6 +24563,10 @@ msgstr "Tijdspecifieke parameters inschakelen"
 
 msgid "Enable trend computation"
 msgstr "Trendberekening inschakelen"
+
+#, fuzzy
+msgid "Enable unique piggyback host names"
+msgstr "Voorvoegsel voor piggyback hostname"
 
 #, fuzzy
 msgid "Enable/Disable active checks"
@@ -24641,7 +24646,7 @@ msgstr ""
 "korte tijd voordoen."
 
 msgid ""
-"Enabling this option lets Checkmk create safe host names for piggyback "
+"Enabling this option lets Checkmk create unique host names for piggyback "
 "hosts. This avoids conflicts caused by entities having the same name in "
 "Azure, which could lead to monitoring data being overwritten or lost. The "
 "option works by appending a unique hash to the Checkmk piggyback host names "
@@ -25722,6 +25727,10 @@ msgstr "Knooppunten uitsluiten op basis van hun rol"
 
 msgid "Exclude Pattern"
 msgstr "Patroon uitsluiten"
+
+#, fuzzy
+msgid "Exclude VMs from unique piggyback host names"
+msgstr "Voorvoegsel voor piggyback hostname"
 
 msgid "Exclude destination vserver"
 msgstr "Bestemming vserver uitsluiten"
@@ -39907,9 +39916,6 @@ msgstr "Niveaus voor de percentuele groei per tijdspanne"
 msgid "Levels for the percentual shrinking per time range"
 msgstr "Niveaus voor de procentuele inkrimping per tijdspanne"
 
-msgid "Levels for the queue length"
-msgstr "Niveaus voor de lengte van de wachtrij"
-
 #, fuzzy
 msgid "Levels for time since last update"
 msgstr "Waarschuwingsniveau voor tijd sinds laatste bijwerking"
@@ -42360,6 +42366,10 @@ msgid "Make own published %s override built-in %s for all users."
 msgstr ""
 "Laat eigen gepubliceerde %s de ingebouwde %s overschrijven voor alle "
 "gebruikers."
+
+#, fuzzy
+msgid "Make piggyback host names globally unique"
+msgstr "Piggybacked hostnaam expressies"
 
 msgid "Make stored reports available for other users"
 msgstr "Maak opgeslagen rapporten beschikbaar voor andere gebruikers"
@@ -55811,6 +55821,11 @@ msgstr "Wachtrij info"
 msgid "Queue length"
 msgstr "Lengte wachtrij"
 
+msgid ""
+"Queue length refers to the total number of messages that have not been "
+"acknowledged by a consumer."
+msgstr ""
+
 #, fuzzy
 msgid "Queue manager name"
 msgstr "Naam wachtrij-manager"
@@ -62543,9 +62558,6 @@ msgstr ""
 msgid "Set the logging level for Windows agent"
 msgstr "Stel het logging niveau in voor Windows Agent"
 
-msgid "Set the maximum and minimum length for the queue size"
-msgstr "Stel de maximale en minimale lengte voor de wachtrijgrootte in"
-
 msgid "Set the maximum number of concurrent pings sent to target IP addresses."
 msgstr ""
 "Stel het maximum aantal gelijktijdige pings in die naar doel-IP-adressen "
@@ -68933,7 +68945,7 @@ msgid ""
 "The Inotify (Inode notify) is a Linux kernel subsystem that acts to extend "
 "file systems to notice changes to the file system. The Inotify plug-in "
 "collects these changes and reports them back to the monitoring system. You "
-"also need to install the pynotify Python plug-in onto the target system."
+"also need to install the pyinotify Python plug-in onto the target system."
 msgstr ""
 "Inotify (Inode notify) is een Linux kernel subsysteem dat fungeert als "
 "uitbreiding op bestandssystemen om veranderingen in het bestandssysteem op "
@@ -84368,10 +84380,6 @@ msgstr "Upload MIB-bestand"
 msgid "Upper"
 msgstr "Boven"
 
-#, fuzzy
-msgid "Upper Levels for the consumer count"
-msgstr "Niveaus voor de consumententelling"
-
 msgid "Upper Temperature Levels"
 msgstr "Bovenste temperatuurniveaus"
 
@@ -84851,6 +84859,10 @@ msgstr "Bovenste niveaus voor het back-up tijdperk"
 msgid "Upper levels for the bucket size"
 msgstr "Bovenste niveaus voor de emmer"
 
+#, fuzzy
+msgid "Upper levels for the consumer count"
+msgstr "Niveaus voor de consumententelling"
+
 msgid "Upper levels for the fan speed of a hardware device"
 msgstr "Bovenste niveaus voor de ventilatorsnelheid van een hardwareapparaat"
 
@@ -84901,6 +84913,10 @@ msgstr "Bovenste niveaus voor het aantal sessies"
 
 msgid "Upper levels for the number of table extents"
 msgstr "Bovenste niveaus voor het aantal tabeluitbreidingen"
+
+#, fuzzy
+msgid "Upper levels for the queue length"
+msgstr "Bovenste niveaus voor wachtrijlengtes"
 
 #, fuzzy
 msgid "Upper levels for the time the service is active"
@@ -88833,6 +88849,12 @@ msgstr ""
 "Indien ingeschakeld, wordt deze site gemarkeerd voor synchronisatie telkens "
 "wanneer een Web GUI gerelateerde optie wordt gewijzigd en gebruikers mogen "
 "inloggen op de Web GUI van deze site."
+
+msgid ""
+"When enabled, virtual machines will keep their original name without the "
+"appended unique hash. All other resource types will still use unique "
+"piggyback host names."
+msgstr ""
 
 msgid ""
 "When forwarding mails from the mailbox to the event console, the body of the "
@@ -95679,9 +95701,6 @@ msgstr ""
 msgid "No filter category available"
 msgstr "Geen informatie beschikbaar"
 
-msgid "%{filterName} in %{filterGroup}"
-msgstr ""
-
 #, fuzzy
 msgid "No filters found matching: %{search}"
 msgstr "Procesnaam matching"
@@ -97905,15 +97924,16 @@ msgid "Manage in global settings"
 msgstr "Globale instelling wijzigen"
 
 #, fuzzy
-msgid "Already installed the Checkmk agent?"
-msgstr "Installeer Python altijd met agent"
+msgid "Agent communication failed during service discovery"
+msgstr "In afwachting van dienstontdekking"
 
-#, fuzzy
 msgid ""
-"This problem might be caused by a missing agent or the firewall settings."
+"This can have different reasons. The Checkmk agent might not be installed, "
+"or communication may be blocked by firewall or network settings.\n"
+"If this host should be monitored via an agent, check the installation and "
+"connectivity.\n"
+"If not, you can ignore this message."
 msgstr ""
-"De bovenstaande problemen kunnen worden veroorzaakt door ontbrekende caches. "
-"Gelieve een rescan uit te voeren."
 
 #, fuzzy
 msgid "Already registered the Checkmk agent?"
@@ -97926,8 +97946,12 @@ msgstr ""
 "Gelieve een rescan uit te voeren."
 
 #, fuzzy
-msgid "Read Checkmk user guide"
-msgstr "De officiële Checkmk gebruikershandleiding"
+msgid "Ignore for this host"
+msgstr "Parameters voor deze host"
+
+#, fuzzy
+msgid "Close for now"
+msgstr "Niveaus voor Inodes"
 
 #, fuzzy
 msgid "Close & run service discovery"
@@ -98724,6 +98748,31 @@ msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
 
+#, fuzzy
+#~ msgid "Enable safe host names"
+#~ msgstr "Hostnamen vertalen"
+
+#~ msgid "Levels for the queue length"
+#~ msgstr "Niveaus voor de lengte van de wachtrij"
+
+#~ msgid "Set the maximum and minimum length for the queue size"
+#~ msgstr "Stel de maximale en minimale lengte voor de wachtrijgrootte in"
+
+#, fuzzy
+#~ msgid "Already installed the Checkmk agent?"
+#~ msgstr "Installeer Python altijd met agent"
+
+#, fuzzy
+#~ msgid ""
+#~ "This problem might be caused by a missing agent or the firewall settings."
+#~ msgstr ""
+#~ "De bovenstaande problemen kunnen worden veroorzaakt door ontbrekende "
+#~ "caches. Gelieve een rescan uit te voeren."
+
+#, fuzzy
+#~ msgid "Read Checkmk user guide"
+#~ msgstr "De officiële Checkmk gebruikershandleiding"
+
 #, python-format
 #~ msgid "Core files (config, state and history) from var/check_mk/core.%s"
 #~ msgstr ""
@@ -98773,18 +98822,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Oracle instance name"
 #~ msgstr "Oracle gevallen"
-
-#, fuzzy
-#~ msgid "Agent communication failed during service discovery"
-#~ msgstr "In afwachting van dienstontdekking"
-
-#, fuzzy
-#~ msgid "Ignore for this host"
-#~ msgstr "Parameters voor deze host"
-
-#, fuzzy
-#~ msgid "Close for now"
-#~ msgstr "Niveaus voor Inodes"
 
 #, fuzzy
 #~ msgid "Select inventory path"

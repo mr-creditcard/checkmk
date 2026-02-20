@@ -10,7 +10,7 @@ from collections.abc import Sequence
 import pytest
 
 from cmk.agent_based.v2 import Result, Service, State, StringTable
-from cmk.legacy_checks.scaleio_mdm import (
+from cmk.plugins.scaleio.agent_based.scaleio_mdm import (
     check_scaleio_mdm,
     discover_scaleio_mdm,
     parse_scaleio_mdm,

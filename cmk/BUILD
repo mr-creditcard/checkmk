@@ -195,10 +195,10 @@ py_library(
         "//cmk/piggyback:hub",
         "//cmk/plugins:cmk_plugins",
         "//cmk/product_usage:cmk_product_usage",
+        "//cmk/rrd:cmk_rrd",
         "//cmk/server_side_calls_backend:cmk_server_side_calls_backend",
         "//cmk/utils:cmk_utils",
         "//packages/cmk-plugins:graylog",  # via legacy_checks.
-        "@rrdtool_native//:rrdtool_python_lib",
     ] + CMK_PACKAGES + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
 )
 
@@ -432,6 +432,7 @@ py_wheel(
         "//cmk/plugins:agents",
         "//cmk/plugins:cmk_plugins",
         "//cmk/product_usage:cmk_product_usage",
+        "//cmk/rrd:cmk_rrd",
         "//cmk/server_side_calls_backend:cmk_server_side_calls_backend",
         "//cmk/utils:cmk_utils",
     ],

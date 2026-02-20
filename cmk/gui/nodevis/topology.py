@@ -35,6 +35,7 @@ from cmk.gui.breadcrumb import make_current_page_breadcrumb_item, make_topic_bre
 from cmk.gui.config import Config
 from cmk.gui.cron import CronJob, CronJobRegistry
 from cmk.gui.dashboard import get_topology_context_and_filters
+from cmk.gui.exceptions import MKUserError
 from cmk.gui.hooks import request_memoize
 from cmk.gui.htmllib.header import make_header
 from cmk.gui.htmllib.html import html
@@ -228,9 +229,9 @@ def _save_topology_configuration(topology_configuration: TopologyConfiguration) 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class _RequestVars:
     site_id: SiteId | None
-    layout: str
+    layout: str | None
     query_hash: str | None
-    topology_type: str
+    topology_type: str | None
     topology_frontend_configuration: str | None
     delete_topology_configuration: bool
     save_topology_configuration: bool
@@ -241,9 +242,9 @@ class _RequestVars:
             site_id=SiteId(request.get_str_input_mandatory("site"))
             if request.get_str_input("site")
             else None,
-            layout=request.get_str_input_mandatory("layout"),
+            layout=request.get_str_input("layout"),
             query_hash=request.get_str_input("query_hash"),
-            topology_type=request.get_str_input_mandatory("topology_type"),
+            topology_type=request.get_str_input("topology_type"),
             topology_frontend_configuration=request.get_str_input(
                 "topology_frontend_configuration"
             ),
@@ -290,7 +291,7 @@ class ABCTopologyPage(Page):
         self,
         *,
         site_id: SiteId | None,
-        layout: str,
+        layout: str | None,
         query_hash: str | None,
         topology_frontend_configuration: str | None,
     ) -> None:
@@ -447,10 +448,13 @@ class AjaxFetchTopology(AjaxPage):
     def page(self, ctx: PageContext) -> PageResult:
         reqvars = _RequestVars.from_request(ctx.request)
 
-        if reqvars.topology_type == "network_topology":
-            default_overlays = NetworkTopologyPage.get_default_overlays_config()
-        else:
-            default_overlays = ParentChildTopologyPage.get_default_overlays_config()
+        match reqvars.topology_type:
+            case None:
+                raise MKUserError("topology_type", _('The parameter "topology_type" is missing.'))
+            case "network_topology":
+                default_overlays = NetworkTopologyPage.get_default_overlays_config()
+            case _:
+                default_overlays = ParentChildTopologyPage.get_default_overlays_config()
 
         topology_configuration = get_topology_configuration(
             topology_type=reqvars.topology_type,
@@ -1694,7 +1698,7 @@ def get_topology_configuration(
     *,
     topology_type: str,
     topology_frontend_configuration: str | None,
-    layout: str,
+    layout: str | None,
     default_overlays: OverlaysConfig,
 ) -> TopologyConfiguration:
     topology_filters = _get_topology_settings_from_filters()
@@ -1710,7 +1714,7 @@ def get_topology_configuration(
         else None
     )
 
-    if frontend_configuration:
+    if frontend_configuration and layout:
         return TopologyConfiguration(
             type=topology_type,
             frontend=frontend_configuration,

@@ -21,14 +21,6 @@ from cmk.plugins.cisco_meraki.lib.schema import RawUplinkVpnStatuses
 class _RawUplinkVpnStatuses(TypedDictFactory[RawUplinkVpnStatuses]):
     __check_model__ = False
 
-    @classmethod
-    def vpnMode(cls) -> str:
-        return "hub"
-
-    @classmethod
-    def uplinks(cls) -> list[dict[str, str]]:
-        return [{"interface": "wan1", "publicIp": "1.2.3.4"}]
-
 
 @pytest.mark.parametrize("string_table", [[], [[]], [[""]]])
 def test_discover_appliance_uplinks_no_payload(string_table: StringTable) -> None:
@@ -70,6 +62,7 @@ def test_check_appliance_vpns_meraki(params: CheckParams) -> None:
         merakiVpnPeers=[
             {
                 "networkName": "main",
+                "networkId": "L_123",
                 "reachability": "reachable",
             }
         ],
@@ -79,11 +72,9 @@ def test_check_appliance_vpns_meraki(params: CheckParams) -> None:
 
     value = list(check_appliance_vpns("main", params, section))
     expected = [
-        Result(state=State.OK, summary="Status: reachable"),
+        Result(state=State.OK, summary="Reachability: reachable"),
         Result(state=State.OK, summary="Type: Meraki VPN peer"),
-        Result(state=State.OK, notice="VPN mode: hub"),
-        Result(state=State.OK, notice="Uplink(s):"),
-        Result(state=State.OK, notice="Name: wan1, Public IP: 1.2.3.4"),
+        Result(state=State.OK, notice="Network ID: L_123"),
     ]
 
     assert value == expected
@@ -104,12 +95,9 @@ def test_check_appliance_vpns_third_party(params: CheckParams) -> None:
 
     value = list(check_appliance_vpns("main", params, section))
     expected = [
-        Result(state=State.OK, summary="Status: reachable"),
+        Result(state=State.OK, summary="Reachability: reachable"),
         Result(state=State.OK, summary="Type: Third party VPN peer"),
-        Result(state=State.OK, summary="Peer IP: 1.2.3.5"),
-        Result(state=State.OK, notice="VPN mode: hub"),
-        Result(state=State.OK, notice="Uplink(s):"),
-        Result(state=State.OK, notice="Name: wan1, Public IP: 1.2.3.4"),
+        Result(state=State.OK, notice="Public IP: 1.2.3.5"),
     ]
 
     assert value == expected
@@ -128,6 +116,6 @@ def test_check_appliance_vpns_unreachable_status(params: CheckParams) -> None:
     section = parse_appliance_vpns(string_table)
 
     value, *_ = list(check_appliance_vpns("main", params, section))
-    expected = Result(state=State.WARN, summary="Status: unreachable")
+    expected = Result(state=State.WARN, summary="Reachability: unreachable")
 
     assert value == expected

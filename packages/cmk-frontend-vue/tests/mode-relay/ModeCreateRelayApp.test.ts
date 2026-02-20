@@ -27,7 +27,7 @@ const mockProps: CreateRelay = {
   site_version: '2.5.0',
   is_cloud_edition: false,
   user_id: 'cmkadmin',
-  supported_os: ['Ubuntu 22.04 LTS', 'Red Hat Enterprise Linux (RHEL) 10']
+  supported_os: ['Ubuntu 24.04 LTS', 'Red Hat Enterprise Linux (RHEL) 10']
 }
 
 /**

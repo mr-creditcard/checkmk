@@ -3,36 +3,44 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-# mypy: disable-error-code="no-untyped-def"
-# mypy: disable-error-code="type-arg"
-
 
 import time
-from collections.abc import Iterable
+from collections.abc import Mapping
+from typing import Any
 
-from cmk.agent_based.legacy.v0_unstable import check_levels, LegacyCheckDefinition
-from cmk.agent_based.v2 import get_rate, get_value_store, render
+from cmk.agent_based.legacy.conversion import (
+    # Temporary compatibility layer untile we migrate the corresponding ruleset.
+    check_levels_legacy_compatible as check_levels,
+)
+from cmk.agent_based.v2 import (
+    AgentSection,
+    CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
+    get_rate,
+    get_value_store,
+    render,
+    Service,
+)
 from cmk.plugins.couchbase.lib import parse_couchbase_lines, Section
-
-check_info = {}
-
-DiscoveryResult = Iterable[tuple[str, dict]]
 
 
 def discover_couchbase_nodes_cache(section: Section) -> DiscoveryResult:
     yield from (
-        (item, {})
+        Service(item=item)
         for item, data in section.items()
         if "get_hits" in data and "ep_bg_fetched" in data
     )
 
 
-def check_couchbase_nodes_cache(item, params, parsed):
-    if not (data := parsed.get(item)):
+def check_couchbase_nodes_cache(
+    item: str, params: Mapping[str, Any], section: Section
+) -> CheckResult:
+    if not (data := section.get(item)):
         return
     misses = data.get("ep_bg_fetched")
     hits = data.get("get_hits")
-    if None in (misses, hits):
+    if misses is None or hits is None:
         return
     total = misses + hits
     hit_perc = (hits / float(total)) * 100.0 if total != 0 else 100.0
@@ -40,7 +48,7 @@ def check_couchbase_nodes_cache(item, params, parsed):
         get_value_store(), "cache_misses", time.time(), misses, raise_overflow=True
     )
 
-    yield check_levels(
+    yield from check_levels(
         miss_rate,
         "cache_misses_rate",
         params.get("cache_misses"),
@@ -48,7 +56,7 @@ def check_couchbase_nodes_cache(item, params, parsed):
         infoname="Cache misses",
     )
 
-    yield check_levels(
+    yield from check_levels(
         hit_perc,
         "cache_hit_ratio",
         (None, None) + params.get("cache_hits", (None, None)),
@@ -58,11 +66,17 @@ def check_couchbase_nodes_cache(item, params, parsed):
     )
 
 
-check_info["couchbase_nodes_cache"] = LegacyCheckDefinition(
+agent_section_couchbase_nodes_cache = AgentSection(
     name="couchbase_nodes_cache",
     parse_function=parse_couchbase_lines,
+)
+
+
+check_plugin_couchbase_nodes_cache = CheckPlugin(
+    name="couchbase_nodes_cache",
     service_name="Couchbase %s Cache",
     discovery_function=discover_couchbase_nodes_cache,
     check_function=check_couchbase_nodes_cache,
     check_ruleset_name="couchbase_cache",
+    check_default_parameters={},
 )

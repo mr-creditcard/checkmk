@@ -78,7 +78,6 @@ def test_check_appliance_uplinks(params: CheckParams) -> None:
     expected = [
         Result(state=State.OK, summary="Status: reachable"),
         Result(state=State.OK, summary="Type: Meraki VPN peer"),
-        Result(state=State.OK, summary="Peer IP: n/a"),
         Result(state=State.OK, notice="VPN mode: hub"),
         Result(state=State.OK, notice="Uplink(s):"),
         Result(state=State.OK, notice="Name: wan1, Public IP: 1.2.3.4"),
@@ -138,9 +137,8 @@ def test_check_random_peer_data(params: CheckParams) -> None:
 
     value = list(check_appliance_vpns("main", params, section))
     expected = [
-        Result(state=State.WARN, summary="Status: n/a"),
-        Result(state=State.OK, summary="Type: n/a"),
-        Result(state=State.OK, summary="Peer IP: n/a"),
+        Result(state=State.WARN, summary="Status: None"),
+        Result(state=State.OK, summary="Type: None"),
         Result(state=State.OK, notice="VPN mode: hub"),
         Result(state=State.OK, notice="Uplink(s):"),
         Result(state=State.OK, notice="Name: wan1, Public IP: 1.2.3.4"),

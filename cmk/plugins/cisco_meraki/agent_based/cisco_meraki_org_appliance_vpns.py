@@ -35,11 +35,6 @@ class PeerInfo:
     public_ip: str | None = None
     type: str | None = None
 
-    def __post_init__(self) -> None:
-        self.reachability = self.reachability or "n/a"
-        self.public_ip = self.public_ip or "n/a"
-        self.type = self.type or "n/a"
-
     @property
     def status_reachable(self) -> bool:
         if not self.reachability:

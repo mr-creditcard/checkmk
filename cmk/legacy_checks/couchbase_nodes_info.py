@@ -3,28 +3,34 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-from collections.abc import Iterable, Mapping
+from collections.abc import Mapping
 from typing import Any
 
-from cmk.agent_based.legacy.v0_unstable import LegacyCheckDefinition
+from cmk.agent_based.v2 import (
+    AgentSection,
+    CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
+    Result,
+    Service,
+    State,
+)
 from cmk.plugins.couchbase.lib import parse_couchbase_lines, Section
-
-check_info = {}
 
 
 def check_couchbase_nodes_status(
-    item: str, params: Mapping[str, Any], parsed: Section
-) -> Iterable[tuple[int, str]]:
-    if not (data := parsed.get(item)):
+    item: str, params: Mapping[str, Any], section: Section
+) -> CheckResult:
+    if not (data := section.get(item)):
         return
     health = data.get("status")
     if health is not None:
-        status = 0
+        status = State.OK
         if health == "warmup":
-            status = params.get("warmup_state", 0)
+            status = State(params.get("warmup_state", 0))
         if health == "unhealthy":
-            status = params.get("unhealthy_state", 2)
-        yield status, "Health: %s" % health
+            status = State(params.get("unhealthy_state", 2))
+        yield Result(state=status, summary="Health: %s" % health)
 
     for key, label in (
         ("otpNode", "One-time-password node"),
@@ -32,29 +38,35 @@ def check_couchbase_nodes_status(
         ("version", "Version"),
         ("clusterCompatibility", "Cluster compatibility"),
     ):
-        yield 0, "{}: {}".format(label, data.get(key, "unknown"))
+        yield Result(state=State.OK, summary="{}: {}".format(label, data.get(key, "unknown")))
 
     membership = data.get("clusterMembership")
     if membership is None:
         return
 
-    status = 0
+    mem_status = State.OK
     if membership == "inactiveAdded":
-        status = params.get("inactive_added_state", 1)
+        mem_status = State(params.get("inactive_added_state", 1))
     elif membership == "inactiveFailed":
-        status = params.get("inactive_added_state", 2)
-    yield status, "Cluster membership: %s" % membership
+        mem_status = State(params.get("inactive_added_state", 2))
+    yield Result(state=mem_status, summary="Cluster membership: %s" % membership)
 
 
-def discover_couchbase_nodes_info(section: Section) -> Iterable[tuple[str, Mapping[str, Any]]]:
-    yield from ((item, {}) for item in section)
+def discover_couchbase_nodes_info(section: Section) -> DiscoveryResult:
+    yield from (Service(item=item) for item in section)
 
 
-check_info["couchbase_nodes_info"] = LegacyCheckDefinition(
+agent_section_couchbase_nodes_info = AgentSection(
     name="couchbase_nodes_info",
     parse_function=parse_couchbase_lines,
+)
+
+
+check_plugin_couchbase_nodes_info = CheckPlugin(
+    name="couchbase_nodes_info",
     service_name="Couchbase %s Info",
     discovery_function=discover_couchbase_nodes_info,
     check_function=check_couchbase_nodes_status,
     check_ruleset_name="couchbase_status",
+    check_default_parameters={},
 )

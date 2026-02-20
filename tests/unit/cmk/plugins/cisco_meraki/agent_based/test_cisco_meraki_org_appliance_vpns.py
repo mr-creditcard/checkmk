@@ -53,7 +53,7 @@ def test_discover_appliance_uplinks() -> None:
 
 @pytest.fixture
 def params() -> CheckParams:
-    return CheckParams(status_not_reachable=1)
+    return CheckParams(status_not_reachable=State.WARN.value)
 
 
 @pytest.mark.parametrize("string_table", [[], [[]], [[""]]])

@@ -152,5 +152,5 @@ check_plugin_cisco_meraki_org_appliance_vpns = CheckPlugin(
     discovery_function=discover_appliance_vpns,
     check_function=check_appliance_vpns,
     check_ruleset_name="cisco_meraki_org_appliance_vpns",
-    check_default_parameters=CheckParams(status_not_reachable=1),
+    check_default_parameters=CheckParams(status_not_reachable=State.WARN.value),
 )

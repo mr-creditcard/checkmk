@@ -22,10 +22,6 @@ class _RawUplinkVpnStatuses(TypedDictFactory[RawUplinkVpnStatuses]):
     __check_model__ = False
 
     @classmethod
-    def networkName(cls) -> str:
-        return "main"
-
-    @classmethod
     def vpnMode(cls) -> str:
         return "hub"
 
@@ -41,12 +37,19 @@ def test_discover_appliance_uplinks_no_payload(string_table: StringTable) -> Non
 
 
 def test_discover_appliance_uplinks() -> None:
-    uplinks = _RawUplinkVpnStatuses.build(networkName="main")
+    uplinks = _RawUplinkVpnStatuses.build(
+        merakiVpnPeers=[{"networkName": "main"}, {"networkName": "secondary"}],
+        thirdPartyVpnPeers=[{"name": "third-party-vpn"}],
+    )
     string_table = [[f"[{json.dumps(uplinks)}]"]]
     section = parse_appliance_vpns(string_table)
 
     value = list(discover_appliance_vpns(section))
-    expected = [Service(item="main")]
+    expected = [
+        Service(item="main"),
+        Service(item="secondary"),
+        Service(item="third-party-vpn"),
+    ]
 
     assert value == expected
 
@@ -62,7 +65,7 @@ def test_check_appliance_uplinks_no_payload(string_table: StringTable, params: C
     assert not list(check_appliance_vpns("", params, section))
 
 
-def test_check_appliance_uplinks(params: CheckParams) -> None:
+def test_check_appliance_vpns_meraki(params: CheckParams) -> None:
     uplinks = _RawUplinkVpnStatuses.build(
         merakiVpnPeers=[
             {
@@ -126,22 +129,5 @@ def test_check_appliance_vpns_unreachable_status(params: CheckParams) -> None:
 
     value, *_ = list(check_appliance_vpns("main", params, section))
     expected = Result(state=State.WARN, summary="Status: unreachable")
-
-    assert value == expected
-
-
-def test_check_random_peer_data(params: CheckParams) -> None:
-    vpn_status = _RawUplinkVpnStatuses.build()
-    string_table = [[f"[{json.dumps(vpn_status)}]"]]
-    section = parse_appliance_vpns(string_table)
-
-    value = list(check_appliance_vpns("main", params, section))
-    expected = [
-        Result(state=State.WARN, summary="Status: None"),
-        Result(state=State.OK, summary="Type: None"),
-        Result(state=State.OK, notice="VPN mode: hub"),
-        Result(state=State.OK, notice="Uplink(s):"),
-        Result(state=State.OK, notice="Name: wan1, Public IP: 1.2.3.4"),
-    ]
 
     assert value == expected

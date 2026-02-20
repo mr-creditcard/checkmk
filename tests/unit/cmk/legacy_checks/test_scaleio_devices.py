@@ -79,7 +79,6 @@ def test_check_scaleio_devices(
         list(
             scaleio_devices.check_function(
                 item=item,
-                params={},
                 section=_SECTION,
             )
         )

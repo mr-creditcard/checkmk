@@ -4,14 +4,12 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 # mypy: disable-error-code="misc"
-# mypy: disable-error-code="no-untyped-call"
 
-from collections.abc import Mapping, Sequence
-from typing import Any
+from collections.abc import Sequence
 
 import pytest
 
-from cmk.agent_based.v2 import StringTable
+from cmk.agent_based.v2 import Result, Service, State, StringTable
 from cmk.legacy_checks.scaleio_mdm import (
     check_scaleio_mdm,
     discover_scaleio_mdm,
@@ -111,25 +109,23 @@ from cmk.legacy_checks.scaleio_mdm import (
                 ["IPs: 192.168.50.3", " 192.168.51.3", " Port: 9011"],
                 ["Status: Normal", " Version: 2.5.0"],
             ],
-            [(None, {})],
+            [Service()],
         ),
     ],
 )
 def test_discover_scaleio_mdm(
-    string_table: StringTable, expected_discoveries: Sequence[tuple[str, Mapping[str, Any]]]
+    string_table: StringTable, expected_discoveries: Sequence[Service]
 ) -> None:
     """Test discovery function for scaleio_mdm check."""
     parsed = parse_scaleio_mdm(string_table)
     result = list(discover_scaleio_mdm(parsed))
-    assert sorted(result) == sorted(expected_discoveries)
+    assert result == expected_discoveries
 
 
 @pytest.mark.parametrize(
-    "item, params, string_table, expected_results",
+    "string_table, expected_results",
     [
         (
-            None,
-            {},
             [
                 ["Cluster:"],
                 ["Name: tuc", " Mode: 5_node", " State: Normal", " Active: 5/5", " Replicas: 3/3"],
@@ -219,20 +215,21 @@ def test_discover_scaleio_mdm(
                 ["Status: Normal", " Version: 2.5.0"],
             ],
             [
-                (0, "Mode: 5_node, State: Normal"),
-                (0, "Active: 5/5, Replicas: 3/3"),
-                (0, "Master MDM: Manager1"),
-                (2, "Slave MDMs: Manager2, Manager3, Manager4, Manager5, Manager6"),
-                (0, "Tie-Breakers: TB1"),
-                (0, "Standby MDMs: Standby1"),
+                Result(state=State.OK, summary="Mode: 5_node, State: Normal"),
+                Result(state=State.OK, summary="Active: 5/5, Replicas: 3/3"),
+                Result(state=State.OK, summary="Master MDM: Manager1"),
+                Result(
+                    state=State.CRIT,
+                    summary="Slave MDMs: Manager2, Manager3, Manager4, Manager5, Manager6",
+                ),
+                Result(state=State.OK, summary="Tie-Breakers: TB1"),
+                Result(state=State.OK, summary="Standby MDMs: Standby1"),
             ],
         ),
     ],
 )
-def test_check_scaleio_mdm(
-    item: str, params: Mapping[str, Any], string_table: StringTable, expected_results: Sequence[Any]
-) -> None:
+def test_check_scaleio_mdm(string_table: StringTable, expected_results: Sequence[Result]) -> None:
     """Test check function for scaleio_mdm check."""
     parsed = parse_scaleio_mdm(string_table)
-    result = list(check_scaleio_mdm(item, params, parsed))
+    result = list(check_scaleio_mdm(parsed))
     assert result == expected_results

@@ -13,20 +13,25 @@
 #   ERR_STATE           NO_ERROR
 
 
-# mypy: disable-error-code="var-annotated"
+from collections.abc import Mapping
 
-from collections.abc import Iterable, Mapping
-from typing import Any
+from cmk.agent_based.v2 import (
+    AgentSection,
+    CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
+    Result,
+    Service,
+    State,
+    StringTable,
+)
 
-from cmk.agent_based.legacy.v0_unstable import LegacyCheckDefinition, LegacyCheckResult
-from cmk.agent_based.v2 import StringTable
-
-check_info = {}
+type Section = Mapping[str, list[dict[str, str]]]
 
 
-def parse_scaleio_devices(string_table: StringTable) -> Mapping[str, list[dict[str, str]]]:
-    devices = {}
-    device = {}
+def parse_scaleio_devices(string_table: StringTable) -> Section:
+    devices: dict[str, dict[str, str]] = {}
+    device: dict[str, str] = {}
     for line in string_table:
         if len(line) != 2:
             continue
@@ -38,7 +43,7 @@ def parse_scaleio_devices(string_table: StringTable) -> Mapping[str, list[dict[s
         elif device:
             device[key] = value
 
-    parsed = {}
+    parsed: dict[str, list[dict[str, str]]] = {}
     for attrs in devices.values():
         parsed.setdefault(attrs["SDS_ID"], []).append(attrs)
     return parsed
@@ -48,10 +53,12 @@ def _make_state_readable(raw_state: str) -> str:
     return raw_state.replace("_", " ").lower()
 
 
-def check_scaleio_devices(
-    item: str, params: Mapping[str, Any], parsed: Mapping[str, list[dict[str, str]]]
-) -> LegacyCheckResult:
-    if not (devices := parsed.get(item)):
+def discover_scaleio_devices(section: Section) -> DiscoveryResult:
+    yield from (Service(item=item) for item in section)
+
+
+def check_scaleio_devices(item: str, section: Section) -> CheckResult:
+    if not (devices := section.get(item)):
         return
     num_devices = len(devices)
     error_devices = []
@@ -76,23 +83,29 @@ def check_scaleio_devices(
 
     if error_devices:
         num_errors = len(error_devices)
-        yield 2, "%d devices, %d errors (%s)" % (num_devices, num_errors, ", ".join(error_devices))
+        yield Result(
+            state=State.CRIT,
+            summary=f"{num_devices} devices, {num_errors} errors ({', '.join(error_devices)})",
+        )
     else:
-        yield 0, "%d devices, no errors" % num_devices
+        yield Result(state=State.OK, summary=f"{num_devices} devices, no errors")
 
     if long_output:
-        yield 0, "\n%s" % "\n".join(long_output)
+        yield Result(
+            state=State.OK,
+            summary=f"{len(long_output)} additional details available",
+            details="\n".join(long_output),
+        )
 
 
-def discover_scaleio_devices(
-    section: Mapping[str, list[dict[str, str]]],
-) -> Iterable[tuple[str, dict[str, Any]]]:
-    yield from ((item, {}) for item in section)
-
-
-check_info["scaleio_devices"] = LegacyCheckDefinition(
+agent_section_scaleio_devices = AgentSection(
     name="scaleio_devices",
     parse_function=parse_scaleio_devices,
+)
+
+
+check_plugin_scaleio_devices = CheckPlugin(
+    name="scaleio_devices",
     service_name="ScaleIO Data Server %s Devices",
     discovery_function=discover_scaleio_devices,
     check_function=check_scaleio_devices,

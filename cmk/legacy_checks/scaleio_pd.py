@@ -3,15 +3,28 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-# mypy: disable-error-code="no-untyped-def"
 
+from collections.abc import Mapping
+from typing import Any
 
-from cmk.agent_based.legacy.v0_unstable import LegacyCheckDefinition
-from cmk.agent_based.v2 import StringTable
-from cmk.legacy_includes.df import df_check_filesystem_list, FILESYSTEM_DEFAULT_PARAMS
-from cmk.plugins.scaleio.lib import convert_scaleio_space, parse_scaleio, ScaleioSection
-
-check_info = {}
+from cmk.agent_based.v2 import (
+    AgentSection,
+    CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
+    get_value_store,
+    Result,
+    Service,
+    State,
+    StringTable,
+)
+from cmk.plugins.lib.df import df_check_filesystem_single, FILESYSTEM_DEFAULT_PARAMS
+from cmk.plugins.scaleio.lib import (
+    convert_scaleio_space_into_mb,
+    KNOWN_CONVERSION_VALUES_INTO_MB,
+    parse_scaleio,
+    ScaleioSection,
+)
 
 # <<<scaleio_pd>>>
 # PROTECTION_DOMAIN 91ebcf4500000000:
@@ -26,27 +39,44 @@ def parse_scaleio_pd(string_table: StringTable) -> ScaleioSection:
     return parse_scaleio(string_table, "PROTECTION_DOMAIN")
 
 
-def discover_scaleio_pd(parsed):
-    for entry in parsed:
-        yield entry, {}
+def discover_scaleio_pd(section: ScaleioSection) -> DiscoveryResult:
+    yield from (Service(item=item) for item in section)
 
 
-def check_scaleio_pd(item, params, parsed):
-    if not (data := parsed.get(item)):
+def check_scaleio_pd(item: str, params: Mapping[str, Any], section: ScaleioSection) -> CheckResult:
+    if not (data := section.get(item)):
         return
 
     # How will the data be represented? It's magic and the only
     # indication is the unit. We need to handle this!
     unit = data["MAX_CAPACITY_IN_KB"][3].strip(")")
-    total = convert_scaleio_space(unit, int(data["MAX_CAPACITY_IN_KB"][2].strip("(")))
-    free = convert_scaleio_space(unit, int(data["UNUSED_CAPACITY_IN_KB"][2].strip("(")))
+    if unit not in KNOWN_CONVERSION_VALUES_INTO_MB:
+        yield Result(state=State.UNKNOWN, summary=f"Unknown unit: {unit}")
+        return
 
-    yield df_check_filesystem_list(item, params, [(item, total, free, 0)])
+    total = convert_scaleio_space_into_mb(unit, int(data["MAX_CAPACITY_IN_KB"][2].strip("(")))
+    free = convert_scaleio_space_into_mb(unit, int(data["UNUSED_CAPACITY_IN_KB"][2].strip("(")))
+
+    yield from df_check_filesystem_single(
+        value_store=get_value_store(),
+        mountpoint=item,
+        filesystem_size=total,
+        free_space=free,
+        reserved_space=0.0,
+        inodes_avail=None,
+        inodes_total=None,
+        params=params,
+    )
 
 
-check_info["scaleio_pd"] = LegacyCheckDefinition(
+agent_section_scaleio_pd = AgentSection(
     name="scaleio_pd",
     parse_function=parse_scaleio_pd,
+)
+
+
+check_plugin_scaleio_pd = CheckPlugin(
+    name="scaleio_pd",
     service_name="ScaleIO PD capacity %s",
     discovery_function=discover_scaleio_pd,
     check_function=check_scaleio_pd,
@@ -55,23 +85,22 @@ check_info["scaleio_pd"] = LegacyCheckDefinition(
 )
 
 
-def discover_scaleio_pd_status(parsed):
-    for entry in parsed:
-        yield entry, None
+def discover_scaleio_pd_status(section: ScaleioSection) -> DiscoveryResult:
+    yield from (Service(item=item) for item in section)
 
 
-def check_scaleio_pd_status(item, _no_params, parsed):
-    if not (data := parsed.get(item)):
+def check_scaleio_pd_status(item: str, section: ScaleioSection) -> CheckResult:
+    if not (data := section.get(item)):
         return
 
     status = data["STATE"][0].replace("PROTECTION_DOMAIN_", "")
-    state = 0 if status == "ACTIVE" else 2
+    state = State.OK if status == "ACTIVE" else State.CRIT
     name = data["NAME"][0]
 
-    yield state, f"Name: {name}, State: {status}"
+    yield Result(state=state, summary=f"Name: {name}, State: {status}")
 
 
-check_info["scaleio_pd.status"] = LegacyCheckDefinition(
+check_plugin_scaleio_pd_status = CheckPlugin(
     name="scaleio_pd_status",
     service_name="ScaleIO PD status %s",
     sections=["scaleio_pd"],

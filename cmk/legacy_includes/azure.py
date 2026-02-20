@@ -8,7 +8,7 @@
 # mypy: disable-error-code="unreachable"
 
 import time
-from collections.abc import Callable, Iterable, Mapping
+from collections.abc import Mapping
 from typing import TypeVar
 
 from cmk.agent_based.legacy.v0_unstable import check_levels, LegacyResult
@@ -17,12 +17,8 @@ from cmk.agent_based.v2 import (
     get_value_store,
     IgnoreResultsError,
     render,
-    Service,
 )
-from cmk.plugins.azure.lib import (
-    get_service_labels_from_resource_tags,
-    Resource,
-)
+from cmk.plugins.azure.lib import Resource
 
 _AZURE_METRIC_FMT = {
     "count": lambda n: "%d" % n,
@@ -88,19 +84,3 @@ def check_azure_metric(
         human_readable_func=_AZURE_METRIC_FMT.get(unit, lambda x: f"{x}"),
         boundaries=(0, None),
     )
-
-
-def discover_azure_by_metrics(
-    *desired_metrics: str,
-) -> Callable[[Mapping[str, Resource]], Iterable[Service]]:
-    """Return a discovery function, that will discover if any of the metrics are found"""
-
-    def discovery_function(parsed: Mapping[str, Resource]) -> Iterable[Service]:
-        for name, resource in parsed.items():
-            metr = resource.metrics
-            if set(desired_metrics) & set(metr):
-                yield Service(
-                    item=name, labels=get_service_labels_from_resource_tags(resource.tags)
-                )
-
-    return discovery_function

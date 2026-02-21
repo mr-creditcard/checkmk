@@ -7,9 +7,9 @@ from collections.abc import Mapping, Sequence
 from typing import Any
 
 from cmk.ccc.site import omd_site
-from cmk.gui.config import active_config
 from cmk.gui.form_specs.unstable import MultipleChoiceExtended
 from cmk.gui.form_specs.unstable.multiple_choice import MultipleChoiceElementExtended
+from cmk.gui.keypair_store import KeypairStore
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,
@@ -30,6 +30,7 @@ from cmk.rulesets.v1.form_specs import (
     validators,
 )
 from cmk.rulesets.v1.rule_specs import AgentConfig, CustomTopic
+from cmk.utils import paths
 
 DEFAULT_UPDATE_INTERVAL: int = 3600
 MAX_UPDATE_INTERVAL: int = 30 * 24 * 60 * 60  # 30 days
@@ -438,10 +439,19 @@ def _valuespec_signature_keys() -> MultipleChoiceExtended:
                 name=key.certificate,
                 title=Title("%s") % key.alias,
             )
-            for key in sorted(active_config.agent_signature_keys.values(), key=lambda k: k.alias)
+            for key in sorted(
+                _make_agent_sign_keypair_store().load().values(), key=lambda k: k.alias
+            )
         ],
         custom_validate=(validators.LengthInRange(min_value=1),),
         migrate=_migrate_signature_keys,
+    )
+
+
+def _make_agent_sign_keypair_store() -> KeypairStore:
+    return KeypairStore(
+        paths.default_config_dir.joinpath("multisite.d", "wato", "agent_signature_keys.mk"),
+        "agent_signature_keys",
     )
 
 

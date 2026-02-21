@@ -6900,6 +6900,10 @@ msgstr "OIDの説明をメッセージテキストに追加します"
 msgid "Appliance"
 msgstr "アプライアンス"
 
+#, fuzzy
+msgid "Appliance device utilization"
+msgstr "エンコーダーの使用率"
+
 msgid "Appliance uplink VPN statuses"
 msgstr ""
 
@@ -7686,9 +7690,6 @@ msgstr "認証方法"
 msgid "Authentication method"
 msgstr "認証方法"
 
-msgid "Authentication mode"
-msgstr "認証モード"
-
 msgid "Authentication password"
 msgstr "認証パスワード"
 
@@ -7740,9 +7741,6 @@ msgstr "権限"
 
 msgid "Authorization"
 msgstr "承認"
-
-msgid "Authorization Header"
-msgstr "認証ヘッダー"
 
 msgid "Authorization settings"
 msgstr "承認設定"
@@ -7929,9 +7927,6 @@ msgstr "自動的に　最適なバックエンドのタイプを選択"
 msgid "Automatically stores the host key with no manual input requirement"
 msgstr "手動入力の必要なく、自動的にホストキーを保存"
 
-msgid "Automatically track downtimes of aggregation"
-msgstr "アグリゲーションのダウンタイムを自動でトラッキング"
-
 msgid "Automatically update agents at <i>Activate Changes</i>, if necessary"
 msgstr ""
 "必要に応じて、<i>変更のアクティブ化</i>でエージェントを自動的に更新します"
@@ -7941,9 +7936,6 @@ msgstr "サービス構成を自動的に更新します"
 
 msgid "Automation"
 msgstr "オートメーション"
-
-msgid "Automation Secret"
-msgstr "自動化の秘密"
 
 msgid "Automation URL:"
 msgstr "自動化URL:"
@@ -7959,9 +7951,6 @@ msgstr "HTTPパラメータによるユーザー認証の自動化"
 
 msgid "Automation user for connection to central site"
 msgstr "中央サイトに接続するためのオートメーションユーザー"
-
-msgid "Automation user name"
-msgstr "オートメーションユーザー名"
 
 msgid "Automation user rejected"
 msgstr "自動化ユーザーが拒否されました"
@@ -9457,9 +9446,6 @@ msgstr "ベースDN"
 
 msgid "Base OID"
 msgstr "ベースOID"
-
-msgid "Base URL (OMD Site)"
-msgstr "ベースURL(OMDサイト)"
 
 msgid "Base URL for Docker API engine"
 msgstr "Docker APIエンジンのベースURL"
@@ -12442,9 +12428,6 @@ msgstr "SSHサービスを確認する"
 msgid "Check SSL Certificate Age"
 msgstr "SSL証明書の経過時間を確認する"
 
-msgid "Check State of BI Aggregation"
-msgstr "BI集計の状態を確認する"
-
 msgid "Check TCP port connection"
 msgstr "TCPポート接続を確認する"
 
@@ -13552,10 +13535,6 @@ msgstr "Cisco Meraki"
 #, fuzzy
 msgid "Cisco Meraki API response codes"
 msgstr "Cisco Meraki power supply"
-
-#, fuzzy
-msgid "Cisco Meraki Appliance Performance Utilization"
-msgstr "Checkmkアプライアンス情報"
 
 #, fuzzy
 msgid "Cisco Meraki appliance VPNs"
@@ -15358,14 +15337,6 @@ msgstr ""
 
 msgid "Connect to the local Event Console"
 msgstr "ローカルイベントコンソールに接続します"
-
-msgid ""
-"Connect to the local or a remote monitoring host, which uses Checkmk BI to "
-"aggregate several states to a single BI aggregation, which you want to show "
-"up as a single service."
-msgstr ""
-"ローカルまたはリモートの監視ホストに接続します。このホストは、Checkmk BIを使"
-"用して、複数の状態を単一のBI集約に集約し、単一のサービスとして表示します。"
 
 msgid "Connect to the local site"
 msgstr "ローカルサイトに接続する"
@@ -26619,12 +26590,6 @@ msgstr ""
 "択させる。文字グループは次のとおりです: <ul><li>小文字</li><li>大文字</"
 "li><li>数字</li><li>アンダースコアやダッシュなどの特殊文字</li></ul>"
 
-msgid "Force to be OK"
-msgstr "OKになるように強制"
-
-msgid "Force to be WARN, if aggregate is not OK"
-msgstr "集計に問題がある場合は、強制的に警告にします"
-
 msgid "Force unencrypted communication"
 msgstr "非暗号化通信を強制する"
 
@@ -28038,9 +28003,6 @@ msgstr "HTTP 500エラー"
 msgid "HTTP 5xx responses"
 msgstr "HTTP5xx 応答"
 
-msgid "HTTP Basic"
-msgstr "HTTPベーシック"
-
 msgid "HTTP Basic Authentication"
 msgstr "HTTP基本認証"
 
@@ -28657,13 +28619,6 @@ msgid ""
 msgstr ""
 "ここでは、状態に応じて表示されるサービスを構成できます。これは、クエリレベル"
 "ではなく表示レベルのフィルタです。"
-
-msgid ""
-"Here you can configured the credentials to be used. Keep in mind that the "
-"<tt>automation</tt> user need to exist if you choose this option"
-msgstr ""
-"ここで、使用する資格情報を構成できます。このオプションを選択する場合は、<tt>"
-"自動化</tt>ユーザーが存在する必要があることに注意してください"
 
 msgid ""
 "Here you can define a mapping between possible exit codes and service "
@@ -30607,9 +30562,9 @@ msgstr "稼働期間のホスト"
 msgid "Host information"
 msgstr "ホスト情報"
 
-#, python-format
-msgid "Host is %s"
-msgstr "ホストは %sです"
+#, fuzzy
+msgid "Host is"
+msgstr "ホスト"
 
 msgid "Host is active"
 msgstr "ホストがアクティブです"
@@ -32495,17 +32450,6 @@ msgstr ""
 
 msgid "If this error persists, please contact the Checkmk support team."
 msgstr "このエラーが続く場合は、Checkmkサポートチームまでご連絡ください。"
-
-msgid ""
-"If this is active, the check will automatically go into downtime whenever "
-"the aggregation does. This downtime is also cleaned up automatically when "
-"the aggregation leaves downtime. Downtimes you set manually for this check "
-"are unaffected."
-msgstr ""
-"これがアクティブな場合、集計が実行されるたびに、チェックは自動的にダウンタイ"
-"ムになります。このダウンタイムは、集計がダウンタイムを離れたときにも自動的に"
-"クリーンアップされます。このチェックのために手動で設定したダウンタイムは影響"
-"を受けません。"
 
 msgid ""
 "If this is option is enabled the actual check plug-in will not be run every "
@@ -36441,9 +36385,6 @@ msgstr "キープアライブパラメータ"
 
 msgid "Kelvin"
 msgstr "ケルビン"
-
-msgid "Kerberos"
-msgstr "Kerberos"
 
 msgid "Kernel"
 msgstr "カーネル"
@@ -55152,6 +55093,15 @@ msgstr "systemdのユニットを説明で制限する。"
 msgid "Restrict the systemd units by their name."
 msgstr "説明によるsystemdサービスを制限。"
 
+msgid ""
+"Restrict this OAuth2 connection to specific sites or make it available on "
+"all sites."
+msgstr ""
+
+#, fuzzy
+msgid "Restrict this OAuth2 connection to specific sites."
+msgstr "このオブジェクトを特定の顧客に割り当てます。"
+
 msgid "Restrict to a single host"
 msgstr "単一のホストに制限する"
 
@@ -55163,6 +55113,10 @@ msgstr "通知番号に制限する"
 
 msgid "Restricted address mismatch"
 msgstr "制限付きアドレスの不一致"
+
+#, fuzzy
+msgid "Restricted to specific sites"
+msgstr "特定のオブジェクトに制限はありません"
 
 msgid "Restriction tags enabled but no tags defined."
 msgstr "制限タグが有効化されていますが、定義されたタグがありません。"
@@ -65622,16 +65576,6 @@ msgid "The base OID for the trap content"
 msgstr "トラップコンテンツのベースOID"
 
 msgid ""
-"The base URL to the monitoring instance. For example <tt>http://mycheckmk01/"
-"mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> and "
-"<tt>$HOSTNAME$</tt> within this URL to make them be replaced by the hosts "
-"values."
-msgstr ""
-"監視インスタンスへのベースURLです。例えば、<tt>http://mycheckmk01/mysite</tt>"
-"のようなものです。このURLの中で<tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</tt>"
-"などのマクロを使用すると、Hostsの値で置き換えられます。"
-
-msgid ""
 "The basic function of this check is to log in into an IMAP, POP3 or EWS "
 "mailbox to monitor whether or not the login is possible. An extended feature "
 "is, that the check can fetch all (or just some) from the mailbox and forward "
@@ -67555,17 +67499,6 @@ msgstr ""
 msgid "The name of the OMD site to check the status for"
 msgstr "ステータスを確認するOMDサイトの名前"
 
-msgid ""
-"The name of the aggregation to fetch. It will be added to the service name. "
-"You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</tt> "
-"within this parameter to make them be replaced by the hosts values. The "
-"aggregation name is the title in the top-level-rule of your BI pack."
-msgstr ""
-"フェッチする集計の名前。サービス名に追加されます。このパラメーター内で "
-"<tt>$HOSTADDRESS$</tt> や <tt>$HOSTNAME$</tt> などのマクロを使用して、それら"
-"をホスト値に置き換えることができます。集約名は、BIパックの最上位ルールのタイ"
-"トルです。"
-
 msgid "The name of the application server"
 msgstr "アプリケーションサーバーの名前"
 
@@ -67573,17 +67506,6 @@ msgid ""
 "The name of the attribute is used as an internal key. It cannot be changed "
 "later."
 msgstr "属性の名前は内部キーとして使用されます。後で変更することはできません。"
-
-msgid ""
-"The name of the automation account to use for fetching the BI aggregation "
-"via HTTP. Note: You may also set credentials of a standard user account, "
-"though it is disadvised. Using the credentials of a standard user also "
-"requires a valid authentication method set in the optional parameters."
-msgstr ""
-"HTTP による BI 集約のフェッチに使用するオートメーション アカウントの名前。注"
-"意:標準的なユーザーアカウントの資格情報を設定することもできますが、不利になり"
-"ます。標準ユーザーの資格情報を使用するには、オプションのパラメータで設定した"
-"有効な認証方法も必要です。"
 
 msgid "The name of the cluster resource as shown in the service name."
 msgstr "サービス名に示されているクラスターリソースの名前。"
@@ -68027,6 +67949,10 @@ msgstr "パラメータ \"%s\" は有効なURLではありません。"
 #, python-format
 msgid "The parameter \"%s\" is not an integer."
 msgstr "パラメータ \"%s\" は整数ではありません。"
+
+#, fuzzy
+msgid "The parameter \"topology_type\" is missing."
+msgstr "パラメータ \"%s\" がありません。"
 
 #, python-format
 msgid ""
@@ -77957,9 +77883,6 @@ msgstr "Traceroute"
 msgid "Traceroute with MTR"
 msgstr "MTRを使用したTraceroute"
 
-msgid "Track downtimes"
-msgstr "ダウンタイムを追跡する"
-
 msgid "Traffic"
 msgstr "トラフィック"
 
@@ -78579,7 +78502,7 @@ msgstr "UUIDとマウントポイント"
 msgid "UUID links for TLS-encrypting agent communication"
 msgstr "TLS暗号化エージェント通信用UUIDリンク"
 
-msgid "Ubuntu 22.04 LTS"
+msgid "Ubuntu 24.04 LTS"
 msgstr ""
 
 msgid "Umlauts in User-IDs (deprecated)"
@@ -80480,12 +80403,6 @@ msgstr "この数値にはナローレンダリングを使用する"
 msgid "Use new service names"
 msgstr "新しいサービス名を使用する"
 
-msgid "Use normal state, ignore acknowledgement"
-msgstr "通常状態を使用、承認は無視"
-
-msgid "Use normal state, ignore downtime"
-msgstr "通常の状態を使用し、ダウンタイムを無視します"
-
 msgid "Use only lower case letters, digits, and underscores here."
 msgstr "ここでは、小文字、数字、およびアンダースコアのみを使用してください。"
 
@@ -80592,9 +80509,6 @@ msgid "Use the catalog of check plug-ins."
 msgstr "チェックプラグインのカタログを使用します。"
 
 msgid "Use the credentials of an automation user"
-msgstr "automationユーザーの認証情報を使用する"
-
-msgid "Use the credentials of the 'automation' user"
 msgstr "automationユーザーの認証情報を使用する"
 
 msgid "Use the default DNS server(s) specified in /etc/resolv.conf"
@@ -82036,9 +81950,6 @@ msgstr "仮想ドメイン"
 #, python-format
 msgid "Val. %d"
 msgstr "Val. %d"
-
-msgid "Valid automation secret for the automation user"
-msgstr "自動化ユーザーの有効な自動化シークレット"
 
 msgid "Valid from"
 msgstr "から有効"
@@ -88291,6 +88202,10 @@ msgstr "%d日で"
 msgid "in ... days"
 msgstr "...日で"
 
+#, fuzzy
+msgid "in downtime"
+msgstr "ダウンタイム中"
+
 msgid "in notif. p."
 msgstr "in notif. p."
 
@@ -90042,6 +89957,10 @@ msgid "Select label..."
 msgstr "ラベルを選択..."
 
 #, fuzzy
+msgid "Remove row"
+msgstr "削除：%r"
+
+#, fuzzy
 msgid "Group Operator"
 msgstr "グループパス"
 
@@ -90050,10 +89969,6 @@ msgstr "グループを選択..."
 
 msgid "Select value..."
 msgstr "ビューを選択..."
-
-#, fuzzy
-msgid "Remove row"
-msgstr "削除：%r"
 
 msgid "(required)"
 msgstr "(必須)"
@@ -93028,6 +92943,121 @@ msgstr ""
 msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
+
+#~ msgid "Authentication mode"
+#~ msgstr "認証モード"
+
+#~ msgid "Authorization Header"
+#~ msgstr "認証ヘッダー"
+
+#~ msgid "Automatically track downtimes of aggregation"
+#~ msgstr "アグリゲーションのダウンタイムを自動でトラッキング"
+
+#~ msgid "Automation Secret"
+#~ msgstr "自動化の秘密"
+
+#~ msgid "Automation user name"
+#~ msgstr "オートメーションユーザー名"
+
+#~ msgid "Base URL (OMD Site)"
+#~ msgstr "ベースURL(OMDサイト)"
+
+#~ msgid "Check State of BI Aggregation"
+#~ msgstr "BI集計の状態を確認する"
+
+#, fuzzy
+#~ msgid "Cisco Meraki Appliance Performance Utilization"
+#~ msgstr "Checkmkアプライアンス情報"
+
+#~ msgid ""
+#~ "Connect to the local or a remote monitoring host, which uses Checkmk BI "
+#~ "to aggregate several states to a single BI aggregation, which you want to "
+#~ "show up as a single service."
+#~ msgstr ""
+#~ "ローカルまたはリモートの監視ホストに接続します。このホストは、Checkmk BIを"
+#~ "使用して、複数の状態を単一のBI集約に集約し、単一のサービスとして表示しま"
+#~ "す。"
+
+#~ msgid "Force to be OK"
+#~ msgstr "OKになるように強制"
+
+#~ msgid "Force to be WARN, if aggregate is not OK"
+#~ msgstr "集計に問題がある場合は、強制的に警告にします"
+
+#~ msgid "HTTP Basic"
+#~ msgstr "HTTPベーシック"
+
+#~ msgid ""
+#~ "Here you can configured the credentials to be used. Keep in mind that the "
+#~ "<tt>automation</tt> user need to exist if you choose this option"
+#~ msgstr ""
+#~ "ここで、使用する資格情報を構成できます。このオプションを選択する場合は、"
+#~ "<tt>自動化</tt>ユーザーが存在する必要があることに注意してください"
+
+#, python-format
+#~ msgid "Host is %s"
+#~ msgstr "ホストは %sです"
+
+#~ msgid ""
+#~ "If this is active, the check will automatically go into downtime whenever "
+#~ "the aggregation does. This downtime is also cleaned up automatically when "
+#~ "the aggregation leaves downtime. Downtimes you set manually for this "
+#~ "check are unaffected."
+#~ msgstr ""
+#~ "これがアクティブな場合、集計が実行されるたびに、チェックは自動的にダウンタ"
+#~ "イムになります。このダウンタイムは、集計がダウンタイムを離れたときにも自動"
+#~ "的にクリーンアップされます。このチェックのために手動で設定したダウンタイム"
+#~ "は影響を受けません。"
+
+#~ msgid "Kerberos"
+#~ msgstr "Kerberos"
+
+#~ msgid ""
+#~ "The base URL to the monitoring instance. For example <tt>http://"
+#~ "mycheckmk01/mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> "
+#~ "and <tt>$HOSTNAME$</tt> within this URL to make them be replaced by the "
+#~ "hosts values."
+#~ msgstr ""
+#~ "監視インスタンスへのベースURLです。例えば、<tt>http://mycheckmk01/mysite</"
+#~ "tt>のようなものです。このURLの中で<tt>$HOSTADDRESS$</tt> and "
+#~ "<tt>$HOSTNAME$</tt>などのマクロを使用すると、Hostsの値で置き換えられます。"
+
+#~ msgid ""
+#~ "The name of the aggregation to fetch. It will be added to the service "
+#~ "name. You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</"
+#~ "tt> within this parameter to make them be replaced by the hosts values. "
+#~ "The aggregation name is the title in the top-level-rule of your BI pack."
+#~ msgstr ""
+#~ "フェッチする集計の名前。サービス名に追加されます。このパラメーター内で "
+#~ "<tt>$HOSTADDRESS$</tt> や <tt>$HOSTNAME$</tt> などのマクロを使用して、それ"
+#~ "らをホスト値に置き換えることができます。集約名は、BIパックの最上位ルールの"
+#~ "タイトルです。"
+
+#~ msgid ""
+#~ "The name of the automation account to use for fetching the BI aggregation "
+#~ "via HTTP. Note: You may also set credentials of a standard user account, "
+#~ "though it is disadvised. Using the credentials of a standard user also "
+#~ "requires a valid authentication method set in the optional parameters."
+#~ msgstr ""
+#~ "HTTP による BI 集約のフェッチに使用するオートメーション アカウントの名前。"
+#~ "注意:標準的なユーザーアカウントの資格情報を設定することもできますが、不利"
+#~ "になります。標準ユーザーの資格情報を使用するには、オプションのパラメータで"
+#~ "設定した有効な認証方法も必要です。"
+
+#~ msgid "Track downtimes"
+#~ msgstr "ダウンタイムを追跡する"
+
+#~ msgid "Use normal state, ignore acknowledgement"
+#~ msgstr "通常状態を使用、承認は無視"
+
+#~ msgid "Use normal state, ignore downtime"
+#~ msgstr "通常の状態を使用し、ダウンタイムを無視します"
+
+#~ msgid "Use the credentials of the 'automation' user"
+#~ msgstr "automationユーザーの認証情報を使用する"
+
+#~ msgid "Valid automation secret for the automation user"
+#~ msgstr "自動化ユーザーの有効な自動化シークレット"
 
 #, fuzzy
 #~ msgid "Enable safe host names"

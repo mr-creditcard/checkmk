@@ -7313,6 +7313,10 @@ msgstr "Beschrijvingen van OID's toevoegen aan berichtteksten"
 msgid "Appliance"
 msgstr "Toestel"
 
+#, fuzzy
+msgid "Appliance device utilization"
+msgstr "Encodergebruik"
+
 msgid "Appliance uplink VPN statuses"
 msgstr ""
 
@@ -8138,10 +8142,6 @@ msgstr "Authenticatiemechanisme"
 msgid "Authentication method"
 msgstr "Authenticatiemethode"
 
-#, fuzzy
-msgid "Authentication mode"
-msgstr "Authenticatie modus"
-
 msgid "Authentication password"
 msgstr "Authenticatie wachtwoord"
 
@@ -8202,9 +8202,6 @@ msgstr "Auteur"
 
 msgid "Authorization"
 msgstr "Machtiging"
-
-msgid "Authorization Header"
-msgstr "Autorisatie header"
 
 msgid "Authorization settings"
 msgstr "Autorisatie-instellingen"
@@ -8399,9 +8396,6 @@ msgstr "Automatisch hosts verwijderen zonder piggyback data"
 msgid "Automatically stores the host key with no manual input requirement"
 msgstr "Slaat automatisch de host key op zonder handmatige invoer"
 
-msgid "Automatically track downtimes of aggregation"
-msgstr "Automatisch traceren van uitvaltijden van aggregatie"
-
 msgid "Automatically update agents at <i>Activate Changes</i>, if necessary"
 msgstr ""
 "Agenten automatisch bijwerken bij <i>Wijzigingen activeren</i>, indien nodig"
@@ -8411,9 +8405,6 @@ msgstr "Automatisch bijwerken van service configuratie"
 
 msgid "Automation"
 msgstr "Automatisering"
-
-msgid "Automation Secret"
-msgstr "Automatiseringsgeheim"
 
 msgid "Automation URL:"
 msgstr "Automatisering URL:"
@@ -8431,10 +8422,6 @@ msgstr "Kan geen authenticatieverzoek aanmaken"
 #, fuzzy
 msgid "Automation user for connection to central site"
 msgstr "Automatiseringsgebruiker voor verbinding met centrale site"
-
-#, fuzzy
-msgid "Automation user name"
-msgstr "Automatisering Gebruikersnaam"
 
 msgid "Automation user rejected"
 msgstr "Automatisering gebruiker afgewezen"
@@ -10102,9 +10089,6 @@ msgstr "Basis DN"
 
 msgid "Base OID"
 msgstr "Basis OID"
-
-msgid "Base URL (OMD Site)"
-msgstr "Basis URL (OMD site)"
 
 #, fuzzy
 msgid "Base URL for Docker API engine"
@@ -13208,9 +13192,6 @@ msgstr "Controleer SSH service"
 msgid "Check SSL Certificate Age"
 msgstr "Controleren leeftijd SSL-certificaat"
 
-msgid "Check State of BI Aggregation"
-msgstr "Controleer de staat van BI-aggregatie"
-
 msgid "Check TCP port connection"
 msgstr "TCP-poortverbinding controleren"
 
@@ -14382,10 +14363,6 @@ msgstr "Cisco Meraki"
 #, fuzzy
 msgid "Cisco Meraki API response codes"
 msgstr "Cisco Meraki"
-
-#, fuzzy
-msgid "Cisco Meraki Appliance Performance Utilization"
-msgstr "Checkmk automatisering"
 
 #, fuzzy
 msgid "Cisco Meraki appliance VPNs"
@@ -16271,15 +16248,6 @@ msgstr ""
 
 msgid "Connect to the local Event Console"
 msgstr "Verbinding maken met de lokale Event Console"
-
-msgid ""
-"Connect to the local or a remote monitoring host, which uses Checkmk BI to "
-"aggregate several states to a single BI aggregation, which you want to show "
-"up as a single service."
-msgstr ""
-"Maak verbinding met de lokale of een remote monitoring host, die Checkmk BI "
-"gebruikt om verschillende staten te aggregeren tot een enkele BI aggregatie, "
-"die u wilt weergeven als een enkele service."
 
 msgid "Connect to the local site"
 msgstr "Maak verbinding met de lokale site"
@@ -28116,12 +28084,6 @@ msgstr ""
 "letters</li><li>kleine letters</li><li>cijfers</li><li>speciale tekens zoals "
 "een underscore of streepje</li></ul>"
 
-msgid "Force to be OK"
-msgstr "Forceer om OK te zijn"
-
-msgid "Force to be WARN, if aggregate is not OK"
-msgstr "Forceer om WARN te zijn, als aggregaat niet OK is"
-
 msgid "Force unencrypted communication"
 msgstr "Forceer onversleutelde communicatie"
 
@@ -29591,9 +29553,6 @@ msgstr "HTTP 500 fouten"
 msgid "HTTP 5xx responses"
 msgstr "HTTP 5xx antwoorden"
 
-msgid "HTTP Basic"
-msgstr "HTTP Basis"
-
 msgid "HTTP Basic Authentication"
 msgstr "HTTP Basis Authenticatie"
 
@@ -30247,13 +30206,6 @@ msgid ""
 msgstr ""
 "Hier kunt u instellen welke diensten worden weergegeven afhankelijk van hun "
 "status. Dit is een filter op display niveau, niet op query niveau."
-
-msgid ""
-"Here you can configured the credentials to be used. Keep in mind that the "
-"<tt>automation</tt> user need to exist if you choose this option"
-msgstr ""
-"Hier kunt u de te gebruiken credentials configureren. Houd er rekening mee "
-"dat de <tt>automation</tt> gebruiker moet bestaan als u deze optie kiest"
 
 msgid ""
 "Here you can define a mapping between possible exit codes and service "
@@ -32526,9 +32478,9 @@ msgstr "Host in dienst periode"
 msgid "Host information"
 msgstr "Informatie over de gastheer"
 
-#, python-format
-msgid "Host is %s"
-msgstr "Host is %s"
+#, fuzzy
+msgid "Host is"
+msgstr "Hosts"
 
 msgid "Host is active"
 msgstr "Gastheer is actief"
@@ -34522,17 +34474,6 @@ msgstr ""
 "De verificatie van uw licentie was niet succesvol: %s, Checkmk is nu zonder "
 "licentie.<br> Om Checkmk te blijven gebruiken, neem contact op met uw "
 "Checkmk support."
-
-msgid ""
-"If this is active, the check will automatically go into downtime whenever "
-"the aggregation does. This downtime is also cleaned up automatically when "
-"the aggregation leaves downtime. Downtimes you set manually for this check "
-"are unaffected."
-msgstr ""
-"Als dit actief is, zal de controle automatisch in downtime gaan wanneer de "
-"aggregatie dat doet. Deze downtime wordt ook automatisch opgeruimd wanneer "
-"de aggregatie de downtime verlaat. Downtime die u handmatig instelt voor "
-"deze controle wordt niet beïnvloed."
 
 #, fuzzy
 msgid ""
@@ -38672,9 +38613,6 @@ msgstr "Keepalived Parameters"
 
 msgid "Kelvin"
 msgstr "Kelvin"
-
-msgid "Kerberos"
-msgstr "Kerberos"
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -58620,6 +58558,15 @@ msgstr "Beperk de systemd eenheden op beschrijving."
 msgid "Restrict the systemd units by their name."
 msgstr "Beperk de systemd eenheden op hun naam."
 
+msgid ""
+"Restrict this OAuth2 connection to specific sites or make it available on "
+"all sites."
+msgstr ""
+
+#, fuzzy
+msgid "Restrict this OAuth2 connection to specific sites."
+msgstr "Wijs dit object toe aan een specifieke klant."
+
 msgid "Restrict to a single host"
 msgstr "Beperken tot een enkele host"
 
@@ -58631,6 +58578,10 @@ msgstr "Beperken tot kennisgevingsnummer"
 
 msgid "Restricted address mismatch"
 msgstr "Adres met beperkingen komt niet overeen"
+
+#, fuzzy
+msgid "Restricted to specific sites"
+msgstr "Geen beperkingen tot specifieke objecten"
 
 #, fuzzy
 msgid "Restriction tags enabled but no tags defined."
@@ -69641,17 +69592,6 @@ msgstr ""
 msgid "The base OID for the trap content"
 msgstr "De basis-OID voor de inhoud van de val"
 
-msgid ""
-"The base URL to the monitoring instance. For example <tt>http://mycheckmk01/"
-"mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> and "
-"<tt>$HOSTNAME$</tt> within this URL to make them be replaced by the hosts "
-"values."
-msgstr ""
-"De basis URL naar de monitoring instantie. Bijvoorbeeld <tt>http://"
-"mycheckmk01/mysite</tt>. U kunt macro's zoals <tt>$HOSTADDRESS$</tt> en "
-"<tt>$HOSTNAME$</tt> binnen deze URL gebruiken om ze te laten vervangen door "
-"de waarden van de hosts."
-
 #, fuzzy
 msgid ""
 "The basic function of this check is to log in into an IMAP, POP3 or EWS "
@@ -71643,19 +71583,6 @@ msgstr ""
 msgid "The name of the OMD site to check the status for"
 msgstr "De naam van de OMD site om de status voor te controleren"
 
-#, fuzzy
-msgid ""
-"The name of the aggregation to fetch. It will be added to the service name. "
-"You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</tt> "
-"within this parameter to make them be replaced by the hosts values. The "
-"aggregation name is the title in the top-level-rule of your BI pack."
-msgstr ""
-"De naam van het aggregaat dat moet worden opgehaald. Deze zal worden "
-"toegevoegd aan de servicebeschrijving. U kunt macro's zoals "
-"<tt>$HOSTADDRESS$</tt> en <tt>$HOSTNAME$</tt> binnen deze parameter "
-"gebruiken om ze te laten vervangen door de waarden van de hosts. De "
-"aggregatienaam is de titel in de top-level-regel van uw BI-pakket."
-
 msgid "The name of the application server"
 msgstr "De naam van de applicatieserver"
 
@@ -71665,18 +71592,6 @@ msgid ""
 msgstr ""
 "De naam van het attribuut wordt gebruikt als een interne sleutel. Deze kan "
 "later niet worden gewijzigd."
-
-msgid ""
-"The name of the automation account to use for fetching the BI aggregation "
-"via HTTP. Note: You may also set credentials of a standard user account, "
-"though it is disadvised. Using the credentials of a standard user also "
-"requires a valid authentication method set in the optional parameters."
-msgstr ""
-"De naam van de automatiseringsaccount die moet worden gebruikt voor het "
-"ophalen van de BI-aggregatie via HTTP. Opmerking: U kunt ook de credentials "
-"van een standaardgebruikersaccount instellen, maar dat is niet handig. Het "
-"gebruik van de credentials van een standaard gebruiker vereist ook een "
-"geldige authenticatie methode ingesteld in de optionele parameters."
 
 #, fuzzy
 msgid "The name of the cluster resource as shown in the service name."
@@ -72136,6 +72051,10 @@ msgstr "De parameter \"%s\" is geen geldige URL."
 #, python-format
 msgid "The parameter \"%s\" is not an integer."
 msgstr "De parameter \"%s\" is geen geheel getal."
+
+#, fuzzy
+msgid "The parameter \"topology_type\" is missing."
+msgstr "De parameter \"%s\" ontbreekt."
 
 #, python-format
 msgid ""
@@ -82864,9 +82783,6 @@ msgstr "Traceroute"
 msgid "Traceroute with MTR"
 msgstr "Traceroute met MTR"
 
-msgid "Track downtimes"
-msgstr "Stilstandstijden bijhouden"
-
 msgid "Traffic"
 msgstr "Verkeer"
 
@@ -83521,7 +83437,7 @@ msgstr "UUID en koppelpunt"
 msgid "UUID links for TLS-encrypting agent communication"
 msgstr "UUID-koppelingen voor TLS-gecodeerde agentcommunicatie"
 
-msgid "Ubuntu 22.04 LTS"
+msgid "Ubuntu 24.04 LTS"
 msgstr ""
 
 msgid "Umlauts in User-IDs (deprecated)"
@@ -85533,12 +85449,6 @@ msgstr "Gebruik smalle weergave voor dit nummer"
 msgid "Use new service names"
 msgstr "Naam van de dienst"
 
-msgid "Use normal state, ignore acknowledgement"
-msgstr "Gebruik normale toestand, negeer bevestiging"
-
-msgid "Use normal state, ignore downtime"
-msgstr "Gebruik normale toestand, negeer downtime"
-
 msgid "Use only lower case letters, digits, and underscores here."
 msgstr "Gebruik hier alleen kleine letters, cijfers en underscores."
 
@@ -85655,9 +85565,6 @@ msgstr "Gebruik de catalogus van controle plugins."
 
 #, fuzzy
 msgid "Use the credentials of an automation user"
-msgstr "Gebruik de inloggegevens van de \"automation\" gebruiker"
-
-msgid "Use the credentials of the 'automation' user"
 msgstr "Gebruik de inloggegevens van de \"automation\" gebruiker"
 
 msgid "Use the default DNS server(s) specified in /etc/resolv.conf"
@@ -87299,9 +87206,6 @@ msgstr "Virtueel domein"
 #, python-format
 msgid "Val. %d"
 msgstr "Val. %d"
-
-msgid "Valid automation secret for the automation user"
-msgstr "Geldig automatiseringsgeheim voor de automatiseringsgebruiker"
 
 msgid "Valid from"
 msgstr "Geldig vanaf"
@@ -93859,6 +93763,10 @@ msgstr "in %d dagen"
 msgid "in ... days"
 msgstr "in ... dagen"
 
+#, fuzzy
+msgid "in downtime"
+msgstr "In stilstand"
+
 msgid "in notif. p."
 msgstr "in notif. p."
 
@@ -95667,6 +95575,10 @@ msgid "Select label..."
 msgstr "Selecteer bestand"
 
 #, fuzzy
+msgid "Remove row"
+msgstr "Verwijderd: %s"
+
+#, fuzzy
 msgid "Group Operator"
 msgstr "Groepspad"
 
@@ -95677,10 +95589,6 @@ msgstr "Afgewezen verbindingen"
 #, fuzzy
 msgid "Select value..."
 msgstr "Weergave kiezen"
-
-#, fuzzy
-msgid "Remove row"
-msgstr "Verwijderd: %s"
 
 #, fuzzy
 msgid "(required)"
@@ -98747,6 +98655,129 @@ msgstr ""
 msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Authentication mode"
+#~ msgstr "Authenticatie modus"
+
+#~ msgid "Authorization Header"
+#~ msgstr "Autorisatie header"
+
+#~ msgid "Automatically track downtimes of aggregation"
+#~ msgstr "Automatisch traceren van uitvaltijden van aggregatie"
+
+#~ msgid "Automation Secret"
+#~ msgstr "Automatiseringsgeheim"
+
+#, fuzzy
+#~ msgid "Automation user name"
+#~ msgstr "Automatisering Gebruikersnaam"
+
+#~ msgid "Base URL (OMD Site)"
+#~ msgstr "Basis URL (OMD site)"
+
+#~ msgid "Check State of BI Aggregation"
+#~ msgstr "Controleer de staat van BI-aggregatie"
+
+#, fuzzy
+#~ msgid "Cisco Meraki Appliance Performance Utilization"
+#~ msgstr "Checkmk automatisering"
+
+#~ msgid ""
+#~ "Connect to the local or a remote monitoring host, which uses Checkmk BI "
+#~ "to aggregate several states to a single BI aggregation, which you want to "
+#~ "show up as a single service."
+#~ msgstr ""
+#~ "Maak verbinding met de lokale of een remote monitoring host, die Checkmk "
+#~ "BI gebruikt om verschillende staten te aggregeren tot een enkele BI "
+#~ "aggregatie, die u wilt weergeven als een enkele service."
+
+#~ msgid "Force to be OK"
+#~ msgstr "Forceer om OK te zijn"
+
+#~ msgid "Force to be WARN, if aggregate is not OK"
+#~ msgstr "Forceer om WARN te zijn, als aggregaat niet OK is"
+
+#~ msgid "HTTP Basic"
+#~ msgstr "HTTP Basis"
+
+#~ msgid ""
+#~ "Here you can configured the credentials to be used. Keep in mind that the "
+#~ "<tt>automation</tt> user need to exist if you choose this option"
+#~ msgstr ""
+#~ "Hier kunt u de te gebruiken credentials configureren. Houd er rekening "
+#~ "mee dat de <tt>automation</tt> gebruiker moet bestaan als u deze optie "
+#~ "kiest"
+
+#, python-format
+#~ msgid "Host is %s"
+#~ msgstr "Host is %s"
+
+#~ msgid ""
+#~ "If this is active, the check will automatically go into downtime whenever "
+#~ "the aggregation does. This downtime is also cleaned up automatically when "
+#~ "the aggregation leaves downtime. Downtimes you set manually for this "
+#~ "check are unaffected."
+#~ msgstr ""
+#~ "Als dit actief is, zal de controle automatisch in downtime gaan wanneer "
+#~ "de aggregatie dat doet. Deze downtime wordt ook automatisch opgeruimd "
+#~ "wanneer de aggregatie de downtime verlaat. Downtime die u handmatig "
+#~ "instelt voor deze controle wordt niet beïnvloed."
+
+#~ msgid "Kerberos"
+#~ msgstr "Kerberos"
+
+#~ msgid ""
+#~ "The base URL to the monitoring instance. For example <tt>http://"
+#~ "mycheckmk01/mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> "
+#~ "and <tt>$HOSTNAME$</tt> within this URL to make them be replaced by the "
+#~ "hosts values."
+#~ msgstr ""
+#~ "De basis URL naar de monitoring instantie. Bijvoorbeeld <tt>http://"
+#~ "mycheckmk01/mysite</tt>. U kunt macro's zoals <tt>$HOSTADDRESS$</tt> en "
+#~ "<tt>$HOSTNAME$</tt> binnen deze URL gebruiken om ze te laten vervangen "
+#~ "door de waarden van de hosts."
+
+#, fuzzy
+#~ msgid ""
+#~ "The name of the aggregation to fetch. It will be added to the service "
+#~ "name. You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</"
+#~ "tt> within this parameter to make them be replaced by the hosts values. "
+#~ "The aggregation name is the title in the top-level-rule of your BI pack."
+#~ msgstr ""
+#~ "De naam van het aggregaat dat moet worden opgehaald. Deze zal worden "
+#~ "toegevoegd aan de servicebeschrijving. U kunt macro's zoals "
+#~ "<tt>$HOSTADDRESS$</tt> en <tt>$HOSTNAME$</tt> binnen deze parameter "
+#~ "gebruiken om ze te laten vervangen door de waarden van de hosts. De "
+#~ "aggregatienaam is de titel in de top-level-regel van uw BI-pakket."
+
+#~ msgid ""
+#~ "The name of the automation account to use for fetching the BI aggregation "
+#~ "via HTTP. Note: You may also set credentials of a standard user account, "
+#~ "though it is disadvised. Using the credentials of a standard user also "
+#~ "requires a valid authentication method set in the optional parameters."
+#~ msgstr ""
+#~ "De naam van de automatiseringsaccount die moet worden gebruikt voor het "
+#~ "ophalen van de BI-aggregatie via HTTP. Opmerking: U kunt ook de "
+#~ "credentials van een standaardgebruikersaccount instellen, maar dat is "
+#~ "niet handig. Het gebruik van de credentials van een standaard gebruiker "
+#~ "vereist ook een geldige authenticatie methode ingesteld in de optionele "
+#~ "parameters."
+
+#~ msgid "Track downtimes"
+#~ msgstr "Stilstandstijden bijhouden"
+
+#~ msgid "Use normal state, ignore acknowledgement"
+#~ msgstr "Gebruik normale toestand, negeer bevestiging"
+
+#~ msgid "Use normal state, ignore downtime"
+#~ msgstr "Gebruik normale toestand, negeer downtime"
+
+#~ msgid "Use the credentials of the 'automation' user"
+#~ msgstr "Gebruik de inloggegevens van de \"automation\" gebruiker"
+
+#~ msgid "Valid automation secret for the automation user"
+#~ msgstr "Geldig automatiseringsgeheim voor de automatiseringsgebruiker"
 
 #, fuzzy
 #~ msgid "Enable safe host names"

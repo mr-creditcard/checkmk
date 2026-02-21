@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Checkmk user interface translation 0.1\n"
-"Report-Msgid-Bugs-To: martin.hirschvogel@checkmk.com\n"
+"Report-Msgid-Bugs-To: feedback@checkmk.com\n"
 "POT-Creation-Date: 2011-05-13 09:42+0200\n"
 "PO-Revision-Date: 2026-02-20 08:42+0000\n"
 "Language-Team: Portuguese (Portugal) <https://translate.checkmk.com/projects/"
@@ -7330,6 +7330,10 @@ msgstr "Anexar descrições dos OIDs aos textos das mensagens"
 msgid "Appliance"
 msgstr "Electrodomésticos"
 
+#, fuzzy
+msgid "Appliance device utilization"
+msgstr "Utilização do codificador"
+
 msgid "Appliance uplink VPN statuses"
 msgstr ""
 
@@ -8160,10 +8164,6 @@ msgstr "Mecanismo de autenticação"
 msgid "Authentication method"
 msgstr "Método de autenticação"
 
-#, fuzzy
-msgid "Authentication mode"
-msgstr "Modo de Autenticação"
-
 msgid "Authentication password"
 msgstr "Senha de autenticação"
 
@@ -8222,9 +8222,6 @@ msgstr "Autoridade"
 
 msgid "Authorization"
 msgstr "Autorização"
-
-msgid "Authorization Header"
-msgstr "Cabeçalho de autorização"
 
 msgid "Authorization settings"
 msgstr "Definições de autorização"
@@ -8417,9 +8414,6 @@ msgid "Automatically stores the host key with no manual input requirement"
 msgstr ""
 "Armazena automaticamente a chave do host, sem necessidade de entrada manual"
 
-msgid "Automatically track downtimes of aggregation"
-msgstr "Rastreamento automático dos tempos de agregação"
-
 msgid "Automatically update agents at <i>Activate Changes</i>, if necessary"
 msgstr ""
 "Actualização automática dos agentes em <i>Activate Changes</i>, se necessário"
@@ -8429,9 +8423,6 @@ msgstr "Atualização automática da configuração do serviço"
 
 msgid "Automation"
 msgstr "Automação"
-
-msgid "Automation Secret"
-msgstr "Segredo de Automação"
 
 msgid "Automation URL:"
 msgstr "URL de automação:"
@@ -8449,10 +8440,6 @@ msgstr "Não é possível criar um pedido de autenticação"
 #, fuzzy
 msgid "Automation user for connection to central site"
 msgstr "Automação Utilizador para ligação ao local central"
-
-#, fuzzy
-msgid "Automation user name"
-msgstr "Nome de usuário de automação"
 
 msgid "Automation user rejected"
 msgstr "Utilizador de automação rejeitado"
@@ -10124,9 +10111,6 @@ msgstr "DN base"
 
 msgid "Base OID"
 msgstr "OID de base"
-
-msgid "Base URL (OMD Site)"
-msgstr "URL base (Site OMD)"
 
 #, fuzzy
 msgid "Base URL for Docker API engine"
@@ -13224,9 +13208,6 @@ msgstr "Verifique o serviço SSH"
 msgid "Check SSL Certificate Age"
 msgstr "Verifique a idade do certificado SSL"
 
-msgid "Check State of BI Aggregation"
-msgstr "Verificar Estado da Agregação do BI"
-
 msgid "Check TCP port connection"
 msgstr "Verifique a conexão da porta TCP"
 
@@ -14398,10 +14379,6 @@ msgstr "Cisco Meraki"
 #, fuzzy
 msgid "Cisco Meraki API response codes"
 msgstr "Cisco Meraki"
-
-#, fuzzy
-msgid "Cisco Meraki Appliance Performance Utilization"
-msgstr "Automação Checkmk"
 
 #, fuzzy
 msgid "Cisco Meraki appliance VPNs"
@@ -16282,15 +16259,6 @@ msgstr ""
 
 msgid "Connect to the local Event Console"
 msgstr "Conecte-se ao Console de Eventos local"
-
-msgid ""
-"Connect to the local or a remote monitoring host, which uses Checkmk BI to "
-"aggregate several states to a single BI aggregation, which you want to show "
-"up as a single service."
-msgstr ""
-"Ligue-se ao anfitrião de monitorização local ou remoto, que utiliza o "
-"Checkmk BI para agregar vários estados a uma única agregação de BI, que "
-"pretende apresentar como um único serviço."
 
 msgid "Connect to the local site"
 msgstr "Conecte-se ao site local"
@@ -28122,12 +28090,6 @@ msgstr ""
 "<ul><li> letras minúsculas</li><li> letras maiúsculas</li><li>dígitos</"
 "li><li> caracteres especiais como um sublinhado ou um traço</li></ul>"
 
-msgid "Force to be OK"
-msgstr "Força para ficar bem"
-
-msgid "Force to be WARN, if aggregate is not OK"
-msgstr "Força para ser WARN, se o agregado não estiver OK"
-
 msgid "Force unencrypted communication"
 msgstr "Forçar a comunicação não encriptada"
 
@@ -29605,9 +29567,6 @@ msgstr "Erros do HTTP 500"
 msgid "HTTP 5xx responses"
 msgstr "Respostas HTTP 5xx"
 
-msgid "HTTP Basic"
-msgstr "HTTP Básico"
-
 msgid "HTTP Basic Authentication"
 msgstr "Autenticação Básica HTTP"
 
@@ -30261,13 +30220,6 @@ msgid ""
 msgstr ""
 "Aqui você pode configurar quais serviços são exibidos, dependendo do seu "
 "estado. Este é um filtro no nível de exibição e não no nível de consulta."
-
-msgid ""
-"Here you can configured the credentials to be used. Keep in mind that the "
-"<tt>automation</tt> user need to exist if you choose this option"
-msgstr ""
-"Aqui você pode configurar as credenciais a serem usadas. Tenha em mente que "
-"o usuário <tt>automation</tt> precisa existir se você escolher esta opção"
 
 msgid ""
 "Here you can define a mapping between possible exit codes and service "
@@ -32537,9 +32489,9 @@ msgstr "Anfitrião em período de serviço"
 msgid "Host information"
 msgstr "Informação sobre o anfitrião"
 
-#, python-format
-msgid "Host is %s"
-msgstr "Anfitrião é %s"
+#, fuzzy
+msgid "Host is"
+msgstr "Anfitriões"
 
 msgid "Host is active"
 msgstr "Hospedeiro está ativo"
@@ -34534,17 +34486,6 @@ msgid "If this error persists, please contact the Checkmk support team."
 msgstr ""
 "Se pretender utilizar o Checkmk sem restrições, contacte o suporte do "
 "Checkmk."
-
-msgid ""
-"If this is active, the check will automatically go into downtime whenever "
-"the aggregation does. This downtime is also cleaned up automatically when "
-"the aggregation leaves downtime. Downtimes you set manually for this check "
-"are unaffected."
-msgstr ""
-"Se este estiver ativo, a verificação entrará automaticamente em inatividade "
-"sempre que a agregação o fizer. Este tempo de inatividade também é limpo "
-"automaticamente quando a agregação deixa o tempo de inatividade. Os tempos "
-"de inatividade definidos manualmente para esta verificação não são afetados."
 
 #, fuzzy
 msgid ""
@@ -38675,9 +38616,6 @@ msgstr "Parâmetros Guardalivados"
 
 msgid "Kelvin"
 msgstr "Kelvin"
-
-msgid "Kerberos"
-msgstr "Kerberos"
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -58627,6 +58565,15 @@ msgstr "Restringe as unidades systemd por descrição."
 msgid "Restrict the systemd units by their name."
 msgstr "Restringe as unidades systemd pelo seu nome."
 
+msgid ""
+"Restrict this OAuth2 connection to specific sites or make it available on "
+"all sites."
+msgstr ""
+
+#, fuzzy
+msgid "Restrict this OAuth2 connection to specific sites."
+msgstr "Atribuir este objeto a um cliente específico."
+
 msgid "Restrict to a single host"
 msgstr "Restringir-se a um único anfitrião"
 
@@ -58638,6 +58585,10 @@ msgstr "Restringir ao número de notificação"
 
 msgid "Restricted address mismatch"
 msgstr "Incompatibilidade de endereços restritos"
+
+#, fuzzy
+msgid "Restricted to specific sites"
+msgstr "Sem restrições a objetos específicos"
 
 #, fuzzy
 msgid "Restriction tags enabled but no tags defined."
@@ -69636,17 +69587,6 @@ msgid "The base OID for the trap content"
 msgstr "O OID base para o conteúdo da armadilha"
 
 msgid ""
-"The base URL to the monitoring instance. For example <tt>http://mycheckmk01/"
-"mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> and "
-"<tt>$HOSTNAME$</tt> within this URL to make them be replaced by the hosts "
-"values."
-msgstr ""
-"O URL base para a instância de monitoramento. Por exemplo <tt>http://"
-"mycheckmk01/mysite</tt>. Você pode usar macros como <tt>$HOSTADDRESS$</tt> e "
-"<tt>$HOSTNAME$</tt> dentro desta URL para fazê-los ser substituídos pelos "
-"valores dos hosts."
-
-msgid ""
 "The basic function of this check is to log in into an IMAP, POP3 or EWS "
 "mailbox to monitor whether or not the login is possible. An extended feature "
 "is, that the check can fetch all (or just some) from the mailbox and forward "
@@ -71630,18 +71570,6 @@ msgstr ""
 msgid "The name of the OMD site to check the status for"
 msgstr "O nome do site OMD para verificar o status para"
 
-#, fuzzy
-msgid ""
-"The name of the aggregation to fetch. It will be added to the service name. "
-"You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</tt> "
-"within this parameter to make them be replaced by the hosts values. The "
-"aggregation name is the title in the top-level-rule of your BI pack."
-msgstr ""
-"O nome da agregação a buscar. Será adicionado à descrição do serviço. Você "
-"pode usar macros como <tt>$HOSTADDRESS$</tt> e <tt>$HOSTNAME$</tt> dentro "
-"deste parâmetro para fazê-los ser substituídos pelos valores dos hosts. O "
-"nome da agregação é o título na regra de nível superior do seu pacote BI."
-
 msgid "The name of the application server"
 msgstr "O nome do servidor de aplicações"
 
@@ -71651,18 +71579,6 @@ msgid ""
 msgstr ""
 "O nome do atributo é usado como uma chave interna. Ele não pode ser alterado "
 "posteriormente."
-
-msgid ""
-"The name of the automation account to use for fetching the BI aggregation "
-"via HTTP. Note: You may also set credentials of a standard user account, "
-"though it is disadvised. Using the credentials of a standard user also "
-"requires a valid authentication method set in the optional parameters."
-msgstr ""
-"O nome da conta de automação a ser usada para obter a agregação do BI via "
-"HTTP. Nota: Você também pode definir as credenciais de uma conta de usuário "
-"padrão, embora seja desaconselhada. Usar as credenciais de um usuário padrão "
-"também requer um método de autenticação válido definido nos parâmetros "
-"opcionais."
 
 #, fuzzy
 msgid "The name of the cluster resource as shown in the service name."
@@ -72121,6 +72037,10 @@ msgstr "O parâmetro \"%s\" não é um URL válido."
 #, python-format
 msgid "The parameter \"%s\" is not an integer."
 msgstr "O parâmetro \"%s\" não é um número inteiro."
+
+#, fuzzy
+msgid "The parameter \"topology_type\" is missing."
+msgstr "Falta o parâmetro \"%s\"."
 
 #, python-format
 msgid ""
@@ -82823,9 +82743,6 @@ msgstr "Traceroute"
 msgid "Traceroute with MTR"
 msgstr "Traceroute com MTR"
 
-msgid "Track downtimes"
-msgstr "Tempos de paragem"
-
 msgid "Traffic"
 msgstr "Tráfego"
 
@@ -83476,7 +83393,7 @@ msgstr "UUID e ponto de montagem"
 msgid "UUID links for TLS-encrypting agent communication"
 msgstr "Ligações UUID para comunicação de agentes com encriptação TLS"
 
-msgid "Ubuntu 22.04 LTS"
+msgid "Ubuntu 24.04 LTS"
 msgstr ""
 
 msgid "Umlauts in User-IDs (deprecated)"
@@ -85479,12 +85396,6 @@ msgstr "Utilizar uma renderização estreita para este número"
 msgid "Use new service names"
 msgstr "Nome do serviço"
 
-msgid "Use normal state, ignore acknowledgement"
-msgstr "Usar o estado normal, ignorar o reconhecimento"
-
-msgid "Use normal state, ignore downtime"
-msgstr "Use o estado normal, ignore o tempo de inatividade"
-
 msgid "Use only lower case letters, digits, and underscores here."
 msgstr "Use aqui apenas letras minúsculas, dígitos e sublinhados."
 
@@ -85599,9 +85510,6 @@ msgstr "Utilizar o catálogo de plugins de verificação."
 
 #, fuzzy
 msgid "Use the credentials of an automation user"
-msgstr "Use as credenciais do usuário de 'automação'"
-
-msgid "Use the credentials of the 'automation' user"
 msgstr "Use as credenciais do usuário de 'automação'"
 
 msgid "Use the default DNS server(s) specified in /etc/resolv.conf"
@@ -87244,9 +87152,6 @@ msgstr "Domínio virtual"
 #, python-format
 msgid "Val. %d"
 msgstr "Val. %d"
-
-msgid "Valid automation secret for the automation user"
-msgstr "Segredo de automação válido para o usuário de automação"
 
 msgid "Valid from"
 msgstr "Válido desde"
@@ -93136,7 +93041,6 @@ msgstr "contando"
 msgid "cp437"
 msgstr "cp437"
 
-#, fuzzy
 msgid "crash report"
 msgid_plural "crash reports"
 msgstr[0] ""
@@ -93655,7 +93559,6 @@ msgstr "os anfitriões estão de pé e não têm problemas de serviço"
 msgid "hosts in total"
 msgstr "anfitriões no total"
 
-#, fuzzy
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] ""
@@ -93770,6 +93673,10 @@ msgstr "em %d dias"
 
 msgid "in ... days"
 msgstr "em ... dias"
+
+#, fuzzy
+msgid "in downtime"
+msgstr "Em tempo de inatividade"
 
 msgid "in notif. p."
 msgstr "em notif. p."
@@ -95574,6 +95481,10 @@ msgid "Select label..."
 msgstr "Selecione o arquivo"
 
 #, fuzzy
+msgid "Remove row"
+msgstr "Removido: %s"
+
+#, fuzzy
 msgid "Group Operator"
 msgstr "Caminho de grupo"
 
@@ -95584,10 +95495,6 @@ msgstr "Ligações rejeitadas"
 #, fuzzy
 msgid "Select value..."
 msgstr "Seleccionar vista"
-
-#, fuzzy
-msgid "Remove row"
-msgstr "Removido: %s"
 
 #, fuzzy
 msgid "(required)"
@@ -98656,6 +98563,129 @@ msgstr ""
 msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Authentication mode"
+#~ msgstr "Modo de Autenticação"
+
+#~ msgid "Authorization Header"
+#~ msgstr "Cabeçalho de autorização"
+
+#~ msgid "Automatically track downtimes of aggregation"
+#~ msgstr "Rastreamento automático dos tempos de agregação"
+
+#~ msgid "Automation Secret"
+#~ msgstr "Segredo de Automação"
+
+#, fuzzy
+#~ msgid "Automation user name"
+#~ msgstr "Nome de usuário de automação"
+
+#~ msgid "Base URL (OMD Site)"
+#~ msgstr "URL base (Site OMD)"
+
+#~ msgid "Check State of BI Aggregation"
+#~ msgstr "Verificar Estado da Agregação do BI"
+
+#, fuzzy
+#~ msgid "Cisco Meraki Appliance Performance Utilization"
+#~ msgstr "Automação Checkmk"
+
+#~ msgid ""
+#~ "Connect to the local or a remote monitoring host, which uses Checkmk BI "
+#~ "to aggregate several states to a single BI aggregation, which you want to "
+#~ "show up as a single service."
+#~ msgstr ""
+#~ "Ligue-se ao anfitrião de monitorização local ou remoto, que utiliza o "
+#~ "Checkmk BI para agregar vários estados a uma única agregação de BI, que "
+#~ "pretende apresentar como um único serviço."
+
+#~ msgid "Force to be OK"
+#~ msgstr "Força para ficar bem"
+
+#~ msgid "Force to be WARN, if aggregate is not OK"
+#~ msgstr "Força para ser WARN, se o agregado não estiver OK"
+
+#~ msgid "HTTP Basic"
+#~ msgstr "HTTP Básico"
+
+#~ msgid ""
+#~ "Here you can configured the credentials to be used. Keep in mind that the "
+#~ "<tt>automation</tt> user need to exist if you choose this option"
+#~ msgstr ""
+#~ "Aqui você pode configurar as credenciais a serem usadas. Tenha em mente "
+#~ "que o usuário <tt>automation</tt> precisa existir se você escolher esta "
+#~ "opção"
+
+#, python-format
+#~ msgid "Host is %s"
+#~ msgstr "Anfitrião é %s"
+
+#~ msgid ""
+#~ "If this is active, the check will automatically go into downtime whenever "
+#~ "the aggregation does. This downtime is also cleaned up automatically when "
+#~ "the aggregation leaves downtime. Downtimes you set manually for this "
+#~ "check are unaffected."
+#~ msgstr ""
+#~ "Se este estiver ativo, a verificação entrará automaticamente em "
+#~ "inatividade sempre que a agregação o fizer. Este tempo de inatividade "
+#~ "também é limpo automaticamente quando a agregação deixa o tempo de "
+#~ "inatividade. Os tempos de inatividade definidos manualmente para esta "
+#~ "verificação não são afetados."
+
+#~ msgid "Kerberos"
+#~ msgstr "Kerberos"
+
+#~ msgid ""
+#~ "The base URL to the monitoring instance. For example <tt>http://"
+#~ "mycheckmk01/mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> "
+#~ "and <tt>$HOSTNAME$</tt> within this URL to make them be replaced by the "
+#~ "hosts values."
+#~ msgstr ""
+#~ "O URL base para a instância de monitoramento. Por exemplo <tt>http://"
+#~ "mycheckmk01/mysite</tt>. Você pode usar macros como <tt>$HOSTADDRESS$</"
+#~ "tt> e <tt>$HOSTNAME$</tt> dentro desta URL para fazê-los ser substituídos "
+#~ "pelos valores dos hosts."
+
+#, fuzzy
+#~ msgid ""
+#~ "The name of the aggregation to fetch. It will be added to the service "
+#~ "name. You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</"
+#~ "tt> within this parameter to make them be replaced by the hosts values. "
+#~ "The aggregation name is the title in the top-level-rule of your BI pack."
+#~ msgstr ""
+#~ "O nome da agregação a buscar. Será adicionado à descrição do serviço. "
+#~ "Você pode usar macros como <tt>$HOSTADDRESS$</tt> e <tt>$HOSTNAME$</tt> "
+#~ "dentro deste parâmetro para fazê-los ser substituídos pelos valores dos "
+#~ "hosts. O nome da agregação é o título na regra de nível superior do seu "
+#~ "pacote BI."
+
+#~ msgid ""
+#~ "The name of the automation account to use for fetching the BI aggregation "
+#~ "via HTTP. Note: You may also set credentials of a standard user account, "
+#~ "though it is disadvised. Using the credentials of a standard user also "
+#~ "requires a valid authentication method set in the optional parameters."
+#~ msgstr ""
+#~ "O nome da conta de automação a ser usada para obter a agregação do BI via "
+#~ "HTTP. Nota: Você também pode definir as credenciais de uma conta de "
+#~ "usuário padrão, embora seja desaconselhada. Usar as credenciais de um "
+#~ "usuário padrão também requer um método de autenticação válido definido "
+#~ "nos parâmetros opcionais."
+
+#~ msgid "Track downtimes"
+#~ msgstr "Tempos de paragem"
+
+#~ msgid "Use normal state, ignore acknowledgement"
+#~ msgstr "Usar o estado normal, ignorar o reconhecimento"
+
+#~ msgid "Use normal state, ignore downtime"
+#~ msgstr "Use o estado normal, ignore o tempo de inatividade"
+
+#~ msgid "Use the credentials of the 'automation' user"
+#~ msgstr "Use as credenciais do usuário de 'automação'"
+
+#~ msgid "Valid automation secret for the automation user"
+#~ msgstr "Segredo de automação válido para o usuário de automação"
 
 #, fuzzy
 #~ msgid "Enable safe host names"

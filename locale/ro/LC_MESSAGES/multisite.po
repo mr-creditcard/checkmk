@@ -7334,6 +7334,10 @@ msgstr "Adăugarea de descrieri ale OID-urilor la textele mesajelor"
 msgid "Appliance"
 msgstr "Aparatură"
 
+#, fuzzy
+msgid "Appliance device utilization"
+msgstr "Utilizarea codificatorului"
+
 msgid "Appliance uplink VPN statuses"
 msgstr ""
 
@@ -8154,9 +8158,6 @@ msgstr "Mecanism de autentificare"
 msgid "Authentication method"
 msgstr "Metoda de autentificare"
 
-msgid "Authentication mode"
-msgstr "Mod de autentificare"
-
 msgid "Authentication password"
 msgstr "Parola de autentificare"
 
@@ -8212,9 +8213,6 @@ msgstr "Autoritatea"
 
 msgid "Authorization"
 msgstr "Autorizare"
-
-msgid "Authorization Header"
-msgstr "Antetul de autorizare"
 
 msgid "Authorization settings"
 msgstr "Setări de autorizare"
@@ -8408,9 +8406,6 @@ msgstr ""
 "Stochează automat cheia gazdă fără a fi necesară introducerea manuală a "
 "acesteia"
 
-msgid "Automatically track downtimes of aggregation"
-msgstr "Urmăriți automat timpii de întrerupere a agregării"
-
 msgid "Automatically update agents at <i>Activate Changes</i>, if necessary"
 msgstr ""
 "Actualizați automat agenții la <i>Activați modificările</i>, dacă este "
@@ -8421,9 +8416,6 @@ msgstr "Actualizarea automată a configurației serviciului"
 
 msgid "Automation"
 msgstr "Automatizare"
-
-msgid "Automation Secret"
-msgstr "Secret de automatizare"
 
 msgid "Automation URL:"
 msgstr "URL de automatizare:"
@@ -8443,10 +8435,6 @@ msgstr ""
 #, fuzzy
 msgid "Automation user for connection to central site"
 msgstr "Automatizare Utilizator pentru conectarea la site-ul central"
-
-#, fuzzy
-msgid "Automation user name"
-msgstr "Nume de utilizator de automatizare"
 
 msgid "Automation user rejected"
 msgstr "Utilizator de automatizare respins"
@@ -10107,9 +10095,6 @@ msgstr "Baza DN"
 
 msgid "Base OID"
 msgstr "OID de bază"
-
-msgid "Base URL (OMD Site)"
-msgstr "URL de bază (Site OMD)"
 
 #, fuzzy
 msgid "Base URL for Docker API engine"
@@ -13263,9 +13248,6 @@ msgstr "Verificați serviciul SSH"
 msgid "Check SSL Certificate Age"
 msgstr "Verificați vârsta certificatului SSL"
 
-msgid "Check State of BI Aggregation"
-msgstr "Verificați starea de agregare BI"
-
 msgid "Check TCP port connection"
 msgstr "Verificați conexiunea portului TCP"
 
@@ -14433,10 +14415,6 @@ msgstr "Cisco Meraki"
 #, fuzzy
 msgid "Cisco Meraki API response codes"
 msgstr "Cisco Meraki"
-
-#, fuzzy
-msgid "Cisco Meraki Appliance Performance Utilization"
-msgstr "Automatizare Checkmk"
 
 #, fuzzy
 msgid "Cisco Meraki appliance VPNs"
@@ -16320,15 +16298,6 @@ msgstr ""
 
 msgid "Connect to the local Event Console"
 msgstr "Conectați-vă la Consola de evenimente locală"
-
-msgid ""
-"Connect to the local or a remote monitoring host, which uses Checkmk BI to "
-"aggregate several states to a single BI aggregation, which you want to show "
-"up as a single service."
-msgstr ""
-"Conectați-vă la gazda de monitorizare locală sau de la distanță, care "
-"utilizează Checkmk BI pentru a agrega mai multe stări într-o singură "
-"agregare BI, pe care doriți să o afișați ca un singur serviciu."
 
 msgid "Connect to the local site"
 msgstr "Conectați-vă la site-ul local"
@@ -28220,12 +28189,6 @@ msgstr ""
 "sunt: <ul><li>litere minuscule</li><li>litere majuscule</li><li>cifre</"
 "li><li>caractere speciale, cum ar fi o subliniere sau o liniuță</li></ul>"
 
-msgid "Force to be OK"
-msgstr "Forța de a fi OK"
-
-msgid "Force to be WARN, if aggregate is not OK"
-msgstr "Forțați să fie WARN, dacă agregatul nu este OK"
-
 msgid "Force unencrypted communication"
 msgstr "Forțarea comunicării necriptate"
 
@@ -29692,9 +29655,6 @@ msgstr "Erori HTTP 5XX"
 msgid "HTTP 5xx responses"
 msgstr "Răspunsuri HTTP 5xx"
 
-msgid "HTTP Basic"
-msgstr "HTTP Basic"
-
 msgid "HTTP Basic Authentication"
 msgstr "Autentificare HTTP Basic"
 
@@ -30345,14 +30305,6 @@ msgid ""
 msgstr ""
 "Aici puteți configura ce servicii sunt afișate în funcție de starea lor. "
 "Acesta este un filtru la nivel de afișare, nu la nivel de interogare."
-
-msgid ""
-"Here you can configured the credentials to be used. Keep in mind that the "
-"<tt>automation</tt> user need to exist if you choose this option"
-msgstr ""
-"Aici puteți configura acreditările care urmează să fie utilizate. Rețineți "
-"că utilizatorul <tt>automation</tt> trebuie să existe dacă alegeți această "
-"opțiune"
 
 msgid ""
 "Here you can define a mapping between possible exit codes and service "
@@ -32624,9 +32576,9 @@ msgstr "Gazda în perioada de funcționare"
 msgid "Host information"
 msgstr "Informații despre gazdă"
 
-#, python-format
-msgid "Host is %s"
-msgstr "Gazda este %s"
+#, fuzzy
+msgid "Host is"
+msgstr "Gazde"
 
 msgid "Host is active"
 msgstr "Gazda este activă"
@@ -34630,18 +34582,6 @@ msgid "If this error persists, please contact the Checkmk support team."
 msgstr ""
 "Dacă această eroare persistă, vă rugăm să contactați echipa de asistență "
 "Checkmk."
-
-msgid ""
-"If this is active, the check will automatically go into downtime whenever "
-"the aggregation does. This downtime is also cleaned up automatically when "
-"the aggregation leaves downtime. Downtimes you set manually for this check "
-"are unaffected."
-msgstr ""
-"Dacă această opțiune este activă, verificarea va intra automat în timp de "
-"nefuncționare ori de câte ori agregarea o face. De asemenea, acest timp de "
-"nefuncționare este curățat automat atunci când agregarea iese din timpul de "
-"nefuncționare. Timpii de nefuncționare pe care i-ați stabilit manual pentru "
-"această verificare nu sunt afectați."
 
 #, fuzzy
 msgid ""
@@ -38825,9 +38765,6 @@ msgstr "Parametrii Keepalived"
 
 msgid "Kelvin"
 msgstr "Kelvin"
-
-msgid "Kerberos"
-msgstr "Kerberos"
 
 msgid "Kernel"
 msgstr "Kernel"
@@ -58762,6 +58699,15 @@ msgstr "Restrângeți unitățile systemd în funcție de descriere."
 msgid "Restrict the systemd units by their name."
 msgstr "Restrângeți unitățile systemd după numele lor."
 
+msgid ""
+"Restrict this OAuth2 connection to specific sites or make it available on "
+"all sites."
+msgstr ""
+
+#, fuzzy
+msgid "Restrict this OAuth2 connection to specific sites."
+msgstr "Atribuiți acest obiect unui anumit client."
+
 msgid "Restrict to a single host"
 msgstr "Limitarea la o singură gazdă"
 
@@ -58773,6 +58719,10 @@ msgstr "Restricție la numărul de notificare"
 
 msgid "Restricted address mismatch"
 msgstr "Necorespundere de adresă restricționată"
+
+#, fuzzy
+msgid "Restricted to specific sites"
+msgstr "Nu există restricții pentru anumite obiecte"
 
 #, fuzzy
 msgid "Restriction tags enabled but no tags defined."
@@ -69873,17 +69823,6 @@ msgid "The base OID for the trap content"
 msgstr "OID de bază pentru conținutul capcanei"
 
 msgid ""
-"The base URL to the monitoring instance. For example <tt>http://mycheckmk01/"
-"mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> and "
-"<tt>$HOSTNAME$</tt> within this URL to make them be replaced by the hosts "
-"values."
-msgstr ""
-"URL-ul de bază pentru instanța de monitorizare. De exemplu <tt>http://"
-"mycheckmk01/mysite</tt>. Puteți utiliza macro-uri precum <tt>$HOSTADDRESS$</"
-"tt> și <tt>$HOSTNAME$</tt> în cadrul acestui URL pentru a face ca acestea să "
-"fie înlocuite cu valorile gazdelor."
-
-msgid ""
 "The basic function of this check is to log in into an IMAP, POP3 or EWS "
 "mailbox to monitor whether or not the login is possible. An extended feature "
 "is, that the check can fetch all (or just some) from the mailbox and forward "
@@ -71895,19 +71834,6 @@ msgstr ""
 msgid "The name of the OMD site to check the status for"
 msgstr "Numele site-ului OMD pentru care se verifică statutul"
 
-#, fuzzy
-msgid ""
-"The name of the aggregation to fetch. It will be added to the service name. "
-"You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</tt> "
-"within this parameter to make them be replaced by the hosts values. The "
-"aggregation name is the title in the top-level-rule of your BI pack."
-msgstr ""
-"Numele agregării care urmează să fie preluată. Acesta va fi adăugat la "
-"descrierea serviciului. Puteți utiliza macrocomenzi precum "
-"<tt>$HOSTADDRESS$</tt> și <tt>$HOSTNAME$</tt> în cadrul acestui parametru "
-"pentru a le face să fie înlocuite cu valorile gazdelor. Numele agregării "
-"este titlul din regula de nivel superior a pachetului BI."
-
 msgid "The name of the application server"
 msgstr "Numele serverului de aplicații"
 
@@ -71917,18 +71843,6 @@ msgid ""
 msgstr ""
 "Numele atributului este utilizat ca o cheie internă. Acesta nu poate fi "
 "modificat ulterior."
-
-msgid ""
-"The name of the automation account to use for fetching the BI aggregation "
-"via HTTP. Note: You may also set credentials of a standard user account, "
-"though it is disadvised. Using the credentials of a standard user also "
-"requires a valid authentication method set in the optional parameters."
-msgstr ""
-"Numele contului de automatizare care trebuie utilizat pentru a prelua "
-"agregarea BI prin HTTP. Notă: De asemenea, puteți seta acreditările unui "
-"cont de utilizator standard, deși acest lucru este dezavantajos. Utilizarea "
-"acreditărilor unui utilizator standard necesită, de asemenea, o metodă de "
-"autentificare validă setată în parametrii opționali."
 
 #, fuzzy
 msgid "The name of the cluster resource as shown in the service name."
@@ -72395,6 +72309,10 @@ msgstr "Parametrul \"%s\" nu este un URL valid."
 #, python-format
 msgid "The parameter \"%s\" is not an integer."
 msgstr "Parametrul \"%s\" nu este un număr întreg."
+
+#, fuzzy
+msgid "The parameter \"topology_type\" is missing."
+msgstr "Parametrul \"%s\" lipsește."
 
 #, python-format
 msgid ""
@@ -83136,9 +83054,6 @@ msgstr "Traceroute"
 msgid "Traceroute with MTR"
 msgstr "Traceroute cu MTR"
 
-msgid "Track downtimes"
-msgstr "Urmăriți timpii de oprire"
-
 msgid "Traffic"
 msgstr "Trafic"
 
@@ -83790,7 +83705,7 @@ msgstr "UUID și punctul de montare"
 msgid "UUID links for TLS-encrypting agent communication"
 msgstr "Legături UUID pentru comunicarea agentului cu criptare TLS"
 
-msgid "Ubuntu 22.04 LTS"
+msgid "Ubuntu 24.04 LTS"
 msgstr ""
 
 msgid "Umlauts in User-IDs (deprecated)"
@@ -85798,12 +85713,6 @@ msgstr "Utilizați o redare îngustă pentru acest număr"
 msgid "Use new service names"
 msgstr "Denumirea serviciului"
 
-msgid "Use normal state, ignore acknowledgement"
-msgstr "Utilizați starea normală, ignorați confirmarea"
-
-msgid "Use normal state, ignore downtime"
-msgstr "Utilizați starea normală, ignorați timpul de nefuncționare"
-
 msgid "Use only lower case letters, digits, and underscores here."
 msgstr "Folosiți aici numai litere mici, cifre și caractere de subliniere."
 
@@ -85923,9 +85832,6 @@ msgstr "Utilizați catalogul de pluginuri de verificare."
 
 #, fuzzy
 msgid "Use the credentials of an automation user"
-msgstr "Utilizați acreditările utilizatorului 'automation'."
-
-msgid "Use the credentials of the 'automation' user"
 msgstr "Utilizați acreditările utilizatorului 'automation'."
 
 msgid "Use the default DNS server(s) specified in /etc/resolv.conf"
@@ -87580,9 +87486,6 @@ msgstr "Domeniul virtual"
 #, python-format
 msgid "Val. %d"
 msgstr "Val. %d"
-
-msgid "Valid automation secret for the automation user"
-msgstr "Secret de automatizare valabil pentru utilizatorul de automatizare"
 
 msgid "Valid from"
 msgstr "Valabil de la"
@@ -94148,6 +94051,10 @@ msgstr "în %d zile"
 msgid "in ... days"
 msgstr "în ... zile"
 
+#, fuzzy
+msgid "in downtime"
+msgstr "În timp de nefuncționare"
+
 msgid "in notif. p."
 msgstr "în notificarea p."
 
@@ -95966,6 +95873,10 @@ msgid "Select label..."
 msgstr "Selectați fișierul"
 
 #, fuzzy
+msgid "Remove row"
+msgstr "Eliminat: %s"
+
+#, fuzzy
 msgid "Group Operator"
 msgstr "Calea grupului"
 
@@ -95976,10 +95887,6 @@ msgstr "Conexiuni respinse"
 #, fuzzy
 msgid "Select value..."
 msgstr "Selectați vizualizarea"
-
-#, fuzzy
-msgid "Remove row"
-msgstr "Eliminat: %s"
 
 #, fuzzy
 msgid "(required)"
@@ -99062,6 +98969,128 @@ msgstr ""
 msgid ""
 "You can still access it later via Help > Learning Checkmk > Welcome page"
 msgstr ""
+
+#~ msgid "Authentication mode"
+#~ msgstr "Mod de autentificare"
+
+#~ msgid "Authorization Header"
+#~ msgstr "Antetul de autorizare"
+
+#~ msgid "Automatically track downtimes of aggregation"
+#~ msgstr "Urmăriți automat timpii de întrerupere a agregării"
+
+#~ msgid "Automation Secret"
+#~ msgstr "Secret de automatizare"
+
+#, fuzzy
+#~ msgid "Automation user name"
+#~ msgstr "Nume de utilizator de automatizare"
+
+#~ msgid "Base URL (OMD Site)"
+#~ msgstr "URL de bază (Site OMD)"
+
+#~ msgid "Check State of BI Aggregation"
+#~ msgstr "Verificați starea de agregare BI"
+
+#, fuzzy
+#~ msgid "Cisco Meraki Appliance Performance Utilization"
+#~ msgstr "Automatizare Checkmk"
+
+#~ msgid ""
+#~ "Connect to the local or a remote monitoring host, which uses Checkmk BI "
+#~ "to aggregate several states to a single BI aggregation, which you want to "
+#~ "show up as a single service."
+#~ msgstr ""
+#~ "Conectați-vă la gazda de monitorizare locală sau de la distanță, care "
+#~ "utilizează Checkmk BI pentru a agrega mai multe stări într-o singură "
+#~ "agregare BI, pe care doriți să o afișați ca un singur serviciu."
+
+#~ msgid "Force to be OK"
+#~ msgstr "Forța de a fi OK"
+
+#~ msgid "Force to be WARN, if aggregate is not OK"
+#~ msgstr "Forțați să fie WARN, dacă agregatul nu este OK"
+
+#~ msgid "HTTP Basic"
+#~ msgstr "HTTP Basic"
+
+#~ msgid ""
+#~ "Here you can configured the credentials to be used. Keep in mind that the "
+#~ "<tt>automation</tt> user need to exist if you choose this option"
+#~ msgstr ""
+#~ "Aici puteți configura acreditările care urmează să fie utilizate. "
+#~ "Rețineți că utilizatorul <tt>automation</tt> trebuie să existe dacă "
+#~ "alegeți această opțiune"
+
+#, python-format
+#~ msgid "Host is %s"
+#~ msgstr "Gazda este %s"
+
+#~ msgid ""
+#~ "If this is active, the check will automatically go into downtime whenever "
+#~ "the aggregation does. This downtime is also cleaned up automatically when "
+#~ "the aggregation leaves downtime. Downtimes you set manually for this "
+#~ "check are unaffected."
+#~ msgstr ""
+#~ "Dacă această opțiune este activă, verificarea va intra automat în timp de "
+#~ "nefuncționare ori de câte ori agregarea o face. De asemenea, acest timp "
+#~ "de nefuncționare este curățat automat atunci când agregarea iese din "
+#~ "timpul de nefuncționare. Timpii de nefuncționare pe care i-ați stabilit "
+#~ "manual pentru această verificare nu sunt afectați."
+
+#~ msgid "Kerberos"
+#~ msgstr "Kerberos"
+
+#~ msgid ""
+#~ "The base URL to the monitoring instance. For example <tt>http://"
+#~ "mycheckmk01/mysite</tt>. You can use macros like <tt>$HOSTADDRESS$</tt> "
+#~ "and <tt>$HOSTNAME$</tt> within this URL to make them be replaced by the "
+#~ "hosts values."
+#~ msgstr ""
+#~ "URL-ul de bază pentru instanța de monitorizare. De exemplu <tt>http://"
+#~ "mycheckmk01/mysite</tt>. Puteți utiliza macro-uri precum "
+#~ "<tt>$HOSTADDRESS$</tt> și <tt>$HOSTNAME$</tt> în cadrul acestui URL "
+#~ "pentru a face ca acestea să fie înlocuite cu valorile gazdelor."
+
+#, fuzzy
+#~ msgid ""
+#~ "The name of the aggregation to fetch. It will be added to the service "
+#~ "name. You can use macros like <tt>$HOSTADDRESS$</tt> and <tt>$HOSTNAME$</"
+#~ "tt> within this parameter to make them be replaced by the hosts values. "
+#~ "The aggregation name is the title in the top-level-rule of your BI pack."
+#~ msgstr ""
+#~ "Numele agregării care urmează să fie preluată. Acesta va fi adăugat la "
+#~ "descrierea serviciului. Puteți utiliza macrocomenzi precum "
+#~ "<tt>$HOSTADDRESS$</tt> și <tt>$HOSTNAME$</tt> în cadrul acestui parametru "
+#~ "pentru a le face să fie înlocuite cu valorile gazdelor. Numele agregării "
+#~ "este titlul din regula de nivel superior a pachetului BI."
+
+#~ msgid ""
+#~ "The name of the automation account to use for fetching the BI aggregation "
+#~ "via HTTP. Note: You may also set credentials of a standard user account, "
+#~ "though it is disadvised. Using the credentials of a standard user also "
+#~ "requires a valid authentication method set in the optional parameters."
+#~ msgstr ""
+#~ "Numele contului de automatizare care trebuie utilizat pentru a prelua "
+#~ "agregarea BI prin HTTP. Notă: De asemenea, puteți seta acreditările unui "
+#~ "cont de utilizator standard, deși acest lucru este dezavantajos. "
+#~ "Utilizarea acreditărilor unui utilizator standard necesită, de asemenea, "
+#~ "o metodă de autentificare validă setată în parametrii opționali."
+
+#~ msgid "Track downtimes"
+#~ msgstr "Urmăriți timpii de oprire"
+
+#~ msgid "Use normal state, ignore acknowledgement"
+#~ msgstr "Utilizați starea normală, ignorați confirmarea"
+
+#~ msgid "Use normal state, ignore downtime"
+#~ msgstr "Utilizați starea normală, ignorați timpul de nefuncționare"
+
+#~ msgid "Use the credentials of the 'automation' user"
+#~ msgstr "Utilizați acreditările utilizatorului 'automation'."
+
+#~ msgid "Valid automation secret for the automation user"
+#~ msgstr "Secret de automatizare valabil pentru utilizatorul de automatizare"
 
 #, fuzzy
 #~ msgid "Enable safe host names"

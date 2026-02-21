@@ -12,7 +12,7 @@ from cmk.ccc.site import SiteId
 from cmk.ccc.user import UserId
 from cmk.crypto.password import Password
 from cmk.gui import key_mgmt
-from cmk.gui.keypair_store import Key
+from cmk.utils.keypair_store import Key
 
 
 @pytest.mark.usefixtures("request_context")

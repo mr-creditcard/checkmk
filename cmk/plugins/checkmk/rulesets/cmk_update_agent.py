@@ -9,7 +9,6 @@ from typing import Any
 from cmk.ccc.site import omd_site
 from cmk.gui.form_specs.unstable import MultipleChoiceExtended
 from cmk.gui.form_specs.unstable.multiple_choice import MultipleChoiceElementExtended
-from cmk.gui.keypair_store import KeypairStore
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,
@@ -31,6 +30,7 @@ from cmk.rulesets.v1.form_specs import (
 )
 from cmk.rulesets.v1.rule_specs import AgentConfig, CustomTopic
 from cmk.utils import paths
+from cmk.utils.keypair_store import KeypairStore
 
 DEFAULT_UPDATE_INTERVAL: int = 3600
 MAX_UPDATE_INTERVAL: int = 30 * 24 * 60 * 60  # 30 days

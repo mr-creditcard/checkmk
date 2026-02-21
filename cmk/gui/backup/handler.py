@@ -34,7 +34,7 @@ from cmk.ccc.site import omd_site
 from cmk.crypto.hash import HashAlgorithm
 from cmk.crypto.password import Password as PasswordType
 from cmk.crypto.pem import PEMDecodingError
-from cmk.gui import forms, key_mgmt, keypair_store
+from cmk.gui import forms, key_mgmt
 from cmk.gui.breadcrumb import Breadcrumb, make_simple_page_breadcrumb
 from cmk.gui.config import Config
 from cmk.gui.exceptions import FinalizeRequest, HTTPRedirect, MKUserError
@@ -63,7 +63,6 @@ from cmk.gui.htmllib.header import make_header
 from cmk.gui.htmllib.html import html
 from cmk.gui.http import request
 from cmk.gui.i18n import _
-from cmk.gui.keypair_store import Key, KeyId, KeypairMap
 from cmk.gui.main_menu import main_menu_registry
 from cmk.gui.page_menu import (
     make_simple_form_page_menu,
@@ -110,7 +109,7 @@ from cmk.rulesets.v1.form_specs import (
     String,
     validators,
 )
-from cmk.utils import render
+from cmk.utils import keypair_store, render
 from cmk.utils.backup.config import Config as RawConfig
 from cmk.utils.backup.job import JobConfig, JobState, ScheduleConfig
 from cmk.utils.backup.targets import TargetId
@@ -132,6 +131,7 @@ from cmk.utils.backup.targets.remote_interface import (
 from cmk.utils.backup.type_defs import SiteBackupInfo
 from cmk.utils.backup.utils import BACKUP_INFO_FILENAME
 from cmk.utils.certs import CertManagementEvent
+from cmk.utils.keypair_store import Key, KeyId, KeypairMap
 from cmk.utils.paths import omd_root
 from cmk.utils.schedule import next_scheduled_time
 

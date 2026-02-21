@@ -317,6 +317,11 @@ CMK_UTILS_DEPENDENCIES = {
         "cmk.ccc.store",
     ),
     Component("cmk.utils.jsontype"): _allow(),
+    Component("cmk.utils.keypair_store"): _allow(
+        "cmk.ccc.store",
+        "cmk.ccc.user",
+        "cmk.crypto",
+    ),
     Component("cmk.utils.labels"): _allow(
         "cmk.utils.paths",
         "cmk.utils.servicename",
@@ -854,6 +859,7 @@ COMPONENTS: Mapping[Component, ImportCheckerProtocol] = {
         "cmk.utils.global_ident_type",
         "cmk.utils.http_proxy_config",
         "cmk.utils.images",
+        "cmk.utils.keypair_store",
         "cmk.utils.licensing",
         "cmk.utils.local_secrets",
         "cmk.utils.log",
@@ -997,6 +1003,7 @@ COMPONENTS: Mapping[Component, ImportCheckerProtocol] = {
         "cmk.utils.images",
         "cmk.utils.ip_lookup",
         "cmk.utils.jsontype",
+        "cmk.utils.keypair_store",
         "cmk.utils.labels",
         "cmk.utils.licensing",
         "cmk.utils.livestatus_helpers",
@@ -1318,6 +1325,7 @@ COMPONENTS: Mapping[Component, ImportCheckerProtocol] = {
         *PACKAGE_CRYPTO,
         "cmk.piggyback.backend",
         "cmk.utils.agent_registration",
+        "cmk.utils.keypair_store",
         "cmk.utils.rulesets",
     ),
     Component("tests.extension_compatibility"): _allow(

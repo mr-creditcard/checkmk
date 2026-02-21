@@ -25,13 +25,13 @@ from cmk.gui import log, utils
 from cmk.gui.ctx_stack import request_local_attr, set_global_var
 from cmk.gui.exceptions import MKConfigError
 from cmk.gui.i18n import _
-from cmk.gui.keypair_store import KeypairStore
 from cmk.gui.plugins.config.base import (  # astrein: disable=cmk-module-layer-violation
     CREConfig,
 )
 from cmk.gui.type_defs import RoleName
 from cmk.utils import paths
 from cmk.utils.experimental_config import load_experimental_config
+from cmk.utils.keypair_store import KeypairStore
 
 if cmk_version.edition(paths.omd_root) is not cmk_version.Edition.COMMUNITY:
     from cmk.gui.nonfree.pro.config import (  # type: ignore[import-not-found, import-untyped, unused-ignore] # astrein: disable=cmk-module-layer-violation

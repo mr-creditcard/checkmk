@@ -17,8 +17,6 @@ from cmk.crypto.certificate import Certificate, CertificatePEM, CertificateWithP
 from cmk.crypto.hash import HashAlgorithm
 from cmk.crypto.keys import EncryptedPrivateKeyPEM, PrivateKey
 from cmk.crypto.password import Password
-from cmk.gui.exceptions import MKUserError
-from cmk.gui.i18n import _
 
 _AnnotatedUserId = Annotated[
     UserId,
@@ -74,6 +72,13 @@ class KeyId(str):
         return cls(uuid.uuid4())
 
 
+class KeyAlreadyExists(Exception):
+    def __init__(self, key_id: KeyId, alias: str) -> None:
+        super().__init__(f"Key already exists: {key_id}")
+        self.key_id = key_id
+        self.alias = alias
+
+
 type KeypairMap = dict[KeyId, Key]
 
 
@@ -125,11 +130,7 @@ class KeypairStore:
         this_digest = key.fingerprint(HashAlgorithm.MD5)
         for key_id, stored_key in keys.items():
             if stored_key.fingerprint(HashAlgorithm.MD5) == this_digest:
-                raise MKUserError(
-                    None,
-                    _("The key / certificate already exists (key: %d, description: %s)")
-                    % (key_id, stored_key.alias),
-                )
+                raise KeyAlreadyExists(key_id, stored_key.alias)
 
         keys[KeyId.generate()] = key
         self.save(keys)

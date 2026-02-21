@@ -22,7 +22,7 @@ from cmk.gui.exceptions import FinalizeRequest, HTTPRedirect, MKUserError
 from cmk.gui.htmllib.html import html
 from cmk.gui.http import ContentDispositionType, request, response
 from cmk.gui.i18n import _
-from cmk.gui.keypair_store import Key, KeyId, KeypairMap, KeypairStore
+from cmk.gui.keypair_store import Key, KeyAlreadyExists, KeyId, KeypairMap, KeypairStore
 from cmk.gui.logged_in import user
 from cmk.gui.page_menu import (
     make_simple_form_page_menu,
@@ -229,7 +229,14 @@ class PageEditKey:
         assert user.id is not None
         key = generate_key(alias, passphrase, user.id, omd_site(), key_size=default_key_size)
         self._log_create_key(key.to_certificate())
-        self.key_store.add(key)
+        try:
+            self.key_store.add(key)
+        except KeyAlreadyExists as e:
+            raise MKUserError(
+                None,
+                _("The key / certificate already exists (key: %s, description: %s)")
+                % (e.key_id, e.alias),
+            )
 
     @property
     def component_name(self) -> CertManagementEvent.ComponentType:
@@ -350,7 +357,14 @@ class PageUploadKey:
             date=key_pair.certificate.not_valid_before.timestamp(),
             not_downloaded=False,
         )
-        self.key_store.add(key)
+        try:
+            self.key_store.add(key)
+        except KeyAlreadyExists as e:
+            raise MKUserError(
+                None,
+                _("The key / certificate already exists (key: %s, description: %s)")
+                % (e.key_id, e.alias),
+            )
 
     @property
     def component_name(self) -> CertManagementEvent.ComponentType:

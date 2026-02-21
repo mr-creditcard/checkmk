@@ -172,8 +172,9 @@ _PLUGIN_FAMILIES_WITH_KNOWN_API_VIOLATIONS = {
         # We cannot expect them to not depend on the core
         # product.
         "cmk.base",
+        "cmk.bi",
         "cmk.fetchers",
-        "cmk.gui",  # bi
+        "cmk.gui",
         "cmk.checkengine",
         "cmk.server_side_calls_backend",
         "cmk.utils",

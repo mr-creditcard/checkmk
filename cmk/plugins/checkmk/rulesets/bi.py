@@ -9,7 +9,8 @@
 
 from collections.abc import Callable, Mapping
 
-from cmk.gui import bi
+from cmk.bi.filesystem import get_default_site_filesystem
+from cmk.bi.packs import BIAggregationPacks
 from cmk.rulesets.internal.form_specs import (
     SingleChoiceElementExtended,
     SingleChoiceExtended,
@@ -34,6 +35,12 @@ from cmk.rulesets.v1.form_specs import (
     validators,
 )
 from cmk.rulesets.v1.rule_specs import SpecialAgent, Topic
+
+
+def _aggregation_group_choices() -> list[tuple[str, str]]:
+    bi_packs = BIAggregationPacks(get_default_site_filesystem().etc.config)
+    bi_packs.load_config()
+    return bi_packs.get_aggregation_group_choices()
 
 
 def _credential_vs() -> CascadingSingleChoice:
@@ -152,7 +159,7 @@ def _bi_aggregate() -> Dictionary:
                                                 title
                                             ),
                                         )
-                                        for value, title in bi.aggregation_group_choices()
+                                        for value, title in _aggregation_group_choices()
                                     ],
                                 ),
                                 title=Title("By aggregation group prefix"),

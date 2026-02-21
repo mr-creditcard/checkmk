@@ -41,7 +41,7 @@ import requests
 
 from cmk import trace
 from cmk.gui.http import HTTPMethod
-from cmk.gui.type_defs import KeyId
+from cmk.gui.keypair_store import KeyId
 from cmk.gui.watolib.broker_connections import BrokerConnectionInfo
 from cmk.relay_protocols.relays import (
     RelayRegistrationRequest,

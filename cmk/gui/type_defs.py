@@ -19,20 +19,15 @@ from typing import (
     NewType,
     NotRequired,
     override,
-    Self,
     TypedDict,
     TypeVar,
 )
 
-from pydantic import BaseModel, PlainValidator, WithJsonSchema
+from pydantic import PlainValidator, WithJsonSchema
 
 from cmk.ccc.cpu_tracking import Snapshot
 from cmk.ccc.site import SiteId
 from cmk.ccc.user import UserId
-from cmk.crypto.certificate import Certificate, CertificatePEM, CertificateWithPrivateKey
-from cmk.crypto.hash import HashAlgorithm
-from cmk.crypto.keys import EncryptedPrivateKeyPEM, PrivateKey
-from cmk.crypto.password import Password
 from cmk.crypto.password_hashing import PasswordHash
 from cmk.crypto.secrets import Secret
 from cmk.gui.exceptions import FinalizeRequest
@@ -791,53 +786,6 @@ class ViewProcessTracking:
     duration_fetch_rows: Snapshot = Snapshot.null()
     duration_filter_rows: Snapshot = Snapshot.null()
     duration_view_render: Snapshot = Snapshot.null()
-
-
-class Key(BaseModel):
-    certificate: str
-    private_key: str
-    alias: str
-    owner: AnnotatedUserId
-    date: float
-    # Before 2.2 this field was only used for Setup backup keys. Now we add it to all key, because it
-    # won't hurt for other types of keys (e.g. the bakery signing keys). We set a default of False
-    # to initialize it for all existing keys assuming it was already downloaded. It is still only
-    # used in the context of the backup keys.
-    not_downloaded: bool = False
-
-    def to_certificate_with_private_key(self, passphrase: Password) -> CertificateWithPrivateKey:
-        return CertificateWithPrivateKey(
-            certificate=self.to_certificate(),
-            private_key=PrivateKey.load_pem(EncryptedPrivateKeyPEM(self.private_key), passphrase),
-        )
-
-    def to_certificate(self) -> Certificate:
-        """convert the string certificate to Certificate object"""
-        return Certificate.load_pem(CertificatePEM(self.certificate))
-
-    def fingerprint(self, algorithm: HashAlgorithm) -> str:
-        """return the fingerprint aka hash of the certificate as a hey string"""
-        return (
-            Certificate.load_pem(CertificatePEM(self.certificate))
-            .fingerprint(algorithm)
-            .hex(":")
-            .upper()
-        )
-
-
-class KeyId(str):
-    """KeyId type used for dictionary keys of KeypairStore & agent signature keys.
-    Accepts str|int|uuid.UUID on initialization and coerces to str internally.
-    Earlier key_id were integers, later changed to UUIDs. To support both types transparently,
-    we accept str|int|uuid.UUID here.
-    """
-
-    def __new__(cls, value: str | int | uuid.UUID) -> Self:
-        return super().__new__(cls, str(value))
-
-    @classmethod
-    def generate(cls) -> Self:
-        return cls(uuid.uuid4())
 
 
 GlobalSettings = Mapping[str, Any]

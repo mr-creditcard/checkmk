@@ -7,6 +7,7 @@
 # mypy: disable-error-code="no-untyped-def"
 
 import io
+import json
 import os
 import re
 import socket
@@ -34,20 +35,6 @@ try:
     _ = Callable, Any  # make ruff happy
 except ImportError:
     pass
-
-try:
-    try:
-        import simplejson as json
-    except ImportError:
-        import json  # type: ignore[no-redef]
-except ImportError:
-    sys.stdout.write(
-        "<<<jolokia_info>>>\n"
-        "Error: mk_jolokia requires either the json or simplejson library."
-        " Please either use a Python version that contains the json library or install the"
-        " simplejson library on the monitored system.\n"
-    )
-    sys.exit(1)
 
 try:
     import requests

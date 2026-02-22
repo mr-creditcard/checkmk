@@ -93,7 +93,6 @@ REQUIRED_EXTERNAL_DEPS = [
     "setproctitle",
     "setuptools",
     "setuptools-scm",
-    "simplejson",
     "snmpsim",
     "tenacity",
     "urllib3",

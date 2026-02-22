@@ -76,7 +76,6 @@ roman
 setproctitle
 setuptools
 setuptools-scm
-simplejson
 snmpsim
 tenacity
 urllib3

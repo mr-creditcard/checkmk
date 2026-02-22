@@ -569,6 +569,7 @@ class CREConfig:
     log_rulehits: bool = False
     rule_optimizer: bool = True
 
+    # Keep in sync with _DEFAULT_SERVICE_LEVELS in cmk/plugins/datadog/rulesets/special_agent.py
     mkeventd_service_levels: list[tuple[int, str]] = field(
         default_factory=lambda: [
             (0, "(no Service level)"),

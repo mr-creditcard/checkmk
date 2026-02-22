@@ -7,11 +7,11 @@
 
 # mypy: disable-error-code="type-arg"
 
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Mapping, Sequence
 
+from cmk.ccc.store import load_mk_file
 from cmk.ccc.version import Edition, edition
 from cmk.ec.syslog import SyslogFacility, SyslogPriority
-from cmk.gui.mkeventd import service_levels
 from cmk.rulesets.internal.form_specs import ListExtended
 from cmk.rulesets.v1 import Help, Label, Title
 from cmk.rulesets.v1.form_specs import (
@@ -36,7 +36,28 @@ from cmk.rulesets.v1.form_specs import (
     validators,
 )
 from cmk.rulesets.v1.rule_specs import SpecialAgent, Topic
-from cmk.utils.paths import omd_root
+from cmk.utils.paths import default_config_dir, omd_root
+
+# Keep in sync with mkeventd_service_levels default in cmk/gui/plugins/config/base.py
+_DEFAULT_SERVICE_LEVELS: Sequence[tuple[int, str]] = [
+    (0, "(no Service level)"),
+    (10, "Silver"),
+    (20, "Gold"),
+    (30, "Platinum"),
+]
+
+
+def _load_service_levels() -> Sequence[tuple[int, str]]:
+    """Load the mkeventd_service_levels global setting from the Setup GUI config.
+
+    This loads the setting directly from globals.mk to avoid importing the GUI module.
+    """
+    settings = load_mk_file(
+        default_config_dir / "multisite.d/wato/global.mk", default={}, lock=False
+    )
+    service_levels = settings.get("mkeventd_service_levels", _DEFAULT_SERVICE_LEVELS)
+    assert isinstance(service_levels, Sequence)
+    return service_levels
 
 
 def _valuespec_special_agents_datadog() -> Dictionary:
@@ -253,7 +274,7 @@ def _fetch_events_and_logs_elements() -> Mapping[str, DictElement]:
                                     title=Title(name),  # astrein: disable=localization-checker
                                     parameter_form=FixedValue(value=value, label=Label("")),
                                 )
-                                for value, name in service_levels()
+                                for value, name in _load_service_levels()
                             ],
                             title=Title("Service level"),
                             help_text=Help(
@@ -373,7 +394,7 @@ def _fetch_events_and_logs_elements() -> Mapping[str, DictElement]:
                                     title=Title(name),  # astrein: disable=localization-checker
                                     parameter_form=FixedValue(value=value, label=Label("")),
                                 )
-                                for value, name in service_levels()
+                                for value, name in _load_service_levels()
                             ],
                             title=Title("Service level"),
                             help_text=Help(
@@ -469,7 +490,9 @@ def _migrate_service_levels(value: object) -> tuple[str, int]:
             return s, i
         case int(i) | tuple((str(_), int(i))):
             return next(
-                (_format_service_level(i), value) for value, name in service_levels() if value == i
+                (_format_service_level(i), value)
+                for value, name in _load_service_levels()
+                if value == i
             )
     raise ValueError(f"Invalid priority value: {value!r}")
 

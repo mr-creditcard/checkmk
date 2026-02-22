@@ -39,7 +39,6 @@ from cmk.gui.form_specs.unstable.list_unique_selection import (
     UniqueCascadingSingleChoiceElement,
     UniqueSingleChoiceElement,
 )
-from cmk.gui.form_specs.unstable.multiple_choice import MultipleChoiceElementExtended
 from cmk.gui.hooks import request_memoize
 from cmk.gui.i18n import _
 from cmk.gui.mkeventd import service_levels, syslog_facilities, syslog_priorities
@@ -94,6 +93,7 @@ from cmk.gui.watolib.notifications import NotificationRuleConfigFile
 from cmk.gui.watolib.timeperiods import load_timeperiods
 from cmk.gui.watolib.user_scripts import load_notification_scripts, NotificationUserScripts
 from cmk.gui.watolib.users import notification_script_choices
+from cmk.rulesets.internal.form_specs import MultipleChoiceElementExtended
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

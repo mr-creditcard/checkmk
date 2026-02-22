@@ -7,12 +7,10 @@ from collections.abc import Sequence
 from typing import assert_never, override, TypedDict
 
 from cmk.gui.config import active_config
-from cmk.gui.form_specs.unstable.multiple_choice import (
-    MultipleChoiceExtended,
-    MultipleChoiceExtendedLayout,
-)
 from cmk.gui.i18n import _, translate_to_current_language
 from cmk.gui.valuespec import autocompleter_registry
+from cmk.rulesets.internal.form_specs import MultipleChoiceExtended, MultipleChoiceExtendedLayout
+from cmk.rulesets.internal.form_specs._extended import Autocompleter
 from cmk.shared_typing import vue_formspec_components as shared_type_defs
 
 from ._base import FormSpecVisitor
@@ -47,7 +45,7 @@ class MultipleChoiceVisitor(
     FormSpecVisitor[MultipleChoiceExtended, _ParsedValueModel, _FallbackModel]
 ):
     def _get_elements(self) -> _FallbackModel:
-        if isinstance(self.form_spec.elements, shared_type_defs.Autocompleter):
+        if isinstance(self.form_spec.elements, Autocompleter):
             autocompleter_ident = self.form_spec.elements.data.ident
             autocompleter_fn = autocompleter_registry[autocompleter_ident]
             return [
@@ -56,7 +54,10 @@ class MultipleChoiceVisitor(
                 if name
             ]
         return [
-            {"name": element.name, "title": element.title.localize(translate_to_current_language)}
+            {
+                "name": element.name,
+                "title": element.title.localize(translate_to_current_language),
+            }
             for element in self.form_spec.elements
         ]
 
@@ -111,8 +112,9 @@ class MultipleChoiceVisitor(
     ]:
         title, help_text = get_title_and_help(self.form_spec)
 
-        if isinstance(self.form_spec.elements, shared_type_defs.Autocompleter):
+        if isinstance(self.form_spec.elements, Autocompleter):
             elements = []
+            autocompleter = _to_vue_autocompleter(self.form_spec.elements)
         else:
             elements = [
                 shared_type_defs.MultipleChoiceElement(
@@ -121,6 +123,7 @@ class MultipleChoiceVisitor(
                 )
                 for element in self.form_spec.elements
             ]
+            autocompleter = None
 
         if self.form_spec.layout.value == MultipleChoiceExtendedLayout.dual_list or (
             self.form_spec.layout.value == MultipleChoiceExtendedLayout.auto and len(elements) > 15
@@ -131,9 +134,7 @@ class MultipleChoiceVisitor(
                     help=help_text,
                     elements=elements,
                     validators=build_vue_validators(compute_validators(self.form_spec)),
-                    autocompleter=self.form_spec.elements
-                    if isinstance(self.form_spec.elements, shared_type_defs.Autocompleter)
-                    else None,
+                    autocompleter=autocompleter,
                     i18n=self._get_i18n(),
                     show_toggle_all=self.form_spec.show_toggle_all,
                 ),
@@ -174,3 +175,22 @@ class MultipleChoiceVisitor(
     @override
     def _to_disk(self, parsed_value: _ParsedValueModel) -> list[str]:
         return [v["name"] for v in parsed_value]
+
+
+def _to_vue_autocompleter(autocompleter: Autocompleter) -> shared_type_defs.Autocompleter:
+    return shared_type_defs.Autocompleter(
+        data=shared_type_defs.AutocompleterData(
+            ident=autocompleter.data.ident,
+            params=shared_type_defs.AutocompleterParams(
+                show_independent_of_context=autocompleter.data.params.show_independent_of_context,
+                strict=autocompleter.data.params.strict,
+                escape_regex=autocompleter.data.params.escape_regex,
+                world=autocompleter.data.params.world,
+                context=autocompleter.data.params.context,
+                input_hint=autocompleter.data.params.input_hint,
+            ),
+        ),
+        fetch_method=shared_type_defs.FetchMethod(autocompleter.fetch_method.value)
+        if autocompleter.fetch_method
+        else None,
+    )

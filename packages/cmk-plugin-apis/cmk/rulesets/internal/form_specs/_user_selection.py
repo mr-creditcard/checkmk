@@ -6,10 +6,13 @@
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from enum import Enum
-from typing import NamedTuple
+from typing import NamedTuple, TypeAlias
 
-from cmk.ccc.user import UserId
 from cmk.rulesets.v1 import form_specs, Help, Label, Title
+
+# UserId is a str subclass in cmk.ccc.user. We define it here as TypeAlias to avoid
+# the dependency while maintaining compatibility with cmk.ccc.user.UserId.
+UserId: TypeAlias = str
 
 
 class LegacyFilter(NamedTuple):

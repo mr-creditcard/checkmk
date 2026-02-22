@@ -10,8 +10,8 @@ from typing import Any
 from cmk.gui.form_specs.unstable.cascading_single_choice_extended import (
     CascadingSingleChoiceElementExtended,
 )
-from cmk.gui.form_specs.unstable.single_choice_extended import SingleChoiceElementExtended
 from cmk.gui.form_specs.unstable.validators import ModelT
+from cmk.rulesets.internal.form_specs import SingleChoiceElementExtended
 from cmk.rulesets.v1 import Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

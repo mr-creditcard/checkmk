@@ -3,7 +3,15 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-from cmk.rulesets.internal.form_specs import ListExtended
+from cmk.rulesets.internal.form_specs import (
+    ListExtended,
+    MultipleChoiceElementExtended,
+    MultipleChoiceExtended,
+    MultipleChoiceExtendedLayout,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+    UserSelection,
+)
 
 from .binary_condition_choices import BinaryConditionChoices
 from .cascading_single_choice_extended import CascadingSingleChoiceExtended
@@ -17,17 +25,9 @@ from .legacy_valuespec import LegacyValueSpec
 from .list_of_strings import ListOfStrings
 from .list_unique_selection import ListUniqueSelection
 from .metric import MetricExtended
-from .multiple_choice import (
-    MultipleChoiceExtended,
-    MultipleChoiceExtendedLayout,
-)
 from .optional_choice import OptionalChoice
 from .passwordstore_password import PasswordStorePassword
 from .single_choice_editable import SingleChoiceEditable
-from .single_choice_extended import (
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-)
 from .string_autocompleter import (
     Autocompleter,
     AutocompleterData,
@@ -38,7 +38,6 @@ from .string_autocompleter import (
 from .time_picker import TimePicker
 from .time_specific import TimeSpecific
 from .two_column_dictionary import TwoColumnDictionary
-from .user_selection import UserSelection
 from .validators import not_empty
 
 __all__ = [
@@ -57,7 +56,7 @@ __all__ = [
     "ListOfStrings",
     "ListUniqueSelection",
     "MetricExtended",
-    "MultipleChoiceExtended",
+    "MultipleChoiceElementExtended",
     "MultipleChoiceExtended",
     "MultipleChoiceExtendedLayout",
     "not_empty",

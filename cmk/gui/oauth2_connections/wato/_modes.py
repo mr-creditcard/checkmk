@@ -15,13 +15,10 @@ from cmk.gui.config import Config
 from cmk.gui.exceptions import MKUserError
 from cmk.gui.form_specs import RawDiskData, serialize_data_for_frontend
 from cmk.gui.form_specs.unstable import (
-    MultipleChoiceExtended,
-    MultipleChoiceExtendedLayout,
     SingleChoiceElementExtended,
     SingleChoiceExtended,
     TwoColumnDictionary,
 )
-from cmk.gui.form_specs.unstable.multiple_choice import MultipleChoiceElementExtended
 from cmk.gui.form_specs.visitors.single_choice import SingleChoiceVisitor
 from cmk.gui.htmllib.html import html
 from cmk.gui.http import request
@@ -51,6 +48,11 @@ from cmk.gui.watolib.config_domain_name import ABCConfigDomain
 from cmk.gui.watolib.config_domains import ConfigDomainCore
 from cmk.gui.watolib.mode import mode_url, ModeRegistry, redirect, WatoMode
 from cmk.gui.watolib.passwords import load_passwords, remove_password
+from cmk.rulesets.internal.form_specs import (
+    MultipleChoiceElementExtended,
+    MultipleChoiceExtended,
+    MultipleChoiceExtendedLayout,
+)
 from cmk.rulesets.v1 import Help, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

@@ -107,6 +107,7 @@ py_library(
         "cmk/rulesets/internal/form_specs/_extended.py",
         "cmk/rulesets/internal/form_specs/_migrations.py",
         "cmk/rulesets/internal/form_specs/_preconfigured.py",
+        "cmk/rulesets/internal/form_specs/_user_selection.py",
         "cmk/rulesets/v1/__init__.py",
         "cmk/rulesets/v1/_localize.py",
         "cmk/rulesets/v1/form_specs/__init__.py",

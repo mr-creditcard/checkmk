@@ -4,14 +4,30 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 
 
-from ._extended import ListExtended
+from ._extended import (
+    ListExtended,
+    MultipleChoiceElementExtended,
+    MultipleChoiceExtended,
+    MultipleChoiceExtendedLayout,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from ._migrations import migrate_to_internal_proxy
 from ._preconfigured import InternalProxy, InternalProxySchema, OAuth2Connection
+from ._user_selection import LegacyFilter, UserSelection, UserSelectionFilter
 
 __all__ = [
     "InternalProxy",
     "InternalProxySchema",
-    "OAuth2Connection",
+    "LegacyFilter",
     "ListExtended",
     "migrate_to_internal_proxy",
+    "MultipleChoiceElementExtended",
+    "MultipleChoiceExtended",
+    "MultipleChoiceExtendedLayout",
+    "OAuth2Connection",
+    "SingleChoiceElementExtended",
+    "SingleChoiceExtended",
+    "UserSelection",
+    "UserSelectionFilter",
 ]

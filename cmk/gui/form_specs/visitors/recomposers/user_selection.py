@@ -6,15 +6,15 @@ from typing import Any
 
 from cmk.ccc.exceptions import MKGeneralException
 from cmk.ccc.user import UserId
-from cmk.gui.form_specs.unstable import (
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-)
 from cmk.gui.form_specs.unstable.legacy_converter import (
     TransformDataForLegacyFormatOrRecomposeFunction,
 )
-from cmk.gui.form_specs.unstable.user_selection import UserSelection
 from cmk.gui.userdb._user_selection import generate_wato_users_elements_function
+from cmk.rulesets.internal.form_specs import (
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+    UserSelection,
+)
 from cmk.rulesets.v1 import Title
 from cmk.rulesets.v1.form_specs import FormSpec
 

@@ -7,8 +7,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any
 
 from cmk.ccc.site import omd_site
-from cmk.gui.form_specs.unstable import MultipleChoiceExtended
-from cmk.gui.form_specs.unstable.multiple_choice import MultipleChoiceElementExtended
+from cmk.rulesets.internal.form_specs import MultipleChoiceElementExtended, MultipleChoiceExtended
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

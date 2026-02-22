@@ -8,15 +8,15 @@ from typing import Any
 
 from cmk.ccc.exceptions import MKGeneralException
 from cmk.gui.form_specs import DefaultValue as VueDefaultValue
-from cmk.gui.form_specs.unstable import (
-    not_empty,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-)
+from cmk.gui.form_specs.unstable import not_empty
 from cmk.gui.form_specs.unstable.legacy_converter import (
     SimplePassword,
     TransformDataForLegacyFormatOrRecomposeFunction,
     Tuple,
+)
+from cmk.rulesets.internal.form_specs import (
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
 )
 from cmk.rulesets.v1 import Help, Label, Title
 from cmk.rulesets.v1.form_specs import (

@@ -36,8 +36,6 @@ from cmk.gui.form_specs.generators.regex_utils import create_regex
 from cmk.gui.form_specs.unstable import (
     CascadingSingleChoiceExtended,
     LegacyValueSpec,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
 )
 from cmk.gui.form_specs.unstable.cascading_single_choice_extended import (
     CascadingSingleChoiceElementExtended,
@@ -74,6 +72,10 @@ from cmk.gui.watolib.hosts_and_folders import folder_preserving_link
 from cmk.gui.watolib.mode import ModeRegistry, redirect, WatoMode
 from cmk.gui.watolib.objref import ObjectRefType
 from cmk.gui.watolib.paths import wato_var_dir
+from cmk.rulesets.internal.form_specs import (
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from cmk.rulesets.v1 import Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoiceElement,

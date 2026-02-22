@@ -14,11 +14,7 @@ from cmk.gui.breadcrumb import Breadcrumb
 from cmk.gui.config import Config
 from cmk.gui.exceptions import MKUserError
 from cmk.gui.form_specs import RawDiskData, serialize_data_for_frontend
-from cmk.gui.form_specs.unstable import (
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-    TwoColumnDictionary,
-)
+from cmk.gui.form_specs.unstable import TwoColumnDictionary
 from cmk.gui.form_specs.visitors.single_choice import SingleChoiceVisitor
 from cmk.gui.htmllib.html import html
 from cmk.gui.http import request
@@ -52,6 +48,8 @@ from cmk.rulesets.internal.form_specs import (
     MultipleChoiceElementExtended,
     MultipleChoiceExtended,
     MultipleChoiceExtendedLayout,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
 )
 from cmk.rulesets.v1 import Help, Message, Title
 from cmk.rulesets.v1.form_specs import (

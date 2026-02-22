@@ -16,18 +16,14 @@ from cmk.gui.form_specs.unstable import (
     DictionaryExtended,
     Labels,
     LegacyValueSpec,
-    ListExtended,
     ListOfStrings,
     ListUniqueSelection,
     MetricExtended,
-    MultipleChoiceExtended,
     OptionalChoice,
     SingleChoiceEditable,
-    SingleChoiceExtended,
     StringAutocompleter,
     TimePicker,
     TimeSpecific,
-    UserSelection,
 )
 from cmk.gui.form_specs.unstable.legacy_converter import (
     SimplePassword,
@@ -64,7 +60,14 @@ from cmk.gui.form_specs.visitors.recomposers import (
     recompose_time_period,
     recompose_user_selection,
 )
-from cmk.rulesets.internal.form_specs import InternalProxy, OAuth2Connection
+from cmk.rulesets.internal.form_specs import (
+    InternalProxy,
+    ListExtended,
+    MultipleChoiceExtended,
+    OAuth2Connection,
+    SingleChoiceExtended,
+    UserSelection,
+)
 from cmk.rulesets.v1.form_specs import (
     BooleanChoice,
     CascadingSingleChoice,

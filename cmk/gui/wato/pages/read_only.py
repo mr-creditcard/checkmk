@@ -22,7 +22,7 @@ from cmk.gui.form_specs import (
 )
 from cmk.gui.form_specs.generators.alternative_utils import enable_deprecated_alternative
 from cmk.gui.form_specs.generators.dict_to_catalog import create_flat_catalog_from_dictionary
-from cmk.gui.form_specs.unstable import LegacyValueSpec, ListExtended, UserSelection
+from cmk.gui.form_specs.unstable import LegacyValueSpec
 from cmk.gui.form_specs.unstable.legacy_converter import (
     TransformDataForLegacyFormatOrRecomposeFunction,
     Tuple,
@@ -38,6 +38,7 @@ from cmk.gui.utils.flashed_messages import flash
 from cmk.gui.valuespec import AbsoluteDate
 from cmk.gui.watolib.mode import mode_url, ModeRegistry, redirect, WatoMode
 from cmk.gui.watolib.utils import multisite_dir
+from cmk.rulesets.internal.form_specs import ListExtended, UserSelection
 from cmk.rulesets.v1 import Help, Label, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

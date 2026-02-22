@@ -47,12 +47,7 @@ from cmk.gui.form_specs import (
 )
 from cmk.gui.form_specs.generators.alternative_utils import enable_deprecated_alternative
 from cmk.gui.form_specs.generators.dict_to_catalog import create_flat_catalog_from_dictionary
-from cmk.gui.form_specs.unstable import (
-    LegacyValueSpec,
-    ListExtended,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-)
+from cmk.gui.form_specs.unstable import LegacyValueSpec
 from cmk.gui.form_specs.unstable.legacy_converter import (
     SimplePassword,
     TransformDataForLegacyFormatOrRecomposeFunction,
@@ -89,6 +84,11 @@ from cmk.gui.utils.urls import (
 )
 from cmk.gui.utils.user_errors import user_errors
 from cmk.gui.valuespec import AbsoluteDirname, ID, SchedulePeriod
+from cmk.rulesets.internal.form_specs import (
+    ListExtended,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     BooleanChoice,

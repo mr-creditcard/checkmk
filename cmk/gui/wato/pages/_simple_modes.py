@@ -41,7 +41,6 @@ from cmk.gui.form_specs.unstable import (
     Catalog,
     CommentTextArea,
     LegacyValueSpec,
-    SingleChoiceExtended,
 )
 from cmk.gui.htmllib.html import html
 from cmk.gui.http import request
@@ -79,6 +78,7 @@ from cmk.gui.watolib.config_domain_name import ABCConfigDomain
 from cmk.gui.watolib.hosts_and_folders import make_action_link
 from cmk.gui.watolib.mode import mode_url, redirect, WatoMode
 from cmk.gui.watolib.simple_config_file import WatoSimpleConfigFile
+from cmk.rulesets.internal.form_specs import SingleChoiceExtended
 from cmk.rulesets.v1 import form_specs, Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     DictElement,

@@ -5,7 +5,7 @@
 from typing import Any, Literal
 
 from cmk.ccc.exceptions import MKGeneralException
-from cmk.gui.form_specs.unstable import SingleChoiceElementExtended, SingleChoiceExtended
+from cmk.rulesets.internal.form_specs import SingleChoiceElementExtended, SingleChoiceExtended
 from cmk.rulesets.v1 import Title
 from cmk.rulesets.v1.form_specs import FormSpec, HostState
 

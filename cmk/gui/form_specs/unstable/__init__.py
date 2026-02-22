@@ -3,16 +3,6 @@
 # This file is part of Checkmk (https://checkmk.com). It is subject to the terms and
 # conditions defined in the file COPYING, which is part of this source code package.
 
-from cmk.rulesets.internal.form_specs import (
-    ListExtended,
-    MultipleChoiceElementExtended,
-    MultipleChoiceExtended,
-    MultipleChoiceExtendedLayout,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-    UserSelection,
-)
-
 from .binary_condition_choices import BinaryConditionChoices
 from .cascading_single_choice_extended import CascadingSingleChoiceExtended
 from .catalog import Catalog, Topic, TopicElement, TopicGroup
@@ -52,19 +42,13 @@ __all__ = [
     "DictionaryExtended",
     "Labels",
     "LegacyValueSpec",
-    "ListExtended",
     "ListOfStrings",
     "ListUniqueSelection",
     "MetricExtended",
-    "MultipleChoiceElementExtended",
-    "MultipleChoiceExtended",
-    "MultipleChoiceExtendedLayout",
     "not_empty",
     "PasswordStorePassword",
     "OptionalChoice",
     "SingleChoiceEditable",
-    "SingleChoiceElementExtended",
-    "SingleChoiceExtended",
     "Source",
     "Autocompleter",
     "AutocompleterData",
@@ -75,6 +59,5 @@ __all__ = [
     "TimeSpecific",
     "TwoColumnDictionary",
     "Topic",
-    "UserSelection",
     "World",
 ]

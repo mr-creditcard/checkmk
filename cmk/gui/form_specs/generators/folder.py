@@ -4,12 +4,12 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 from collections.abc import Callable, Sequence
 
-from cmk.gui.form_specs.unstable import (
-    SingleChoiceEditable,
+from cmk.gui.form_specs.unstable import SingleChoiceEditable
+from cmk.gui.watolib.hosts_and_folders import folder_tree
+from cmk.rulesets.internal.form_specs import (
     SingleChoiceElementExtended,
     SingleChoiceExtended,
 )
-from cmk.gui.watolib.hosts_and_folders import folder_tree
 from cmk.rulesets.v1 import Help, Label, Title
 from cmk.rulesets.v1.form_specs import DefaultValue
 from cmk.shared_typing.configuration_entity import ConfigEntityType

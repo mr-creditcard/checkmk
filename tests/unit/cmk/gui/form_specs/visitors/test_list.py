@@ -18,10 +18,10 @@ from cmk.gui.form_specs import (
     RawFrontendData,
     VisitorOptions,
 )
-from cmk.gui.form_specs.unstable import ListExtended
 from cmk.gui.form_specs.visitors.single_choice import (
     SingleChoiceVisitor,
 )
+from cmk.rulesets.internal.form_specs import ListExtended
 from cmk.rulesets.v1 import Title
 from cmk.rulesets.v1.form_specs import (
     DefaultValue,

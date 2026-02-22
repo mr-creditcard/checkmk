@@ -5,7 +5,7 @@
 from typing import Any
 
 from cmk.ccc.exceptions import MKGeneralException
-from cmk.gui.form_specs.unstable import MultipleChoiceExtended, MultipleChoiceExtendedLayout
+from cmk.rulesets.internal.form_specs import MultipleChoiceExtended, MultipleChoiceExtendedLayout
 from cmk.rulesets.v1.form_specs import FormSpec, MultipleChoice
 
 

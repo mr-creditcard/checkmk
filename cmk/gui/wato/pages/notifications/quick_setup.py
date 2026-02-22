@@ -19,15 +19,10 @@ from cmk.gui.form_specs.unstable import (
     ConditionChoices,
     DictionaryExtended,
     Labels,
-    ListExtended,
     ListOfStrings,
     ListUniqueSelection,
-    MultipleChoiceExtended,
-    MultipleChoiceExtendedLayout,
     not_empty,
     SingleChoiceEditable,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
     TwoColumnDictionary,
     World,
 )
@@ -93,7 +88,14 @@ from cmk.gui.watolib.notifications import NotificationRuleConfigFile
 from cmk.gui.watolib.timeperiods import load_timeperiods
 from cmk.gui.watolib.user_scripts import load_notification_scripts, NotificationUserScripts
 from cmk.gui.watolib.users import notification_script_choices
-from cmk.rulesets.internal.form_specs import MultipleChoiceElementExtended
+from cmk.rulesets.internal.form_specs import (
+    ListExtended,
+    MultipleChoiceElementExtended,
+    MultipleChoiceExtended,
+    MultipleChoiceExtendedLayout,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

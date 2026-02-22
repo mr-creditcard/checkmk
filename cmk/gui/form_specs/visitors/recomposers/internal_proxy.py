@@ -8,14 +8,17 @@ from typing import Any, Literal
 from urllib.parse import urlparse
 
 from cmk.ccc.exceptions import MKGeneralException
-from cmk.gui.form_specs.unstable import SingleChoiceElementExtended, SingleChoiceExtended
 from cmk.gui.form_specs.unstable.legacy_converter import (
     TransformDataForLegacyFormatOrRecomposeFunction,
 )
 from cmk.gui.form_specs.visitors import DefaultValue as FrontendDefaultValue
 from cmk.gui.watolib import config_domains
 from cmk.gui.watolib.password_store import _transform_password_back as transform_password_to_disk
-from cmk.rulesets.internal.form_specs import InternalProxy
+from cmk.rulesets.internal.form_specs import (
+    InternalProxy,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     CascadingSingleChoice,

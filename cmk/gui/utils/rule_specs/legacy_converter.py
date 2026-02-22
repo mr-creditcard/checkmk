@@ -29,13 +29,9 @@ from cmk.gui.exceptions import MKUserError
 from cmk.gui.form_specs.unstable import (
     DictionaryExtended,
     LegacyValueSpec,
-    ListExtended,
     ListOfStrings,
     SingleChoiceEditable,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
     StringAutocompleter,
-    UserSelection,
 )
 from cmk.gui.form_specs.unstable.legacy_converter import SimplePassword, Tuple
 from cmk.gui.form_specs.unstable.passwordstore_password import PasswordStorePassword
@@ -77,6 +73,12 @@ from cmk.gui.watolib.rulespecs import (
 )
 from cmk.rulesets import internal as ruleset_api_internal
 from cmk.rulesets import v1 as ruleset_api_v1
+from cmk.rulesets.internal.form_specs import (
+    ListExtended,
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+    UserSelection,
+)
 from cmk.shared_typing.configuration_entity import ConfigEntityType
 from cmk.shared_typing.vue_formspec_components import ListOfStringsLayout
 from cmk.utils.http_proxy_config import ProxyAuthSpec, ProxyConfigSpec

@@ -15,11 +15,12 @@ from cmk.gui.form_specs import (
     RawFrontendData,
     VisitorOptions,
 )
-from cmk.gui.form_specs.unstable import ListUniqueSelection, SingleChoiceElementExtended
+from cmk.gui.form_specs.unstable import ListUniqueSelection
 from cmk.gui.form_specs.unstable.list_unique_selection import UniqueSingleChoiceElement
 from cmk.gui.form_specs.visitors.single_choice import (
     SingleChoiceVisitor,
 )
+from cmk.rulesets.internal.form_specs import SingleChoiceElementExtended
 from cmk.rulesets.v1 import Title
 
 

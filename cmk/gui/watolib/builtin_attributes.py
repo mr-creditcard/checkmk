@@ -25,11 +25,7 @@ from cmk.gui.form_specs.generators.setup_site_choice import create_setup_site_ch
 from cmk.gui.form_specs.generators.snmp_credentials import create_snmp_credentials
 from cmk.gui.form_specs.unstable import labels as fs_labels
 from cmk.gui.form_specs.unstable import ListOfStrings as FSListOfStrings
-from cmk.gui.form_specs.unstable import (
-    OptionalChoice,
-    SingleChoiceElementExtended,
-    SingleChoiceExtended,
-)
+from cmk.gui.form_specs.unstable import OptionalChoice
 from cmk.gui.form_specs.unstable.legacy_converter import (
     TransformDataForLegacyFormatOrRecomposeFunction,
 )
@@ -90,6 +86,10 @@ from cmk.gui.watolib.host_attributes import (
 from cmk.gui.watolib.hosts_and_folders import Host
 from cmk.gui.watolib.tags import TagConfigFile
 from cmk.gui.watolib.translation import HostnameTranslation
+from cmk.rulesets.internal.form_specs import (
+    SingleChoiceElementExtended,
+    SingleChoiceExtended,
+)
 from cmk.rulesets.v1 import Help, Label, Message, Title
 from cmk.rulesets.v1.form_specs import (
     InvalidElementMode,

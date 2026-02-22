@@ -4,9 +4,9 @@
 # conditions defined in the file COPYING, which is part of this source code package.
 from collections.abc import Sequence
 
-from cmk.gui.form_specs.unstable import SingleChoiceElementExtended, SingleChoiceExtended
 from cmk.gui.i18n import translate_to_current_language
 from cmk.gui.watolib.timeperiods import load_timeperiods
+from cmk.rulesets.internal.form_specs import SingleChoiceElementExtended, SingleChoiceExtended
 from cmk.rulesets.v1 import Help, Title
 from cmk.utils.timeperiod import TimeperiodName
 

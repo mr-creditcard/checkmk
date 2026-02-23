@@ -8,7 +8,7 @@
 
 from cmk.agent_based.legacy.v0_unstable import LegacyCheckDefinition
 from cmk.agent_based.v2 import SNMPTree, StringTable
-from cmk.legacy_includes.cisco_ucs import DETECT, MAP_OPERABILITY, MAP_PRESENCE
+from cmk.plugins.cisco.lib_ucs import DETECT, MAP_OPERABILITY, MAP_PRESENCE
 
 check_info = {}
 

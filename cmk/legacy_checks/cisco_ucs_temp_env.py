@@ -8,8 +8,8 @@
 
 from cmk.agent_based.legacy.v0_unstable import LegacyCheckDefinition
 from cmk.agent_based.v2 import SNMPTree
-from cmk.legacy_includes.cisco_ucs import DETECT
 from cmk.legacy_includes.temperature import check_temperature
+from cmk.plugins.cisco.lib_ucs import DETECT
 
 check_info = {}
 

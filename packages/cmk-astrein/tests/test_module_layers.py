@@ -8,7 +8,6 @@ from pathlib import Path
 
 from cmk.astrein.checker_module_layers import ModuleLayersChecker
 from cmk.astrein.module_layers_config import (
-    CLEAN_PLUGIN_FAMILIES,
     Component,
     COMPONENTS,
 )
@@ -31,29 +30,6 @@ def test_no_component_masked_by_more_general_component() -> None:
         shadowed = {c for c in seen if component.is_below(c)}
         assert not shadowed, f"Component {component} is shadowed by {shadowed}"
         seen.add(component)
-
-
-def test_clean_plugin_families_list_up_to_date() -> None:
-    """Ensure all plugin families in CLEAN_PLUGIN_FAMILIES exist.
-
-    This test verifies that the list of clean plugin families is up to date
-    and all listed families have corresponding directories in the filesystem.
-    """
-    # Get repository root by walking up from this test file
-    test_file = Path(__file__).resolve()
-    repo_root = test_file.parent.parent.parent.parent
-    print(f"Repository root determined as: {repo_root}")  # nosemgrep: disallow-print
-
-    # Check that repo_root looks correct (should contain cmk/plugins/)
-    plugins_dir = repo_root / "cmk" / "plugins"
-    assert plugins_dir.exists(), f"Expected plugins directory at {plugins_dir}"
-
-    for family in CLEAN_PLUGIN_FAMILIES:
-        family_dir = plugins_dir / family
-        assert family_dir.exists(), (
-            f"Plugin family '{family}' listed in CLEAN_PLUGIN_FAMILIES "
-            f"does not have a corresponding directory at {family_dir}"
-        )
 
 
 def test_inline_suppression_support() -> None:

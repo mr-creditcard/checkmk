@@ -127,7 +127,6 @@ CLEAN_PLUGIN_FAMILIES = {
     "fritzbox",
     # "gcp",  # : Edition
     "gerrit",
-    "graylog",
     "hivemanager_ng",
     "hivemanager",
     "hp_msa",

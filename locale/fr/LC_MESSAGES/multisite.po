@@ -71640,7 +71640,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-msgid "The key / certificate already exists (key: %d, description: %s)"
+msgid "The key / certificate already exists (key: %s, description: %s)"
 msgstr "La paire de clés existe déjà (Clé : %d, Description : %s)"
 
 msgid "The key file is invalid or the password is wrong."

@@ -66978,7 +66978,7 @@ msgstr ""
 "ます。"
 
 #, fuzzy, python-format
-msgid "The key / certificate already exists (key: %d, description: %s)"
+msgid "The key / certificate already exists (key: %s, description: %s)"
 msgstr "キー/証明書はすでに存在します (キー: %d、 説明: %s)"
 
 msgid "The key file is invalid or the password is wrong."

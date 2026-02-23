@@ -71289,7 +71289,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-msgid "The key / certificate already exists (key: %d, description: %s)"
+msgid "The key / certificate already exists (key: %s, description: %s)"
 msgstr "Cheia / certificatul există deja (Cheie: %d, Descriere: %s)"
 
 msgid "The key file is invalid or the password is wrong."

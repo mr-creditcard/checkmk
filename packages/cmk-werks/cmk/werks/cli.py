@@ -724,7 +724,7 @@ def main_new(args: argparse.Namespace) -> None:
     if args.non_interactive:
         sys.stdout.write("Skipping Meisterwerk in non-interactive mode.\n")
         if get_config().create_commit:
-            git_add(werk)
+            _git_add(werk_path)
             git_commit(werk, args.custom_files)
     else:
         edit_werk(werk_path, args.custom_files)

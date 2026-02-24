@@ -189,7 +189,10 @@ STAGES:
       DIR: "tests"
       COMMAND: |
           set +e
-          bazel test --test_verbose_timeout_warnings \
+          bazel test \
+              --jobs=4 \
+              --local_resources=cpu=4 \
+              --test_verbose_timeout_warnings \
               --test_env=TZ="America/Chicago" \
               --test_tag_filters=-component \
               --keep_going \
@@ -214,7 +217,10 @@ STAGES:
         BAZEL_TEST_LOGS_DEST: "../results/cpp"
       COMMAND: |
         set +e
-        bazel test --test_verbose_timeout_warnings \
+        bazel test \
+            --jobs=4 \
+            --local_resources=cpu=4 \
+            --test_verbose_timeout_warnings \
             --test_env=TZ="America/Chicago" \
             --test_tag_filters=cpp \
             --keep_going \
@@ -449,6 +455,8 @@ STAGES:
           set +e
           bazel \
              build \
+             --jobs=4 \
+             --local_resources=cpu=4 \
              --keep_going \
              --aspects=//bazel/tools:aspects.bzl%mypy_aspect \
              --output_groups=mypy \

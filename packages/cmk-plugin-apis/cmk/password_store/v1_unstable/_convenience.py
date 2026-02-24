@@ -94,10 +94,12 @@ def resolve_secret_option(args: argparse.Namespace, option_name: str) -> Secret[
     Raises:
         TypeError: If neither of the two options where specified.
 
-    Example usage (assuming you created the options using :func:`parser_add_secret_option`):
+    Example::
 
         #!/usr/bin/env python3
         ...
+        # This assumes you created the options using
+        # parser_add_secret_option(..., long=f"--{OPTION_NAME}", ...)
         args = parser.parse_args()
         secret = resolve_secret_option(args, OPTION_NAME)
 

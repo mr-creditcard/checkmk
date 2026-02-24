@@ -6,7 +6,6 @@ include ../defines.make
 include ../artifacts.make
 
 AGENTS_DIR := $(REPO_PATH)/agents
-SPECIAL_AGENTS_DIR := $(REPO_PATH)/cmk/special_agents
 RPM_VERSION := $(subst -,_,$(VERSION))
 NEW_VERSION_MAJOR := $(shell echo $(NEW_VERSION) | sed 's/\([0-9]*\.[0-9]*\)\.\(.*\)/\1/g')
 NAME := check-mk-agent
@@ -71,9 +70,27 @@ setversion:
 	-e 's/^__version__ = ".*/__version__ = "$(NEW_VERSION)"/' \
 	-e 's/^$$CMK_VERSION=".*/$$CMK_VERSION="$(NEW_VERSION)"/' \
 	-e 's/^$$CMK_VERSION = ".*/$$CMK_VERSION = "$(NEW_VERSION)"/' \
-	$(shell find plugins/ -maxdepth 1 -type f) \
-	$(shell find $(REPO_PATH)/cmk/plugins -path "*/cmk/plugins/*/agents/*" -type f) \
-	$(shell find $(REPO_PATH)/packages/cmk-plugins/cmk/plugins -type f) ; \
+	$(shell find plugins/ -maxdepth 1 -type f) ; \
+	#
+	# This really has to stop. But for now we need to make it work, so this is what is going on:
+	# Plugin families in the cmk.plugins _namespace_ can contain windows *and* linux agent plugins,
+	# special agents and active checks. While we know their entry points, the implementation
+	# (including the version definition) could be anywhere, so we have to check *a lot* of files.
+	# We combine the sed expressions for linux and windows plugins, and run them on these 3 folders.
+	# To limit the number of files, we use grep rather than find (otherwise we'll hit the
+	# limit on the length of the argument list).
+	sed -i \
+	-e 's/$$CMK_VERSION = ".*/$$CMK_VERSION = "$(NEW_VERSION)"\r/' \
+	-e 's/\$$CMK_VERSION = ".*/\$$CMK_VERSION = "$(NEW_VERSION)"\r/' \
+	-e 's/^set CMK_VERSION *=".*/set CMK_VERSION="$(NEW_VERSION)"\r/' \
+	-e 's/^Const CMK_VERSION = ".*/Const CMK_VERSION = "$(NEW_VERSION)"\r/' \
+	-e 's/^CMK_VERSION=".*/CMK_VERSION="$(NEW_VERSION)"/' \
+	-e 's/^__version__ = ".*/__version__ = "$(NEW_VERSION)"/' \
+	-e 's/^$$CMK_VERSION=".*/$$CMK_VERSION="$(NEW_VERSION)"/' \
+	-e 's/^$$CMK_VERSION = ".*/$$CMK_VERSION = "$(NEW_VERSION)"/' \
+	$(shell grep -rl -e CMK_VERSION -e __version__ $(REPO_PATH)/cmk/plugins) \
+	$(shell grep -rl -e CMK_VERSION -e __version__ $(REPO_PATH)/packages/cmk-plugins/cmk/plugins) \
+	$(shell grep -rl -e CMK_VERSION -e __version__ $(REPO_PATH)/non-free/packages/cmk-plugins-nonfree/cmk/plugins) ; \
 	sed -i 's/say "Version: .*"/say "Version: $(NEW_VERSION)"/' check_mk_agent.openvms
 	sed -i 's/echo "Version: [0-9.a-z-]*"/echo "Version: $(NEW_VERSION)"/g' \
 	    check_mk_agent.aix \
@@ -85,9 +102,6 @@ setversion:
 	    check_mk_agent.openbsd \
 	    check_mk_agent.openwrt \
 	    check_mk_agent.solaris
-	sed -i 's/__version__ = \"[0-9.a-z-]*\"/__version__ = \"$(NEW_VERSION)\"/g' \
-		$(shell find $(SPECIAL_AGENTS_DIR) -name "*agent_*.py" -type f) \
-		$(shell find $(REPO_PATH)/cmk/plugins -name "agent*.py" -type f)
 	sed -i "s/^#define CMK_WIN_AGENT_VERSION .*/#define CMK_WIN_AGENT_VERSION \"$(NEW_VERSION)\"/" wnx/include/common/wnx_version.h
 	sed -i 's/std::wstring_view kAgentProductName.*;/std::wstring_view kAgentProductName{L"Checkmk Agent $(NEW_VERSION_MAJOR)"};/' wnx/include/wnx/install_api.h
 	sed -i 's/define ProductName = "Checkmk Agent [^"]*"/define ProductName = "Checkmk Agent $(NEW_VERSION_MAJOR)"/' wnx/install/version.wxi

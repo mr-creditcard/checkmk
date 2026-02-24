@@ -55,6 +55,7 @@ class PageUnifiedSearch(AjaxPage):
                 query=query,
                 counts=search_count,
                 results=search_results,
+                messages=[],
             )
         )
 

@@ -11,7 +11,6 @@ from collections.abc import Mapping
 import pytest
 
 from cmk.legacy_checks import azure_sites
-from cmk.legacy_includes import azure
 from cmk.plugins.azure.lib import parse_resources, Resource
 
 
@@ -213,7 +212,7 @@ def test_check_azure_sites_spo_solutions_fa1(
             0.0,
         )
     }
-    monkeypatch.setattr(azure, "get_value_store", lambda: value_store)
+    monkeypatch.setattr(azure_sites, "get_value_store", lambda: value_store)
 
     results = list(azure_sites.check_azure_sites("spo-solutions-fa1", params, parsed_data))
 
@@ -266,7 +265,7 @@ def test_check_azure_sites_zcldazwamonseas_as(
             0.0,
         ),
     }
-    monkeypatch.setattr(azure, "get_value_store", lambda: value_store)
+    monkeypatch.setattr(azure_sites, "get_value_store", lambda: value_store)
 
     results = list(azure_sites.check_azure_sites("zcldazwamonseas-as", params, parsed_data))
 

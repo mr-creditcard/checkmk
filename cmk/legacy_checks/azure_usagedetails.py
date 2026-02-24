@@ -15,8 +15,10 @@ from cmk.agent_based.legacy.v0_unstable import (
     LegacyCheckResult,
     LegacyDiscoveryResult,
 )
-from cmk.agent_based.v2 import StringTable
-from cmk.legacy_includes.azure import get_data_or_go_stale
+from cmk.agent_based.v2 import (
+    IgnoreResultsError,
+    StringTable,
+)
 from cmk.plugins.azure.lib import parse_resources
 
 check_info = {}
@@ -48,10 +50,16 @@ def parse_azure_usagedetails(string_table: StringTable) -> Section:
     return parsed
 
 
+def _get_data_or_go_stale[D](item: str, section: Mapping[str, D]) -> D:
+    if resource := section.get(item):
+        return resource
+    raise IgnoreResultsError("Data not present at the moment")
+
+
 def check_azure_usagedetails(
     item: str, params: Mapping[str, object], section: Section
 ) -> LegacyCheckResult:
-    data = get_data_or_go_stale(item, section)
+    data = _get_data_or_go_stale(item, section)
     for currency, amount in list(data.get("costs", {}).items()):
         levels = params.get("levels")
         yield check_levels(

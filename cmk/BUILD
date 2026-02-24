@@ -21,7 +21,6 @@ REQUIRED_EXTERNAL_DEPS = [
     "botocore",
     "cryptography",
     "docstring-parser",
-    "exchangelib",  # missing wheel
     "fastapi",
     "feedparser",
     "fido2",
@@ -103,82 +102,11 @@ REQUIRED_EXTERNAL_DEPS = [
 ]
 
 filegroup(
-    name = "checkman_free",
-    srcs = glob(
-        [
-            "**/checkman/**",
-        ],
-        exclude = [
-            "**/OWNERS",
-            "**/checkman/nonfree/**",
-        ],
-    ),
-)
-
-filegroup(
-    name = "checkman_edition_specific",
-    srcs = select({
-        "@cmk//edition:cloud": glob(
-            [
-                "**/checkman/nonfree/cloud/**",
-                "**/checkman/nonfree/ultimate/**",
-                "**/checkman/nonfree/pro/**",
-            ],
-            allow_empty = True,
-            exclude = ["**/OWNERS"],
-        ),
-        "@cmk//edition:community": [],
-        "@cmk//edition:pro": glob(
-            [
-                "**/checkman/nonfree/pro/**",
-            ],
-            allow_empty = True,
-            exclude = ["**/OWNERS"],
-        ),
-        "@cmk//edition:ultimate": glob(
-            [
-                "**/checkman/nonfree/ultimate/**",
-                "**/checkman/nonfree/pro/**",
-            ],
-            allow_empty = True,
-            exclude = ["**/OWNERS"],
-        ),
-        "@cmk//edition:ultimatemt": glob(
-            [
-                "**/checkman/nonfree/ultimatemt/**",
-                "**/checkman/nonfree/ultimate/**",
-                "**/checkman/nonfree/pro/**",
-            ],
-            allow_empty = True,
-            exclude = ["**/OWNERS"],
-        ),
-    }),
-)
-
-filegroup(
-    name = "libexec",
-    srcs = glob(
-        [
-            "**/libexec/*",
-        ],
-    ),
-    visibility = ["//omd:__subpackages__"],
-)
-
-filegroup(
     name = "miscellaneous",
     srcs = [
         "gui/wsgi/applications/index.wsgi",
         "//cmk/utils/werks/announce/templates:j2_templates",
     ],
-)
-
-filegroup(
-    name = "agents",
-    srcs = glob(
-        include = ["plugins/**/agents/**/*"],
-        exclude = ["plugins/**/agents/**/*.py"],
-    ),
 )
 
 CMK_PACKAGES = [
@@ -250,7 +178,7 @@ py_library(
             "**/community/**",
             "**/nonfree/**",
         ],
-    ),
+    ) + ["//cmk/plugins:cmk_plugins_logwatch_srcs"],
     data = ["gui/wsgi/applications/index.wsgi"],
     imports = [".."],
     visibility = ["//:__subpackages__"],
@@ -265,6 +193,7 @@ py_library(
         "//cmk/notification_plugins:cmk_notification_plugins",
         "//cmk/piggyback:backend",
         "//cmk/piggyback:hub",
+        "//cmk/plugins:cmk_plugins",
         "//cmk/product_usage:cmk_product_usage",
         "//cmk/server_side_calls_backend:cmk_server_side_calls_backend",
         "//cmk/utils:cmk_utils",
@@ -282,7 +211,10 @@ py_library(
     ),
     imports = [".."],
     visibility = ["//:__subpackages__"],
-    deps = [":cmk_cmk"] + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
+    deps = [
+        ":cmk_cmk",
+        "//cmk/plugins:cmk_plugins_community",
+    ] + [requirement(dep) for dep in REQUIRED_EXTERNAL_DEPS],
 )
 
 py_library(
@@ -298,13 +230,14 @@ py_library(
             "**/nonfree/**/ultimate/**",
             "**/nonfree/**/ultimatemt/**",
         ],
-    ),
+    ) + ["//cmk/plugins:cmk_plugins_robotmk_nonfree_srcs"],
     imports = [".."],
     visibility = ["//:__subpackages__"],
     deps = [
         ":cmk_cmk",
         ":cmk_community",
         "//cmk/core_client:cmk_core_client_pro",
+        "//cmk/plugins:cmk_plugins_pro",
         "//cmk/utils:cmk_utils_pro",
     ] + select({
         "@//:gpl+nonfree_repo": [
@@ -326,13 +259,14 @@ py_library(
     srcs = glob(
         include = ["**/nonfree/**/ultimate/**/*.py"],
         allow_empty = True,
-    ),
+    ) + ["//cmk/plugins:cmk_plugins_otel_nonfree_srcs"],
     imports = [".."],
     visibility = ["//:__subpackages__"],
     deps = [
         ":cmk_cmk",
         ":cmk_community",
         ":cmk_pro",
+        "//cmk/plugins:cmk_plugins_ultimate",
         "//cmk/utils:cmk_utils_ultimate",
     ] + select({
         "@//:gpl+nonfree_repo": [
@@ -357,6 +291,7 @@ py_library(
         ":cmk_community",
         ":cmk_pro",
         ":cmk_ultimate",
+        "//cmk/plugins:cmk_plugins_cloud",
         "//cmk/utils:cmk_utils_cloud",
     ] + select({
         "@//:gpl+nonfree_repo": [
@@ -386,6 +321,7 @@ py_library(
         ":cmk_community",
         ":cmk_pro",
         ":cmk_ultimate",
+        "//cmk/plugins:cmk_plugins_ultimatemt",
         "//cmk/utils:cmk_utils_ultimatemt",
     ] + select({
         "@//:gpl+nonfree_repo": [
@@ -423,6 +359,8 @@ py_wheel(
             ":cmk_ultimate",
             "//cmk/core_client:cmk_core_client_cloud",
             "//cmk/core_client:cmk_core_client_pro",
+            "//cmk/plugins:checkman_cloud",
+            "//cmk/plugins:cmk_plugins_cloud",
             "//cmk/utils:cmk_utils_cloud",
             "//cmk/utils:cmk_utils_pro",
             "//non-free/packages/cmc-protocols:py_config_proto",
@@ -432,12 +370,16 @@ py_wheel(
         "@cmk//edition:community": [
             ":cmk_community",
             "//cmk/core_client:cmk_core_client_community",
+            "//cmk/plugins:checkman_community",
+            "//cmk/plugins:cmk_plugins_community",
             "//cmk/utils:cmk_utils_community",
         ],
         "@cmk//edition:pro": [
             ":cmk_community",
             ":cmk_pro",
             "//cmk/core_client:cmk_core_client_pro",
+            "//cmk/plugins:checkman_pro",
+            "//cmk/plugins:cmk_plugins_pro",
             "//cmk/utils:cmk_utils_pro",
             "//non-free/packages/cmc-protocols:py_config_proto",
             "//non-free/packages/cmc-protocols:py_cycletime_proto",
@@ -449,6 +391,8 @@ py_wheel(
             ":cmk_ultimate",
             "//cmk/core_client:cmk_core_client_pro",
             "//cmk/core_client:cmk_core_client_ultimate",
+            "//cmk/plugins:checkman_ultimate",
+            "//cmk/plugins:cmk_plugins_ultimate",
             "//cmk/utils:cmk_utils_pro",
             "//cmk/utils:cmk_utils_ultimate",
             "//non-free/packages/cmc-protocols:py_config_proto",
@@ -463,6 +407,8 @@ py_wheel(
             "//cmk/core_client:cmk_core_client_pro",
             "//cmk/core_client:cmk_core_client_ultimate",
             "//cmk/core_client:cmk_core_client_ultimatemt",
+            "//cmk/plugins:checkman_ultimatemt",
+            "//cmk/plugins:cmk_plugins_ultimatemt",
             "//cmk/utils:cmk_utils_pro",
             "//cmk/utils:cmk_utils_ultimate",
             "//cmk/utils:cmk_utils_ultimatemt",
@@ -471,9 +417,6 @@ py_wheel(
             "//non-free/packages/cmc-protocols:py_state_proto",
         ],
     }) + [
-        ":agents",
-        ":checkman_edition_specific",
-        ":checkman_free",
         ":cmk_cmk",
         ":miscellaneous",
         "//cmk/automations:cmk_automations",
@@ -486,6 +429,8 @@ py_wheel(
         "//cmk/notification_plugins:cmk_notification_plugins",
         "//cmk/piggyback:backend",
         "//cmk/piggyback:hub",
+        "//cmk/plugins:agents",
+        "//cmk/plugins:cmk_plugins",
         "//cmk/product_usage:cmk_product_usage",
         "//cmk/server_side_calls_backend:cmk_server_side_calls_backend",
         "//cmk/utils:cmk_utils",
@@ -553,59 +498,7 @@ sh_library(
         "gui/.f12",
         "gui/openapi/.f12",
         "gui/wsgi/.f12",
-        "plugins/activemq/libexec/agent_activemq",
-        "plugins/alertmanager/libexec/agent_alertmanager",
-        "plugins/allnet_ip_sensoric/libexec/agent_allnet_ip_sensoric",
-        "plugins/appdynamics/libexec/agent_appdynamics",
-        "plugins/aws/libexec/agent_aws",
-        "plugins/aws/libexec/agent_aws_status",
-        "plugins/azure_deprecated/libexec/agent_azure",
-        "plugins/azure_status/libexec/agent_azure_status",
-        "plugins/azure_v2/libexec/agent_azure_v2",
-        "plugins/bazel/libexec/agent_bazel_cache",
-        "plugins/checkmk/libexec/agent_bi",
-        "plugins/checkmk/libexec/check_cmk_inv",
-        "plugins/cisco_meraki/libexec/agent_cisco_meraki",
-        "plugins/couchbase/libexec/agent_couchbase",
-        "plugins/datadog/libexec/agent_datadog",
-        "plugins/ddn_s2a/libexec/agent_ddn_s2a",
-        "plugins/emailchecks/libexec/check_mail",
-        "plugins/emailchecks/libexec/check_mail_loop",
-        "plugins/emailchecks/libexec/check_mailboxes",
-        "plugins/form_submit/libexec/check_form_submit",
-        "plugins/fritzbox/libexec/agent_fritzbox",
-        "plugins/gcp/libexec/agent_gcp",
-        "plugins/gcp/libexec/agent_gcp_status",
-        "plugins/gerrit/libexec/agent_gerrit",
-        "plugins/hivemanager/libexec/agent_hivemanager",
-        "plugins/hivemanager_ng/libexec/agent_hivemanager_ng",
-        "plugins/hp_msa/libexec/agent_hp_msa",
-        "plugins/hpe_3par/libexec/agent_three_par",
-        "plugins/ibmsvc/libexec/agent_ibmsvc",
-        "plugins/innovaphone/libexec/agent_innovaphone",
-        "plugins/jenkins/libexec/agent_jenkins",
-        "plugins/jira/libexec/agent_jira",
-        "plugins/jolokia/libexec/agent_jolokia",
-        "plugins/mobileiron/libexec/agent_mobileiron",
-        "plugins/mqtt/libexec/agent_mqtt",
-        "plugins/oracle/.f12",
-        "plugins/oracle/agents/oracle_unified_async",
-        "plugins/oracle/agents/oracle_unified_sync",
-        "plugins/prometheus/libexec/agent_prometheus",
-        "plugins/ruckus_spot/libexec/agent_ruckus_spot",
-        "plugins/salesforce/libexec/agent_salesforce",
-        "plugins/sftp/libexec/check_sftp",
-        "plugins/siemens_plc/libexec/agent_siemens_plc",
-        "plugins/smb/libexec/agent_smb_share",
-        "plugins/smb/libexec/check_disk_smb",
-        "plugins/sql/libexec/check_sql",
-        "plugins/storeonce/libexec/agent_storeonce",
-        "plugins/storeonce4x/libexec/agent_storeonce4x",
-        "plugins/tinkerforge/libexec/agent_tinkerforge",
-        "plugins/traceroute/libexec/check_traceroute",
-        "plugins/uniserv/libexec/check_uniserv",
-        "plugins/vnx_quotas/libexec/agent_vnx_quotas",
-        "plugins/zerto/libexec/agent_zerto",
+        "//cmk/plugins:shell_scripts",
     ] + select({
         "@//:gpl+nonfree_repo": [
             "gui/nonfree/pro/dcd/.f12",

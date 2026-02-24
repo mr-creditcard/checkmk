@@ -15,7 +15,9 @@ py_library(
     name = "event",
     srcs = ["cmk/ec/event.py"],
     imports = ["."],
-    visibility = ["//cmk:__pkg__"],
+    visibility = [
+        "//cmk:__subpackages__",
+    ],
     deps = [
         "//packages/cmk-ccc:hostaddress",
         "//packages/cmk-ccc:site",
@@ -27,7 +29,9 @@ py_library(
     name = "syslog",
     srcs = ["cmk/ec/syslog.py"],
     imports = ["."],
-    visibility = ["//cmk:__pkg__"],
+    visibility = [
+        "//cmk:__subpackages__",
+    ],
 )
 
 py_library(

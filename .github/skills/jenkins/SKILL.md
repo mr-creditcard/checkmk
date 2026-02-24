@@ -15,6 +15,9 @@ jenkins_build_data.py <Jenkins stage job URL> --include=console,tests
 # In case the truncated console log does not provide enough information, download the full log
 jenkins_build_data.py <Jenkins stage job URL> --include=full-console
 
+# in case the jenkins job/build is still BUILDING, you can poll until it is finished (defaults 2 minutes):
+jenkins_build_data.py <url> --poll [--poll-interval=SECONDS]
+
 # Usage:
 # jenkins_build_data.py [-h] [--include INCLUDE] [--download SPEC] [--download-dir DOWNLOAD_DIR] [--json] [-q] url
 #

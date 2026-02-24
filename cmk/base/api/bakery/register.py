@@ -79,6 +79,7 @@ def get_bakery_plugins() -> dict[str, BakeryPlugin]:
         # and migrate our plugins to the new cmk.bakery.v2 API.
         # For the time being, we also load this namespace, to allow to separate the
         # migration into two steps ("going public" and using the new API)).
+        # CMK-31432
         load_plugins_with_exceptions("cmk.base.plugins.bakery"),
     ):
         console.error(f"Error in bakery plug-in {plugin}: {exception}", file=sys.stderr)

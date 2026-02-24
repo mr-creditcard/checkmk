@@ -16,7 +16,7 @@ metric_channel_width = metrics.Metric(
 
 metric_channel = metrics.Metric(
     name="channel",
-    title=Title("Channel"),
+    title=Title("Radio channel"),
     unit=metrics.Unit(metrics.DecimalNotation("")),
     color=metrics.Color.DARK_YELLOW,
 )

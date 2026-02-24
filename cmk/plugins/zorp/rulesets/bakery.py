@@ -55,7 +55,7 @@ def _valuespec_agent_config_zorp() -> Dictionary:
     )
 
 
-rule_spec_AgentConfig = AgentConfig(
+rule_spec_zorp = AgentConfig(
     title=Title("Zorp firewall"),
     name="zorp",
     topic=Topic.APPLICATIONS,

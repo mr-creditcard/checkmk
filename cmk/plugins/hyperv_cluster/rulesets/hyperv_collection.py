@@ -76,7 +76,7 @@ def _valuespec_agent_config_hyperv_collection() -> Dictionary:
     )
 
 
-rule_spec_AgentConfig = AgentConfig(
+rule_spec_hyper_v = AgentConfig(
     title=Title("Hyper-V"),
     name="hyperv_collection",
     topic=Topic.APPLICATIONS,

@@ -6,8 +6,8 @@
 
 case "$1" in
     -h | --help | "")
-        echo "Usage: $(basename "$0") MESSAGE [...]" >&2
-        echo "Always returns CRITICAL and prints the given message." >&2
+        echo "usage: $(basename "$0") MESSAGE [...]"
+        echo "Always returns CRITICAL and prints the given message."
         exit 3
         ;;
 esac

@@ -10,7 +10,7 @@ def test_check_plugin_header() -> None:
     for plugin in (
         p
         for p in (repo_path() / "cmk/legacy_checks").iterdir()
-        if p.name not in {"__pycache__", "OWNERS"}
+        if p.name not in {"__pycache__", "OWNERS", "BUILD"}
     ):
         with plugin.open() as handle:
             shebang = handle.readline().strip()

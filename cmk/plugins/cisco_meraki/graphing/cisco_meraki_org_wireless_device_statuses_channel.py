@@ -20,10 +20,3 @@ metric_channel = metrics.Metric(
     unit=metrics.Unit(metrics.DecimalNotation("")),
     color=metrics.Color.DARK_YELLOW,
 )
-
-metric_signal_power = metrics.Metric(
-    name="signal_power",
-    title=Title("Signal power"),
-    unit=metrics.Unit(metrics.DecimalNotation("dBm")),
-    color=metrics.Color.GREEN,
-)

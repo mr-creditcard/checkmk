@@ -102,7 +102,10 @@ filegroup(
 # families to packages/cmk-plugins, which then results in the current target state.
 filegroup(
     name = "cmk_plugins_robotmk_nonfree_srcs",
-    srcs = glob(["robotmk/**/nonfree/**/*.py"]),
+    srcs = glob(
+        ["robotmk/**/nonfree/**/*.py"],
+        allow_empty = True,
+    ),
 )
 
 # Otel and custom_query_metric_backend nonfree files import from cmk.metric_backend.*,
@@ -114,10 +117,13 @@ filegroup(
 # families to packages/cmk-plugins, which then results in the current target state.
 filegroup(
     name = "cmk_plugins_otel_nonfree_srcs",
-    srcs = glob([
-        "otel/**/nonfree/**/*.py",
-        "custom_query_metric_backend/**/nonfree/**/*.py",
-    ]),
+    srcs = glob(
+        [
+            "otel/**/nonfree/**/*.py",
+            "custom_query_metric_backend/**/nonfree/**/*.py",
+        ],
+        allow_empty = True,
+    ),
 )
 
 py_library(

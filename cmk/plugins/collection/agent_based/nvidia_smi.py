@@ -545,7 +545,7 @@ def check_nvidia_smi_fan_speed(
         gpu.fan_speed,
         levels_upper=params.get("levels"),
         render_func=render.percent,
-        metric_name="fan_speed",
+        metric_name="fan_perc",
         label="Speed",
     )
 
